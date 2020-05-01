@@ -30,11 +30,10 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name:
 
-podSecurityContext:
-  fsGroup: 1000
+podSecurityContext: {}
 
 securityContext:
-  {}
+  fsGroup: 1000
   # capabilities:
   #   drop:
   #   - ALL
