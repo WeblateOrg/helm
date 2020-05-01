@@ -95,3 +95,5 @@ postgresql:
 
 redis:
   password: "weblate"
+  cluster:
+    enabled: false

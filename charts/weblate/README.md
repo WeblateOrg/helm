@@ -45,6 +45,7 @@ Source code can be found [here](https://weblate.org/)
 | postgresql.postgresqlDatabase | string | `"weblate"` |  |
 | postgresql.postgresqlPassword | string | `"weblate"` |  |
 | postgresql.postgresqlUsername | string | `"weblate"` |  |
+| redis.cluster.enabled | bool | `false` |  |
 | redis.password | string | `"weblate"` |  |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |

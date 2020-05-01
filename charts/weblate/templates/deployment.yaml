@@ -38,6 +38,8 @@ spec:
               value: "{{ .Values.postgresql.postgresqlDatabase }}"
             - name: POSTGRES_HOST
               value: "{{ include "postgresql.fullname" . }}"
+            - NAME: POSTGRES_PORT
+              value: {{ .Values.postgresql.service.port }}
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
