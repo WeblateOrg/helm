@@ -41,14 +41,14 @@ Source code can be found [here](https://weblate.org/)
 | persistence.enabled | bool | `true` |  |
 | persistence.filestore_dir | string | `"/app/data"` |  |
 | persistence.size | string | `"10Gi"` |  |
-| podSecurityContext | object | `{}` |  |
+| podSecurityContext.fsGroup | int | `1000` |  |
 | postgresql.postgresqlDatabase | string | `"weblate"` |  |
 | postgresql.postgresqlPassword | string | `"weblate"` |  |
 | postgresql.postgresqlUsername | string | `"weblate"` |  |
 | redis.password | string | `"weblate"` |  |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
-| securityContext.fsGroup | int | `1000` |  |
+| securityContext | object | `{}` |  |
 | service.port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.create | bool | `true` |  |
