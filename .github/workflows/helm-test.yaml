@@ -19,6 +19,9 @@ jobs:
           command: lint
           config: .github/ct.yaml
 
+      - name: Validate Readme is up to date
+        run: .github/helm-docs.sh
+
       - name: Create kind cluster
         uses: helm/kind-action@v1.0.0-alpha.3
         # Only build a kind cluster if there are chart changes to test.
