@@ -1,1 +1,1 @@
-chart-repos bitname=https://charts.bitnami.com/bitnami
+chart-repos: bitname=https://charts.bitnami.com/bitnami
