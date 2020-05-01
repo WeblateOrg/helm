@@ -32,6 +32,7 @@ serviceAccount:
 
 podSecurityContext:
   fsGroup: 1000
+  runAsUser: 1000
 
 securityContext:
   {}
