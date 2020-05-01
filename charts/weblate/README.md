@@ -42,7 +42,6 @@ Source code can be found [here](https://weblate.org/)
 | persistence.filestore_dir | string | `"/app/data"` |  |
 | persistence.size | string | `"10Gi"` |  |
 | podSecurityContext.fsGroup | int | `1000` |  |
-| podSecurityContext.runAsUser | int | `1000` |  |
 | postgresql.postgresqlDatabase | string | `"weblate"` |  |
 | postgresql.postgresqlPassword | string | `"weblate"` |  |
 | postgresql.postgresqlUsername | string | `"weblate"` |  |
