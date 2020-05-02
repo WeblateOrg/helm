@@ -59,5 +59,5 @@ Create the name of the service account to use
 {{- printf "%s-%s" "weblate" "postgresql" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 {{- define "redis.fullname" -}}
-{{- printf "%s-%s" "weblate" "redis" | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s-%s" "weblate" "redis" "master" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
