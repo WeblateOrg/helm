@@ -1,4 +1,5 @@
 chart-repos:
   - bitname=https://charts.bitnami.com/bitnami
 validate-maintainers: false
-helm-extra-args: --timeout 900
+helm-extra-args: --timeout 15m
+debug: true
