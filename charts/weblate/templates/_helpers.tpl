@@ -56,8 +56,11 @@ Create the name of the service account to use
 {{- end -}}
 
 {{- define "weblate.postgresql.fullname" -}}
-{{- printf "%s-%s" "weblate" "postgresql" | trunc 63 | trimSuffix "-" -}}
+{{- $fullName := include "weblate.fullname" . -}}
+{{- printf "%s-%s" $fullName "postgresql" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
 {{- define "weblate.redis.fullname" -}}
-{{- printf "%s-%s-%s" "weblate" "redis" "master" | trunc 63 | trimSuffix "-" -}}
+{{- $fullName := include "weblate.fullname" . -}}
+{{- printf "%s-%s-%s" $fullName "redis" "master" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
