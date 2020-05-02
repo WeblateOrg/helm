@@ -25,10 +25,7 @@ serverEmail: ""
 defaultFromEmail: ""
 allowedHosts: "*"
 
-extraConfig:
-  WEBLATE_SERVER_EMAIL: ""
-  WEBLATE_DEFAULT_FROM_EMAIL: ""
-  WEBLATE_ALLOWED_HOSTS: ""
+extraConfig: {}
 
 serviceAccount:
   # Specifies whether a service account should be created
