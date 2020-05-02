@@ -12,6 +12,7 @@ image:
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
+updateStrategy: "Recreate"
 
 # adminEmail -- Email of Admin Account
 adminEmail: ""
