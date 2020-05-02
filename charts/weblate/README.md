@@ -30,6 +30,7 @@ $ helm install my-release weblate/weblate
 | affinity | object | `{}` |  |
 | allowedHosts | string | `"*"` | Hosts that are allowed to connect |
 | configOverride | string | `""` | Config override. See https://docs.weblate.org/en/latest/admin/install/docker.html#custom-configuration-files |
+| debug | string | `"0"` | Enable debugging |
 | defaultFromEmail | string | `""` | From email for outgoing emails |
 | emailHost | string | `""` | Host for sending emails |
 | emailPassword | string | `""` | Password for sending emails |

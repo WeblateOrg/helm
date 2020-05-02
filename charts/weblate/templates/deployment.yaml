@@ -90,6 +90,8 @@ spec:
               value: "{{ .Values.defaultFromEmail }}"
             - name: WEBLATE_ALLOWED_HOSTS
               value: "{{ .Values.allowedHosts }}"
+            - name: WEBLATE_DEBUG
+              value: "{{ .Values.debug }}"
             {{- range $key, $value := .Values.extraConfig }}
             - name: {{ $key }}
               value: "{{ $value }}"

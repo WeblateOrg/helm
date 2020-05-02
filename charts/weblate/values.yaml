@@ -34,6 +34,9 @@ defaultFromEmail: ""
 # allowedHosts -- Hosts that are allowed to connect
 allowedHosts: "*"
 
+# debug -- Enable debugging
+debug: "0"
+
 # extraConfig -- Additional (environment) configs. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment
 extraConfig: {}
 
