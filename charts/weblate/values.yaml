@@ -68,6 +68,8 @@ ingress:
 persistence:
   enabled: true
 
+  # storageClass: "-"
+
   accessMode: ReadWriteOnce
   size: 10Gi
 
