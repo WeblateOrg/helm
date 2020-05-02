@@ -91,14 +91,14 @@ spec:
             - name: {{ $key }}
               value: "{{ $value }}"
             {{- end }}
-          livenessProbe:
-            httpGet:
-              path: /healthz/
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /healthz/
-              port: http
+#          livenessProbe:
+#            httpGet:
+#              path: /healthz/
+#              port: http
+#          readinessProbe:
+#            httpGet:
+#              path: /healthz/
+#              port: http
           volumeMounts:
             - mountPath: {{ .Values.persistence.filestore_dir }}
               name: weblate-data
