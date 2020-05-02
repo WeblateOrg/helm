@@ -2,9 +2,16 @@ weblate
 =======
 Weblate is a free web-based translation management system.
 
-Current chart version is `0.1.1`
+Current chart version is `0.1.2`
 
 Source code can be found [here](https://weblate.org/)
+
+## TL;DR;
+
+```console
+$ helm repo add weblate https://tarioch.github.io/weblate-helm
+$ helm install my-release weblate/weblate
+```
 
 ## Chart Requirements
 
@@ -17,16 +24,18 @@ Source code can be found [here](https://weblate.org/)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| adminEmail | string | `""` |  |
-| adminPassword | string | `""` |  |
-| adminUser | string | `""` |  |
+| adminEmail | string | `""` | Email of Admin Account |
+| adminPassword | string | `""` | Password of Admin Account |
+| adminUser | string | `""` | Name of Admin Account |
 | affinity | object | `{}` |  |
-| allowedHosts | string | `"*"` |  |
-| defaultFromEmail | string | `""` |  |
-| emailHost | string | `""` |  |
-| emailPassword | string | `""` |  |
-| emailUser | string | `""` |  |
-| extraConfig | object | `{}` |  |
+| allowedHosts | string | `"*"` | Hosts that are allowed to connect |
+| configOverride | string | `""` | Config override. See https://docs.weblate.org/en/latest/admin/install/docker.html#custom-configuration-files |
+| debug | string | `"0"` | Enable debugging |
+| defaultFromEmail | string | `""` | From email for outgoing emails |
+| emailHost | string | `""` | Host for sending emails |
+| emailPassword | string | `""` | Password for sending emails |
+| emailUser | string | `""` | User name for sending emails |
+| extraConfig | object | `{}` | Additional (environment) configs. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"weblate/weblate"` |  |
@@ -51,9 +60,9 @@ Source code can be found [here](https://weblate.org/)
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 | securityContext | object | `{}` |  |
-| serverEmail | string | `""` |  |
+| serverEmail | string | `""` | Sender for outgoing emails |
 | service.port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
-| serviceAccount.create | bool | `false` |  |
+| serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `nil` |  |
 | tolerations | list | `[]` |  |

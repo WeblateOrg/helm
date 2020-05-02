@@ -13,23 +13,39 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+# adminEmail -- Email of Admin Account
 adminEmail: ""
+# adminUser -- Name of Admin Account
 adminUser: ""
+# adminPassword -- Password of Admin Account
 adminPassword: ""
 
+# emailHost -- Host for sending emails
 emailHost: ""
+# emailUser -- User name for sending emails
 emailUser: ""
+# emailPassword -- Password for sending emails
 emailPassword: ""
 
+# serverEmail -- Sender for outgoing emails
 serverEmail: ""
+# defaultFromEmail -- From email for outgoing emails
 defaultFromEmail: ""
+# allowedHosts -- Hosts that are allowed to connect
 allowedHosts: "*"
 
+# debug -- Enable debugging
+debug: "0"
+
+# extraConfig -- Additional (environment) configs. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment
 extraConfig: {}
+
+# configOverride -- Config override. See https://docs.weblate.org/en/latest/admin/install/docker.html#custom-configuration-files
+configOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: false
+  create: true
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name:
