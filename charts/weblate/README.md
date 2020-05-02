@@ -6,6 +6,13 @@ Current chart version is `0.1.2`
 
 Source code can be found [here](https://weblate.org/)
 
+## TL;DR;
+
+```console
+$ helm repo add weblate https://tarioch.github.io/weblate-helm
+$ helm install my-release weblate/weblate
+```
+
 ## Chart Requirements
 
 | Repository | Name | Version |
