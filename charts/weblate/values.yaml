@@ -25,7 +25,11 @@ serverEmail: ""
 defaultFromEmail: ""
 allowedHosts: "*"
 
+# See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment
 extraConfig: {}
+
+# See https://docs.weblate.org/en/latest/admin/install/docker.html#custom-configuration-files
+configOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created

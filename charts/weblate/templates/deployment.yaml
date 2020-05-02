@@ -12,6 +12,9 @@ spec:
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
       labels:
         app.kubernetes.io/name: {{ include "weblate.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
@@ -108,9 +111,18 @@ spec:
           volumeMounts:
             - mountPath: {{ .Values.persistence.filestore_dir }}
               name: weblate-data
+            - mountPath: "{{ .Values.persistence.filestore_dir }}/settings-override.py"
+              name: weblate-config
+              subPath: "settings-override.py"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
+        - name: weblate-config
+          configMap:
+            name: {{ include "weblate.fullname" . }}
+            items:
+            - key: "settings-override.py"
+              path: "settings-override.py"
         - name: weblate-data
         {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:

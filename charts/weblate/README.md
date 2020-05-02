@@ -2,7 +2,7 @@ weblate
 =======
 Weblate is a free web-based translation management system.
 
-Current chart version is `0.1.1`
+Current chart version is `0.1.2`
 
 Source code can be found [here](https://weblate.org/)
 
@@ -22,6 +22,7 @@ Source code can be found [here](https://weblate.org/)
 | adminUser | string | `""` |  |
 | affinity | object | `{}` |  |
 | allowedHosts | string | `"*"` |  |
+| configOverride | string | `""` |  |
 | defaultFromEmail | string | `""` |  |
 | emailHost | string | `""` |  |
 | emailPassword | string | `""` |  |
