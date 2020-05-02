@@ -37,19 +37,26 @@ spec:
             - name: POSTGRES_DATABASE
               value: "{{ .Values.postgresql.postgresqlDatabase }}"
             - name: POSTGRES_HOST
-              value: "{{ include "postgresql.fullname" . }}"
+              value: "{{ include "weblate.postgresql.fullname" . }}"
+            - name: POSTGRES_PORT
+              value: "{{ .Values.postgresql.service.port }}"
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
                   name: {{ include "weblate.fullname" . }}
-                  key: postgres-user
+                  key: postgresql-user
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ include "weblate.fullname" . }}
-                  key: postgres-password
+                  key: postgresql-password
             - name: REDIS_HOST
-              value: "{{ include "redis.fullname" . }}"
+              value: "{{ include "weblate.redis.fullname" . }}"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "weblate.fullname" . }}
+                  key: redis-password
             - name: WEBLATE_ADMIN_EMAIL
               value: "{{ .Values.adminEmail }}"
             - name: WEBLATE_ADMIN_NAME
@@ -74,6 +81,12 @@ spec:
                 secretKeyRef:
                   name: {{ include "weblate.fullname" . }}
                   key: email-password
+            - name: WEBLATE_SERVER_EMAIL
+              value: "{{ .Values.serverEmail }}"
+            - name: WEBLATE_DEFAULT_FROM_EMAIL
+              value: "{{ .Values.defaultFromEmail }}"
+            - name: WEBLATE_ALLOWED_HOSTS
+              value: "{{ .Values.allowedHosts }}"
             {{- range $key, $value := .Values.extraConfig }}
             - name: {{ $key }}
               value: "{{ $value }}"
@@ -82,10 +95,16 @@ spec:
             httpGet:
               path: /healthz/
               port: http
+            failureThreshold: 10
+            initialDelaySeconds: 90
+            periodSeconds: 30
           readinessProbe:
             httpGet:
               path: /healthz/
               port: http
+            failureThreshold: 5
+            initialDelaySeconds: 90
+            periodSeconds: 30
           volumeMounts:
             - mountPath: {{ .Values.persistence.filestore_dir }}
               name: weblate-data
