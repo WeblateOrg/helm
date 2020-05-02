@@ -55,9 +55,9 @@ Create the name of the service account to use
 {{- end -}}
 {{- end -}}
 
-{{- define "postgresql.fullname" -}}
+{{- define "weblate.postgresql.fullname" -}}
 {{- printf "%s-%s" "weblate" "postgresql" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
-{{- define "redis.fullname" -}}
+{{- define "weblate.redis.fullname" -}}
 {{- printf "%s-%s-%s" "weblate" "redis" "master" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}

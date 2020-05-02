@@ -57,6 +57,6 @@ Source code can be found [here](https://weblate.org/)
 | serverEmail | string | `""` |  |
 | service.port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
-| serviceAccount.create | bool | `true` |  |
+| serviceAccount.create | bool | `false` |  |
 | serviceAccount.name | string | `nil` |  |
 | tolerations | list | `[]` |  |
