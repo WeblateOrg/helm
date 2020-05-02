@@ -26,9 +26,7 @@ Source code can be found [here](https://weblate.org/)
 | emailHost | string | `""` |  |
 | emailPassword | string | `""` |  |
 | emailUser | string | `""` |  |
-| extraConfig.WEBLATE_ALLOWED_HOSTS | string | `""` |  |
-| extraConfig.WEBLATE_DEFAULT_FROM_EMAIL | string | `""` |  |
-| extraConfig.WEBLATE_SERVER_EMAIL | string | `""` |  |
+| extraConfig | object | `{}` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"weblate/weblate"` |  |
@@ -48,7 +46,6 @@ Source code can be found [here](https://weblate.org/)
 | podSecurityContext.fsGroup | int | `1000` |  |
 | postgresql.postgresqlDatabase | string | `"weblate"` |  |
 | postgresql.postgresqlPassword | string | `"weblate"` |  |
-| postgresql.postgresqlUsername | string | `"weblate"` |  |
 | redis.cluster.enabled | bool | `false` |  |
 | redis.password | string | `"weblate"` |  |
 | replicaCount | int | `1` |  |
