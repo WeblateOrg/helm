@@ -76,6 +76,12 @@ spec:
                 secretKeyRef:
                   name: {{ include "weblate.fullname" . }}
                   key: email-password
+            - name: WEBLATE_SERVER_EMAIL
+              value: "{{ .Values.serverEmail }}"
+            - name: WEBLATE_DEFAULT_FROM_EMAIL
+              value: "{{ .Values.defaultFromEmail }}"
+            - name: WEBLATE_ALLOWED_HOSTS
+              value: "{{ .Values.allowedHosts }}"
             {{- range $key, $value := .Values.extraConfig }}
             - name: {{ $key }}
               value: "{{ $value }}"

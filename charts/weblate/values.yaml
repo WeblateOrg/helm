@@ -13,8 +13,6 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-extraConfig: []
-
 adminEmail: ""
 adminUser: ""
 adminPassword: ""
@@ -22,6 +20,15 @@ adminPassword: ""
 emailHost: ""
 emailUser: ""
 emailPassword: ""
+
+serverEmail: ""
+defaultFromEmail: ""
+allowedHosts: "*"
+
+extraConfig:
+  WEBLATE_SERVER_EMAIL: ""
+  WEBLATE_DEFAULT_FROM_EMAIL: ""
+  WEBLATE_ALLOWED_HOSTS: ""
 
 serviceAccount:
   # Specifies whether a service account should be created

@@ -21,10 +21,14 @@ Source code can be found [here](https://weblate.org/)
 | adminPassword | string | `""` |  |
 | adminUser | string | `""` |  |
 | affinity | object | `{}` |  |
+| allowedHosts | string | `"*"` |  |
+| defaultFromEmail | string | `""` |  |
 | emailHost | string | `""` |  |
 | emailPassword | string | `""` |  |
 | emailUser | string | `""` |  |
-| extraConfig | list | `[]` |  |
+| extraConfig.WEBLATE_ALLOWED_HOSTS | string | `""` |  |
+| extraConfig.WEBLATE_DEFAULT_FROM_EMAIL | string | `""` |  |
+| extraConfig.WEBLATE_SERVER_EMAIL | string | `""` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"weblate/weblate"` |  |
@@ -50,6 +54,7 @@ Source code can be found [here](https://weblate.org/)
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 | securityContext | object | `{}` |  |
+| serverEmail | string | `""` |  |
 | service.port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.create | bool | `true` |  |
