@@ -91,14 +91,20 @@ spec:
             - name: {{ $key }}
               value: "{{ $value }}"
             {{- end }}
-#          livenessProbe:
-#            httpGet:
-#              path: /healthz/
-#              port: http
-#          readinessProbe:
-#            httpGet:
-#              path: /healthz/
-#              port: http
+          livenessProbe:
+            httpGet:
+              path: /healthz/
+              port: http
+            failureThreshold: 10
+            initialDelaySeconds: 90
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /healthz/
+              port: http
+            failureThreshold: 5
+            initialDelaySeconds: 90
+            periodSeconds: 30
           volumeMounts:
             - mountPath: {{ .Values.persistence.filestore_dir }}
               name: weblate-data
