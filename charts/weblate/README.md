@@ -9,7 +9,7 @@ Source code can be found [here](https://weblate.org/)
 ## TL;DR;
 
 ```console
-$ helm repo add weblate https://weblateorg.github.io/weblate-helm
+$ helm repo add weblate https://helm.weblate.org
 $ helm install my-release weblate/weblate
 ```
 
