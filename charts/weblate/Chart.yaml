@@ -4,7 +4,7 @@ description: Weblate is a free web-based translation management system.
 name: weblate
 version: 0.1.6
 home: https://weblate.org/
-icon: https://weblate.org/static/img/logo.svg
+icon: https://s.weblate.org/cdn/weblate-background.svg
 maintainers:
 - name: tarioch
   email: patrick@ch.tario.org
