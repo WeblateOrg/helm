@@ -2,7 +2,7 @@ weblate
 =======
 Weblate is a free web-based translation management system.
 
-Current chart version is `0.1.7`
+Current chart version is `0.1.8`
 
 Source code can be found [here](https://weblate.org/)
 
