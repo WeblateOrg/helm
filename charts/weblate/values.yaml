@@ -114,9 +114,21 @@ affinity: {}
 postgresql:
   postgresqlPassword: "weblate"
   postgresqlDatabase: "weblate"
+  services:
+    port: 5432
+  enabled: true
+  # postgresql.postgresqlHost -- External postgres database endpoint, to be
+  # used if `postgresql.enabled == false`
+  # @default -- `None`
+  postgresqlHost:
 
 redis:
   password: "weblate"
   db: 1
+  enabled: true
+  # redis.redisHost -- External redis database endpoint, to be
+  # used if `redis.enabled == false`
+  # @default -- `None`
+  redisHost:
   cluster:
     enabled: false
