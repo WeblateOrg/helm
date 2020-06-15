@@ -42,7 +42,7 @@ spec:
             - name: POSTGRES_DATABASE
               value: "{{ .Values.postgresql.postgresqlDatabase }}"
             - name: POSTGRES_HOST
-              value: "{{ include "weblate.postgresql.fullname" . }}"
+              value: "{{ .Values.postgresql.postgresqlHost | default (include "weblate.postgresql.fullname" .) }}"
             - name: POSTGRES_PORT
               value: "{{ .Values.postgresql.service.port }}"
             - name: POSTGRES_USER

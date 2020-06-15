@@ -2,7 +2,7 @@ weblate
 =======
 Weblate is a free web-based translation management system.
 
-Current chart version is `0.1.9`
+Current chart version is `0.1.10`
 
 Source code can be found [here](https://weblate.org/)
 
@@ -53,13 +53,15 @@ $ helm install my-release weblate/weblate
 | persistence.filestore_dir | string | `"/app/data"` |  |
 | persistence.size | string | `"10Gi"` |  |
 | podSecurityContext.fsGroup | int | `1000` |  |
+| postgresql.enabled | bool | `true` |  |
 | postgresql.postgresqlDatabase | string | `"weblate"` |  |
+| postgresql.postgresqlHost | string | `None` | External postgres database endpoint, to be used if `postgresql.enabled == false` |
 | postgresql.postgresqlPassword | string | `"weblate"` |  |
-| postgresql.enabled | bool | `true` | Install a postgresql instance using the official chart instead of using an external one |
+| postgresql.services.port | int | `5432` |  |
 | redis.cluster.enabled | bool | `false` |  |
 | redis.db | int | `1` |  |
+| redis.enabled | bool | `true` |  |
 | redis.password | string | `"weblate"` |  |
-| redis.enabled | bool | `true` | Install a redis instance using the official chart instead of using an external one |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 | securityContext | object | `{}` |  |
