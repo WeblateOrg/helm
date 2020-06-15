@@ -56,8 +56,8 @@ $ helm install my-release weblate/weblate
 | postgresql.postgresqlDatabase | string | `"weblate"` |  |
 | postgresql.postgresqlPassword | string | `"weblate"` |  |
 | redis.cluster.enabled | bool | `false` |  |
+| redis.db | int | `1` |  |
 | redis.password | string | `"weblate"` |  |
-| redis.db | int | `1` | The Redis database number, defaults to `1`. |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 | securityContext | object | `{}` |  |
