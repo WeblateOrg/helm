@@ -57,6 +57,8 @@ spec:
                   key: postgresql-password
             - name: REDIS_HOST
               value: "{{ include "weblate.redis.fullname" . }}"
+            - name: REDIS_DB
+              value: "{{ .Values.redis.db }}"
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
