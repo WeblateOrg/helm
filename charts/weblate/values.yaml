@@ -124,7 +124,11 @@ postgresql:
 
 redis:
   password: "weblate"
-  enabled: true
   db: 1
+  enabled: true
+  # redis.redisHost -- External redis database endpoint, to be
+  # used if `redis.enabled == false`
+  # @default -- `None`
+  redisHost:
   cluster:
     enabled: false

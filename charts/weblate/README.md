@@ -62,6 +62,7 @@ $ helm install my-release weblate/weblate
 | redis.db | int | `1` |  |
 | redis.enabled | bool | `true` |  |
 | redis.password | string | `"weblate"` |  |
+| redis.redisHost | string | `None` | External redis database endpoint, to be used if `redis.enabled == false` |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 | securityContext | object | `{}` |  |
