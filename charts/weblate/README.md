@@ -55,8 +55,10 @@ $ helm install my-release weblate/weblate
 | podSecurityContext.fsGroup | int | `1000` |  |
 | postgresql.postgresqlDatabase | string | `"weblate"` |  |
 | postgresql.postgresqlPassword | string | `"weblate"` |  |
+| postgresql.enabled | bool | `true` | Install a postgresql instance using the official chart instead of using an external one |
 | redis.cluster.enabled | bool | `false` |  |
 | redis.password | string | `"weblate"` |  |
+| redis.enabled | bool | `true` | Install a redis instance using the official chart instead of using an external one |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 | securityContext | object | `{}` |  |

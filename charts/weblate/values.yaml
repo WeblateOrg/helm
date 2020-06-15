@@ -114,8 +114,10 @@ affinity: {}
 postgresql:
   postgresqlPassword: "weblate"
   postgresqlDatabase: "weblate"
+  enabled: true
 
 redis:
   password: "weblate"
+  enabled: true
   cluster:
     enabled: false
