@@ -2,7 +2,7 @@ weblate
 =======
 Weblate is a free web-based translation management system.
 
-Current chart version is `0.1.12`
+Current chart version is `0.1.13`
 
 Source code can be found [here](https://weblate.org/)
 
@@ -34,6 +34,8 @@ $ helm install my-release weblate/weblate
 | defaultFromEmail | string | `""` | From email for outgoing emails |
 | emailHost | string | `""` | Host for sending emails |
 | emailPassword | string | `""` | Password for sending emails |
+| emailPort | int | `587` | Port for sending emails |
+| emailTLS | bool | `true` | Use TLS when sending emails |
 | emailUser | string | `""` | User name for sending emails |
 | extraConfig | object | `{}` | Additional (environment) configs. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment |
 | fullnameOverride | string | `""` |  |

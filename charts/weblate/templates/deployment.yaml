@@ -78,6 +78,10 @@ spec:
                   key: admin-password
             - name: WEBLATE_EMAIL_HOST
               value: "{{ .Values.emailHost }}"
+            - name: WEBLATE_EMAIL_PORT
+              value: "{{ .Values.emailPORT }}"
+            - name: WEBLATE_EMAIL_USE_TLS
+              value: "{{ .Values.emailTLS }}"
             - name: WEBLATE_EMAIL_USER
               valueFrom:
                 secretKeyRef:

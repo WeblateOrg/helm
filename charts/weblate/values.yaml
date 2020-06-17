@@ -23,6 +23,10 @@ adminPassword: ""
 
 # emailHost -- Host for sending emails
 emailHost: ""
+# emailPort -- Port for sending emails
+emailPort: 587
+# emailTLS -- Use TLS when sending emails
+emailTLS: True
 # emailUser -- User name for sending emails
 emailUser: ""
 # emailPassword -- Password for sending emails
