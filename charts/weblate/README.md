@@ -35,6 +35,7 @@ $ helm install my-release weblate/weblate
 | emailHost | string | `""` | Host for sending emails |
 | emailPassword | string | `""` | Password for sending emails |
 | emailPort | int | `587` | Port for sending emails |
+| emailSSL | bool | `true` | Use SSL when sending emails |
 | emailTLS | bool | `true` | Use TLS when sending emails |
 | emailUser | string | `""` | User name for sending emails |
 | extraConfig | object | `{}` | Additional (environment) configs. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment |

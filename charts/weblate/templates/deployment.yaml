@@ -82,6 +82,8 @@ spec:
               value: "{{ .Values.emailPort }}"
             - name: WEBLATE_EMAIL_USE_TLS
               value: "{{ .Values.emailTLS }}"
+            - name: WEBLATE_EMAIL_USE_SSL
+              value: "{{ .Values.emailSSL }}"
             - name: WEBLATE_EMAIL_USER
               valueFrom:
                 secretKeyRef:
