@@ -2,7 +2,7 @@ weblate
 =======
 Weblate is a free web-based translation management system.
 
-Current chart version is `0.1.11`
+Current chart version is `0.1.12`
 
 Source code can be found [here](https://weblate.org/)
 
@@ -39,7 +39,7 @@ $ helm install my-release weblate/weblate
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"weblate/weblate"` |  |
-| image.tag | string | `"4.1-1"` |  |
+| image.tag | string | `"4.1-2"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |
