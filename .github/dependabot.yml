@@ -1,6 +1,17 @@
+# This file is generated in https://github.com/WeblateOrg/meta/
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
-      interval: "daily"
+      interval: daily
+    labels:
+      - dependencies
+      - automerge
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: daily
+    labels:
+      - dependencies
+      - automerge
