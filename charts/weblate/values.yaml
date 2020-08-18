@@ -120,7 +120,7 @@ affinity: {}
 postgresql:
   postgresqlPassword: "weblate"
   postgresqlDatabase: "weblate"
-  services:
+  service:
     port: 5432
   enabled: true
   # postgresql.postgresqlHost -- External postgres database endpoint, to be
