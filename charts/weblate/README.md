@@ -60,7 +60,7 @@ $ helm install my-release weblate/weblate
 | postgresql.postgresqlDatabase | string | `"weblate"` |  |
 | postgresql.postgresqlHost | string | `None` | External postgres database endpoint, to be used if `postgresql.enabled == false` |
 | postgresql.postgresqlPassword | string | `"weblate"` |  |
-| postgresql.services.port | int | `5432` |  |
+| postgresql.service.port | int | `5432` |  |
 | redis.cluster.enabled | bool | `false` |  |
 | redis.db | int | `1` |  |
 | redis.enabled | bool | `true` |  |
