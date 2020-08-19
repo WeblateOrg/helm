@@ -76,6 +76,10 @@ spec:
                 secretKeyRef:
                   name: {{ include "weblate.fullname" . }}
                   key: admin-password
+            - name: WEBLATE_SITE_TITLE
+              value: "{{ .Values.siteTitle }}"
+            - name: WEBLATE_SITE_DOMAIN
+              value: "{{ .Values.siteDomain }}"
             - name: WEBLATE_EMAIL_HOST
               value: "{{ .Values.emailHost }}"
             - name: WEBLATE_EMAIL_PORT

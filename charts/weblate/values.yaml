@@ -21,6 +21,11 @@ adminUser: ""
 # adminPassword -- Password of Admin Account
 adminPassword: ""
 
+# siteTile -- Site title
+siteTitle: "Weblate"
+# siteDomain -- Site domain
+siteDomain: "chart-example.local"
+
 # emailHost -- Host for sending emails
 emailHost: ""
 # emailPort -- Port for sending emails

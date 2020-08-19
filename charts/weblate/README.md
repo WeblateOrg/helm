@@ -74,5 +74,7 @@ $ helm install my-release weblate/weblate
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `nil` |  |
+| siteDomain | string | `"chart-example.local"` | Site domain |
+| siteTitle | string | `"Weblate"` |  |
 | tolerations | list | `[]` |  |
 | updateStrategy | string | `"Recreate"` |  |
