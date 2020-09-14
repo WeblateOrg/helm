@@ -5,6 +5,7 @@ on:
   push:
     branches-ignore:
       - "dependabot/**"
+      - weblate
   pull_request:
 
 jobs:
@@ -12,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2.3.2
+      - uses: actions/checkout@v2
       - uses: actions/cache@v2.1.1
         with:
           path: |
