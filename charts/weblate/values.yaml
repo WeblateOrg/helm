@@ -31,9 +31,9 @@ emailHost: ""
 # emailPort -- Port for sending emails
 emailPort: 587
 # emailTLS -- Use TLS when sending emails
-emailTLS: True
+emailTLS: true
 # emailSSL -- Use SSL when sending emails
-emailSSL: True
+emailSSL: true
 # emailUser -- User name for sending emails
 emailUser: ""
 # emailPassword -- Password for sending emails
