@@ -21,7 +21,7 @@ jobs:
           python-version: 3.7
 
       - name: Set up chart-testing
-        uses: helm/chart-testing-action@v2.0.0
+        uses: helm/chart-testing-action@v2.0.1
 
       - name: Validate Readme is up to date
         run: .github/helm-docs.sh
