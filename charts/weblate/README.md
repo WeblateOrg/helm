@@ -53,7 +53,7 @@ $ helm install my-release weblate/weblate
 | nodeSelector | object | `{}` |  |
 | persistence.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.enabled | bool | `true` |  |
-| persistence.existingClaim | string | `""` | Use an existing volume claim  |
+| persistence.existingClaim | string | `""` | Use an existing volume claim |
 | persistence.filestore_dir | string | `"/app/data"` |  |
 | persistence.size | string | `"10Gi"` |  |
 | podSecurityContext.fsGroup | int | `1000` |  |
