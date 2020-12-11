@@ -96,6 +96,8 @@ ingress:
 persistence:
   enabled: true
 
+  existingClaim: ""
+
   # storageClass: "-"
 
   accessMode: ReadWriteOnce
