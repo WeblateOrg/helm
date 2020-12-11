@@ -96,6 +96,9 @@ ingress:
 persistence:
   enabled: true
 
+  # persistence.existingClaim -- Use an existing volume claim
+  existingClaim: ""
+
   # storageClass: "-"
 
   accessMode: ReadWriteOnce

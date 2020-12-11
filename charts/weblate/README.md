@@ -2,7 +2,7 @@ weblate
 =======
 Weblate is a free web-based translation management system.
 
-Current chart version is `0.2.7`
+Current chart version is `0.2.8`
 
 Source code can be found [here](https://weblate.org/)
 
@@ -53,6 +53,7 @@ $ helm install my-release weblate/weblate
 | nodeSelector | object | `{}` |  |
 | persistence.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.enabled | bool | `true` |  |
+| persistence.existingClaim | string | `""` | Use an existing volume claim |
 | persistence.filestore_dir | string | `"/app/data"` |  |
 | persistence.size | string | `"10Gi"` |  |
 | podSecurityContext.fsGroup | int | `1000` |  |

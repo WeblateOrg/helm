@@ -142,7 +142,7 @@ spec:
         - name: weblate-data
         {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
-            claimName: {{ include "weblate.fullname" . }}
+            claimName: {{ .Values.persistence.existingClaim | default ( include "weblate.fullname" . ) }}
         {{- else }}
           emptyDir: {}
         {{- end -}}
