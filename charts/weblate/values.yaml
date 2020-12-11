@@ -96,6 +96,7 @@ ingress:
 persistence:
   enabled: true
 
+  # existingClaim -- Use an existing volume claim
   existingClaim: ""
 
   # storageClass: "-"
