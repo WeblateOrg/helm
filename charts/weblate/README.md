@@ -2,7 +2,7 @@ weblate
 =======
 Weblate is a free web-based translation management system.
 
-Current chart version is `0.2.10`
+Current chart version is `0.2.11`
 
 Source code can be found [here](https://weblate.org/)
 
@@ -42,7 +42,7 @@ $ helm install my-release weblate/weblate
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"weblate/weblate"` |  |
-| image.tag | string | `"4.4.1-1"` |  |
+| image.tag | string | `"4.4.2-1"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |
@@ -61,6 +61,7 @@ $ helm install my-release weblate/weblate
 | postgresql.postgresqlDatabase | string | `"weblate"` |  |
 | postgresql.postgresqlHost | string | `None` | External postgres database endpoint, to be used if `postgresql.enabled == false` |
 | postgresql.postgresqlPassword | string | `"weblate"` |  |
+| postgresql.postgresqlUsername | string | `"weblate"` |  |
 | postgresql.service.port | int | `5432` |  |
 | redis.cluster.enabled | bool | `false` |  |
 | redis.db | int | `1` |  |
