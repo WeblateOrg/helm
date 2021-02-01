@@ -126,6 +126,7 @@ tolerations: []
 affinity: {}
 
 postgresql:
+  postgresqlUsername: "weblate"
   postgresqlPassword: "weblate"
   postgresqlDatabase: "weblate"
   service:
