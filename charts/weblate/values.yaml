@@ -126,7 +126,10 @@ tolerations: []
 affinity: {}
 
 postgresql:
-  postgresqlUsername: "weblate"
+  # postgresql.postgresqlUsername -- PostgreSQL user should be a superuser to
+  # be able to install pg_trgm extension. Alternatively you can install it
+  # manually prior starting Weblate.
+  postgresqlUsername: "postgres"
   postgresqlPassword: "weblate"
   postgresqlDatabase: "weblate"
   service:

@@ -2,7 +2,7 @@ weblate
 =======
 Weblate is a free web-based translation management system.
 
-Current chart version is `0.2.11`
+Current chart version is `0.2.12`
 
 Source code can be found [here](https://weblate.org/)
 
@@ -61,7 +61,7 @@ $ helm install my-release weblate/weblate
 | postgresql.postgresqlDatabase | string | `"weblate"` |  |
 | postgresql.postgresqlHost | string | `None` | External postgres database endpoint, to be used if `postgresql.enabled == false` |
 | postgresql.postgresqlPassword | string | `"weblate"` |  |
-| postgresql.postgresqlUsername | string | `"weblate"` |  |
+| postgresql.postgresqlUsername | string | `"postgres"` | PostgreSQL user should be a superuser to  be able to install pg_trgm extension. Alternatively you can install it  manually prior starting Weblate. |
 | postgresql.service.port | int | `5432` |  |
 | redis.cluster.enabled | bool | `false` |  |
 | redis.db | int | `1` |  |
