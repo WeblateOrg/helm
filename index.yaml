@@ -3,6 +3,29 @@ entries:
   weblate:
   - apiVersion: v1
     appVersion: 4.4.2
+    created: "2021-02-02T08:10:41.079982511Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.9.4
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.6.12
+    description: Weblate is a free web-based translation management system.
+    digest: 834e85bd45dfb975739228df369e45c3b9343b3efc6c06526dce861114c00c6e
+    home: https://weblate.org/
+    icon: https://s.weblate.org/cdn/weblate.svg
+    maintainers:
+    - email: patrick@ch.tario.org
+      name: tarioch
+    name: weblate
+    urls:
+    - https://github.com/WeblateOrg/helm/releases/download/weblate-0.2.12/weblate-0.2.12.tgz
+    version: 0.2.12
+  - apiVersion: v1
+    appVersion: 4.4.2
     created: "2021-02-01T11:34:55.4869853Z"
     dependencies:
     - condition: postgresql.enabled
