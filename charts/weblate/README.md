@@ -1,10 +1,17 @@
-weblate
-=======
+# weblate
+
+![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.4.2](https://img.shields.io/badge/AppVersion-4.4.2-informational?style=flat-square)
+
 Weblate is a free web-based translation management system.
 
-Current chart version is `0.2.12`
+**Homepage:** <https://weblate.org/>
 
-Source code can be found [here](https://weblate.org/)
+## Maintainers
+
+| Name | Email | Url |
+| ---- | ------ | --- |
+| tarioch | patrick@ch.tario.org |  |
+| nijel | michal@weblate.org |  |
 
 ## TL;DR;
 
@@ -13,14 +20,14 @@ $ helm repo add weblate https://helm.weblate.org
 $ helm install my-release weblate/weblate
 ```
 
-## Chart Requirements
+## Requirements
 
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 8.9.4 |
 | https://charts.bitnami.com/bitnami | redis | 10.6.12 |
 
-## Chart Values
+## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
@@ -61,7 +68,7 @@ $ helm install my-release weblate/weblate
 | postgresql.postgresqlDatabase | string | `"weblate"` |  |
 | postgresql.postgresqlHost | string | `None` | External postgres database endpoint, to be used if `postgresql.enabled == false` |
 | postgresql.postgresqlPassword | string | `"weblate"` |  |
-| postgresql.postgresqlUsername | string | `"postgres"` | PostgreSQL user should be a superuser to  be able to install pg_trgm extension. Alternatively you can install it  manually prior starting Weblate. |
+| postgresql.postgresqlUsername | string | `"postgres"` | PostgreSQL user should be a superuser to be able to install pg_trgm extension. Alternatively you can install it manually prior starting Weblate. |
 | postgresql.service.port | int | `5432` |  |
 | redis.cluster.enabled | bool | `false` |  |
 | redis.db | int | `1` |  |
