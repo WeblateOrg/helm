@@ -1,0 +1,20 @@
+#!/bin/bash
+set -euo pipefail
+
+BIN_TARGET=$(python -c "import os.path, sys; print(os.path.dirname(sys.executable))")
+if [ -z "$BIN_TARGET" ] ; then
+  echo "Could not find binaries target"
+  exit 1
+fi
+
+if [ ! -w "$BIN_TARGET" ] ; then
+  echo "Binaries target $BIN_TARGET is not writable!"
+  exit 2
+fi
+
+HELM_DOCS_VERSION=$(grep -A1 'https://github.com/norwoodj/helm-docs' .pre-commit-config.yaml | sed -n 's/.*rev: *v\([^ ]*\)/\1/p')
+
+# install helm-docs
+curl --silent --show-error --fail --location --output /tmp/helm-docs.tar.gz https://github.com/norwoodj/helm-docs/releases/download/v"${HELM_DOCS_VERSION}"/helm-docs_"${HELM_DOCS_VERSION}"_Linux_x86_64.tar.gz
+tar -xf /tmp/helm-docs.tar.gz helm-docs
+mv helm-docs "$BIN_TARGET"
