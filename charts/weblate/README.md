@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.3.4](https://img.shields.io/badge/Version-0.3.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.5.2](https://img.shields.io/badge/AppVersion-4.5.2-informational?style=flat-square)
+![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.5.2](https://img.shields.io/badge/AppVersion-4.5.2-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -24,8 +24,8 @@ $ helm install my-release weblate/weblate
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 8.9.4 |
-| https://charts.bitnami.com/bitnami | redis | 10.6.12 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.3.14 |
+| https://charts.bitnami.com/bitnami | redis | 12.10.1 |
 
 ## Values
 
