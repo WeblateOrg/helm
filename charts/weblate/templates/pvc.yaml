@@ -3,6 +3,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: {{ include "weblate.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
 {{ include "weblate.labels" . | indent 4 }}
 spec:

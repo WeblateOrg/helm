@@ -45,7 +45,8 @@ $ helm install my-release weblate/weblate
 | emailSSL | bool | `true` | Use SSL when sending emails |
 | emailTLS | bool | `true` | Use TLS when sending emails |
 | emailUser | string | `""` | User name for sending emails |
-| extraConfig | object | `{}` | Additional (environment) configs. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment |
+| extraConfig | object | `{}` | Additional (environment) configs. Will be evaluated as Helm template See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment |
+| extraSecretConfig | object | `{}` | Same as above, but created as Kubernetes Secret |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"weblate/weblate"` |  |
