@@ -49,8 +49,11 @@ allowedHosts: "*"
 # debug -- Enable debugging
 debug: "0"
 
-# extraConfig -- Additional (environment) configs. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment
+# extraConfig -- Additional (environment) configs. Values will be evaluated as templates. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment
 extraConfig: {}
+
+# extraSecretConfig -- Same as `extraConfig`, but created as secrets. Values will be evaluated as Helm templates
+extraSecretConfig: {}
 
 # configOverride -- Config override. See https://docs.weblate.org/en/latest/admin/install/docker.html#custom-configuration-files
 configOverride: ""

@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "weblate.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
 {{ include "weblate.labels" . | indent 4 }}
 spec:
@@ -17,6 +18,7 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
         checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+        checksum/secret-env: {{ .Values.extraSecretConfig | toYaml | sha256sum }}
       labels:
         app.kubernetes.io/name: {{ include "weblate.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
@@ -107,9 +109,15 @@ spec:
             - name: WEBLATE_DEBUG
               value: "{{ .Values.debug }}"
             {{- range $key, $value := .Values.extraConfig }}
-            - name: {{ $key }}
-              value: "{{ $value }}"
+            - name: {{ $key | quote }}
+              value: |-
+                {{- tpl $value $ | nindent 16 }}
             {{- end }}
+          {{- if .Values.extraSecretConfig }}
+          envFrom:
+            - secretRef:
+                name: {{ include "weblate.fullname" . }}-env
+          {{- end }}
           livenessProbe:
             httpGet:
               path: /healthz/
