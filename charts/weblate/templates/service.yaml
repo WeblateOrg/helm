@@ -3,6 +3,10 @@ kind: Service
 metadata:
   name: {{ include "weblate.fullname" . }}
   namespace: {{ .Release.Namespace }}
+  annotations:
+    {{- range $key, $value := .Values.service.annotations }}
+    {{ $key }}: {{ include "common.tplvalues.render" (dict "value" $value "context" $) | quote }}
+    {{- end }}  
   labels:
 {{ include "weblate.labels" . | indent 4 }}
 spec:
