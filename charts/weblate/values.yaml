@@ -80,6 +80,8 @@ securityContext:
 service:
   type: ClusterIP
   port: 80
+  # Service annotations, use key:value pairs
+  annotations:
 
 ingress:
   enabled: false
