@@ -82,6 +82,7 @@ $ helm install my-release weblate/weblate
 | serverEmail | string | `""` | Sender for outgoing emails |
 | service.port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
+| service.annotations | string | `nil` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `nil` |  |
 | siteDomain | string | `"chart-example.local"` | Site domain |
