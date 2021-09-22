@@ -55,6 +55,10 @@ extraConfig: {}
 # extraSecretConfig -- Same as `extraConfig`, but created as secrets. Values will be evaluated as Helm templates
 extraSecretConfig: {}
 
+# An external secret, in the same namespace, that will be use to set additionnal
+# (environment) configs.
+externalSecretName: ""
+
 # configOverride -- Config override. See https://docs.weblate.org/en/latest/admin/install/docker.html#custom-configuration-files
 configOverride: ""
 
