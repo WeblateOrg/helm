@@ -113,10 +113,16 @@ spec:
               value: |-
                 {{- tpl $value $ | nindent 16 }}
             {{- end }}
-          {{- if .Values.extraSecretConfig }}
+          {{- if (or .Values.extraSecretConfig .Values.externalSecretName) }}
           envFrom:
+            {{- if .Values.extraSecretConfig }}
             - secretRef:
                 name: {{ include "weblate.fullname" . }}-env
+            {{- end }}
+            {{- if .Values.externalSecretName }}
+            - secretRef:
+                name: {{ .Values.externalSecretName }}
+            {{- end }}
           {{- end }}
           livenessProbe:
             httpGet:
