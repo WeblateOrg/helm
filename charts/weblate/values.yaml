@@ -55,7 +55,7 @@ extraConfig: {}
 # extraSecretConfig -- Same as `extraConfig`, but created as secrets. Values will be evaluated as Helm templates
 extraSecretConfig: {}
 
-# An external secret, in the same namespace, that will be use to set additionnal
+# externalSecretName -- An external secret, in the same namespace, that will be use to set additionnal
 # (environment) configs.
 externalSecretName: ""
 
