@@ -29,6 +29,3 @@ repos:
       - id: helm-docs-built
 exclude: "charts/weblate/README.md|\
   charts/weblate/templates/.*\\.yaml"
-ci:
-  skip:
-    - helm-docs
