@@ -10,24 +10,24 @@ image:
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
-updateStrategy: "Recreate"
+nameOverride: ''
+fullnameOverride: ''
+updateStrategy: Recreate
 
 # adminEmail -- Email of Admin Account
-adminEmail: ""
+adminEmail: ''
 # adminUser -- Name of Admin Account
-adminUser: ""
+adminUser: ''
 # adminPassword -- Password of Admin Account
-adminPassword: ""
+adminPassword: ''
 
 # siteTile -- Site title
-siteTitle: "Weblate"
+siteTitle: Weblate
 # siteDomain -- Site domain
-siteDomain: "chart-example.local"
+siteDomain: chart-example.local
 
 # emailHost -- Host for sending emails
-emailHost: ""
+emailHost: ''
 # emailPort -- Port for sending emails
 emailPort: 587
 # emailTLS -- Use TLS when sending emails
@@ -35,19 +35,19 @@ emailTLS: true
 # emailSSL -- Use SSL when sending emails
 emailSSL: true
 # emailUser -- User name for sending emails
-emailUser: ""
+emailUser: ''
 # emailPassword -- Password for sending emails
-emailPassword: ""
+emailPassword: ''
 
 # serverEmail -- Sender for outgoing emails
-serverEmail: ""
+serverEmail: ''
 # defaultFromEmail -- From email for outgoing emails
-defaultFromEmail: ""
+defaultFromEmail: ''
 # allowedHosts -- Hosts that are allowed to connect
-allowedHosts: "*"
+allowedHosts: '*'
 
 # debug -- Enable debugging
-debug: "0"
+debug: '0'
 
 # extraConfig -- Additional (environment) configs. Values will be evaluated as templates. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment
 extraConfig: {}
@@ -57,10 +57,10 @@ extraSecretConfig: {}
 
 # externalSecretName -- An external secret, in the same namespace, that will be use to set additionnal
 # (environment) configs.
-externalSecretName: ""
+externalSecretName: ''
 
 # configOverride -- Config override. See https://docs.weblate.org/en/latest/admin/install/docker.html#custom-configuration-files
-configOverride: ""
+configOverride: ''
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -71,14 +71,13 @@ serviceAccount:
 podSecurityContext:
   fsGroup: 1000
 
-securityContext:
+securityContext: {}
   # capabilities:
   #   drop:
   #   - ALL
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
-  {}
 
 service:
   type: ClusterIP
@@ -89,27 +88,25 @@ service:
 ingress:
   enabled: false
   # Ingres annotations
-  annotations:
+  annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
-    {}
   # Host names
   hosts:
-    - host: chart-example.local
-      paths: []
+  - host: chart-example.local
+    paths: []
 
   # TLS configuration
-  tls:
+  tls: []
     #  - secretName: chart-example-tls
     #    hosts:
     #      - chart-example.local
-    []
 
 persistence:
   enabled: true
 
   # persistence.existingClaim -- Use an existing volume claim
-  existingClaim: ""
+  existingClaim: ''
 
   # storageClass: "-"
 
@@ -118,8 +115,7 @@ persistence:
 
   filestore_dir: /app/data
 
-resources:
-  {}
+resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -141,9 +137,9 @@ postgresql:
   # postgresql.postgresqlUsername -- PostgreSQL user should be a superuser to
   # be able to install pg_trgm extension. Alternatively you can install it
   # manually prior starting Weblate.
-  postgresqlUsername: "postgres"
-  postgresqlPassword: "weblate"
-  postgresqlDatabase: "weblate"
+  postgresqlUsername: postgres
+  postgresqlPassword: weblate
+  postgresqlDatabase: weblate
   service:
     port: 5432
   enabled: true
@@ -153,7 +149,7 @@ postgresql:
   postgresqlHost:
 
 redis:
-  password: "weblate"
+  password: weblate
   db: 1
   enabled: true
   # redis.redisHost -- External redis database endpoint, to be

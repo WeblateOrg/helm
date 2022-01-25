@@ -1,5 +1,5 @@
 chart-repos:
-  - bitnami=https://charts.bitnami.com/bitnami
+- bitnami=https://charts.bitnami.com/bitnami
 helm-extra-args: --timeout 15m
 debug: true
 target-branch: main
