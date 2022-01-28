@@ -41,7 +41,6 @@ spec:
               containerPort: 8080
               protocol: TCP
           env:
-            {{- if .Values.postgresql.enabled }}
             - name: POSTGRES_DATABASE
               value: "{{ .Values.postgresql.postgresqlDatabase }}"
             - name: POSTGRES_HOST
@@ -58,8 +57,6 @@ spec:
                 secretKeyRef:
                   name: {{ include "weblate.fullname" . }}
                   key: postgresql-password
-            {{- end }}
-            {{- if .Values.redis.enabled }}
             - name: REDIS_HOST
               value: "{{ .Values.redis.redisHost | default (include "weblate.redis.fullname" .) }}"
             - name: REDIS_DB
@@ -69,7 +66,6 @@ spec:
                 secretKeyRef:
                   name: {{ include "weblate.fullname" . }}
                   key: redis-password
-            {{- end }}
             - name: WEBLATE_ADMIN_EMAIL
               value: "{{ .Values.adminEmail }}"
             - name: WEBLATE_ADMIN_NAME
