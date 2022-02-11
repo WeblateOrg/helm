@@ -30,6 +30,9 @@ spec:
       secretName: {{ .secretName }}
   {{- end }}
 {{- end }}
+  {{- if and $kubeOver119 .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}  
   rules:
   {{- range .Values.ingress.hosts }}
     - host: {{ .host | quote }}
