@@ -10,8 +10,8 @@ Weblate is a free web-based translation management system.
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| tarioch | patrick@ch.tario.org |  |
-| nijel | michal@weblate.org |  |
+| tarioch | <patrick@ch.tario.org> |  |
+| nijel | <michal@weblate.org> |  |
 
 ## TL;DR;
 
