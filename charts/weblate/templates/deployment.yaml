@@ -112,6 +112,10 @@ spec:
               value: "{{ .Values.allowedHosts }}"
             - name: WEBLATE_DEBUG
               value: "{{ .Values.debug }}"
+            {{- if (and .Values.caCertSecretName .Values.caCertSubPath )}}
+            - name: REQUESTS_CA_BUNDLE
+              value: /{{ .Values.caCertSubPath }}
+            {{- end }}
             {{- range $key, $value := .Values.extraConfig }}
             - name: {{ $key | quote }}
               value: |-
@@ -148,6 +152,11 @@ spec:
             - mountPath: "{{ .Values.persistence.filestore_dir }}/settings-override.py"
               name: weblate-config
               subPath: "settings-override.py"
+            {{- if (and .Values.caCertSecretName .Values.caCertSubPath )}}
+            - mountPath: /{{ .Values.caCertSubPath }}
+              name: ca-bundle
+              subPath: {{ .Values.caCertSubPath}}
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
@@ -164,6 +173,11 @@ spec:
         {{- else }}
           emptyDir: {}
         {{- end -}}
+      {{- if (and .Values.caCertSecretName .Values.caCertSubPath )}}
+        - name: ca-bundle
+          secret:
+            secretName: {{ .Values.caCertSecretName }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
