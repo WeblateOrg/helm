@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.4.9](https://img.shields.io/badge/Version-0.4.9-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.12.1](https://img.shields.io/badge/AppVersion-4.12.1-informational?style=flat-square)
+![Version: 0.4.10](https://img.shields.io/badge/Version-0.4.10-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.12.1](https://img.shields.io/badge/AppVersion-4.12.1-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -36,6 +36,8 @@ $ helm install my-release weblate/weblate
 | adminUser | string | `""` | Name of Admin Account |
 | affinity | object | `{}` |  |
 | allowedHosts | string | `"*"` | Hosts that are allowed to connect |
+| caCertSecretName | string | `""` | Secret containing a custom CA cert bundle to be mounted. See https://docs.weblate.org/en/latest/admin/install.html?highlight=certificates#using-custom-certificate-authority |
+| caCertSubPath | string | `""` | Name of the CA cert bundle in the secret, e.g. ca-certificates.crt or ca-bundle.crt |
 | configOverride | string | `""` | Config override. See https://docs.weblate.org/en/latest/admin/install/docker.html#custom-configuration-files |
 | debug | string | `"0"` | Enable debugging |
 | defaultFromEmail | string | `""` | From email for outgoing emails |

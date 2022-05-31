@@ -49,6 +49,11 @@ allowedHosts: '*'
 # debug -- Enable debugging
 debug: '0'
 
+# caCertSecretName -- Secret containing a custom CA cert bundle to be mounted. See https://docs.weblate.org/en/latest/admin/install.html?highlight=certificates#using-custom-certificate-authority
+caCertSecretName: ''
+# caCertSubPath -- Name of the CA cert bundle in the secret, e.g. ca-certificates.crt or ca-bundle.crt
+caCertSubPath: ''
+
 # extraConfig -- Additional (environment) configs. Values will be evaluated as templates. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment
 extraConfig: {}
 
