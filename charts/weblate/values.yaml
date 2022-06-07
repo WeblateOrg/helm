@@ -157,5 +157,7 @@ redis:
   # used if `redis.enabled == false`
   # @default -- `None`
   redisHost:
+  image:
+    tag: 5.0-debian-10
   cluster:
     enabled: false
