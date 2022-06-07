@@ -24,8 +24,8 @@ $ helm install my-release weblate/weblate
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 11.6.3 |
-| https://charts.bitnami.com/bitnami | redis | 16.11.3 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.3.14 |
+| https://charts.bitnami.com/bitnami | redis | 12.10.1 |
 
 ## Values
 
@@ -78,7 +78,6 @@ $ helm install my-release weblate/weblate
 | redis.cluster.enabled | bool | `false` |  |
 | redis.db | int | `1` |  |
 | redis.enabled | bool | `true` |  |
-| redis.image.tag | string | `"5.0-debian-10"` |  |
 | redis.password | string | `"weblate"` |  |
 | redis.redisHost | string | `None` | External redis database endpoint, to be used if `redis.enabled == false` |
 | replicaCount | int | `1` |  |
