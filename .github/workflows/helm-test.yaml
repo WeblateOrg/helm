@@ -1,6 +1,9 @@
 name: Lint and Test Charts
 
-on: pull_request
+on:
+  pull_request:
+  schedule:
+  - cron: 0 4 * * *
 
 jobs:
   lint-test:
