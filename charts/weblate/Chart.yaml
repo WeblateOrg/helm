@@ -17,6 +17,6 @@ dependencies:
   repository: https://raw.githubusercontent.com/bitnami/charts/defb094c658024e4aa8245622dab202874880cbc/bitnami/
   condition: postgresql.enabled
 - name: redis
-  version: 12.10.1
+  version: 16.10.1
   repository: https://raw.githubusercontent.com/bitnami/charts/defb094c658024e4aa8245622dab202874880cbc/bitnami/
   condition: redis.enabled
