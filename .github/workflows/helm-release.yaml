@@ -26,10 +26,12 @@ jobs:
       with:
         version: v3.4.0
 
-    - name: Add repo
+    - name: Add repos
       run: |
-        helm repo add bitnami https://charts.bitnami.com/bitnami
-        helm repo add bitnami-old https://raw.githubusercontent.com/bitnami/charts/defb094c658024e4aa8245622dab202874880cbc/bitnami/
+        yq '.chart-repos' .github/ct.yaml | while read line ; do
+          repodef="${line##- }"
+          helm repo add "${repodef%%=*}" "${repodef##*=}"
+        done
 
     - name: Run chart-releaser
       uses: helm/chart-releaser-action@v1.4.0
