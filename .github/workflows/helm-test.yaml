@@ -24,7 +24,7 @@ jobs:
         python-version: 3.7
 
     - name: Set up chart-testing
-      uses: helm/chart-testing-action@v2.2.1
+      uses: helm/chart-testing-action@v2.3.0
 
     - name: Run chart-testing (list-changed)
       id: list-changed
@@ -55,7 +55,7 @@ jobs:
         python-version: 3.7
 
     - name: Set up chart-testing
-      uses: helm/chart-testing-action@v2.2.1
+      uses: helm/chart-testing-action@v2.3.0
 
     - name: Create kind cluster
       uses: helm/kind-action@v1.3.0
