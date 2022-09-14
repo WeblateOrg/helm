@@ -60,6 +60,8 @@ $ helm install my-release weblate/weblate
 | ingress.enabled | bool | `false` |  |
 | ingress.hosts[0].host | string | `"chart-example.local"` |  |
 | ingress.hosts[0].paths | list | `[]` |  |
+| ingress.hosts[0].paths[0].path | string | `""` |  |
+| ingress.hosts[0].paths[0].pathType | string | `""` |  |
 | ingress.ingressClassName | string | `""` |  |
 | ingress.tls | list | `[]` |  |
 | labels | object | `{}` | custom labels |

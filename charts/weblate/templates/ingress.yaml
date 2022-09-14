@@ -32,26 +32,27 @@ spec:
 {{- end }}
   {{- if and $kubeOver119 .Values.ingress.ingressClassName }}
   ingressClassName: {{ .Values.ingress.ingressClassName }}
-  {{- end }}  
+  {{- end }}
   rules:
   {{- range .Values.ingress.hosts }}
     - host: {{ .host | quote }}
       http:
         paths:
         {{- range .paths }}
-          - path: {{ . }}
-            {{- if $kubeOver119 }}
-            pathType: ImplementationSpecific
+          - path: {{ .path }}
+            {{- if and .pathType $kubeOver119 }}
+            pathType: {{ .pathType }}
+            {{- end }}
             backend:
+              {{- if $kubeOver119 }}
               service:
                 name: {{ $fullName }}
                 port:
                   number: {{ $svcPort }}
-            {{- else }}
-            backend:
+              {{- else }}
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
-            {{- end }}
+              {{- end }}
         {{- end }}
   {{- end }}
 {{- end }}
