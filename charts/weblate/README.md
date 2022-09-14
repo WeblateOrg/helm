@@ -31,6 +31,7 @@ $ helm install my-release weblate/weblate
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| labels | object | `{}` | Custom labels |
 | adminEmail | string | `""` | Email of Admin Account |
 | adminPassword | string | `""` | Password of Admin Account |
 | adminUser | string | `""` | Name of Admin Account |
