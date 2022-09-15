@@ -77,9 +77,11 @@ serviceAccount:
   name:
 
 podSecurityContext:
+  enabled: true
   fsGroup: 1000
 
-securityContext: {}
+containerSecurityContext:
+  enabled: false
   # capabilities:
   #   drop:
   #   - ALL

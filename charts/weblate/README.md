@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.4.13](https://img.shields.io/badge/Version-0.4.13-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.14](https://img.shields.io/badge/AppVersion-4.14-informational?style=flat-square)
+![Version: 0.4.14](https://img.shields.io/badge/Version-0.4.14-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.14](https://img.shields.io/badge/AppVersion-4.14-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -39,6 +39,7 @@ $ helm install my-release weblate/weblate
 | caCertSecretName | string | `""` | Secret containing a custom CA cert bundle to be mounted. See https://docs.weblate.org/en/latest/admin/install.html?highlight=certificates#using-custom-certificate-authority |
 | caCertSubPath | string | `""` | Name of the CA cert bundle in the secret, e.g. ca-certificates.crt or ca-bundle.crt |
 | configOverride | string | `""` | Config override. See https://docs.weblate.org/en/latest/admin/install/docker.html#custom-configuration-files |
+| containerSecurityContext.enabled | bool | `false` |  |
 | debug | string | `"0"` | Enable debugging |
 | defaultFromEmail | string | `""` | From email for outgoing emails |
 | emailHost | string | `""` | Host for sending emails |
@@ -69,6 +70,7 @@ $ helm install my-release weblate/weblate
 | persistence.existingClaim | string | `""` | Use an existing volume claim |
 | persistence.filestore_dir | string | `"/app/data"` |  |
 | persistence.size | string | `"10Gi"` |  |
+| podSecurityContext.enabled | bool | `true` |  |
 | podSecurityContext.fsGroup | int | `1000` |  |
 | postgresql.enabled | bool | `true` |  |
 | postgresql.postgresqlDatabase | string | `"weblate"` |  |
@@ -83,7 +85,6 @@ $ helm install my-release weblate/weblate
 | redis.redisHost | string | `None` | External redis database endpoint, to be used if `redis.enabled == false` |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
-| securityContext | object | `{}` |  |
 | serverEmail | string | `""` | Sender for outgoing emails |
 | service.annotations | string | `nil` |  |
 | service.port | int | `80` |  |
