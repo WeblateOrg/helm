@@ -173,4 +173,3 @@ redis:
   # used if `redis.enabled == false`
   # @default -- `None`
   redisHost:
-
