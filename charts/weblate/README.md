@@ -61,6 +61,7 @@ $ helm install my-release weblate/weblate
 | ingress.hosts[0].paths | list | `[]` |  |
 | ingress.ingressClassName | string | `""` |  |
 | ingress.tls | list | `[]` |  |
+| labels | object | `{}` | custom labels |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | persistence.accessMode | string | `"ReadWriteOnce"` |  |
