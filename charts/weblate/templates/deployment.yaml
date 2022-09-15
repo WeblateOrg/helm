@@ -22,6 +22,7 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "weblate.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
+        {{ include "weblate.labels" . | indent 8 }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
