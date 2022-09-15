@@ -47,7 +47,7 @@ spec:
           env:
             {{- if .Values.postgresql.enabled }}
             - name: POSTGRES_DATABASE
-              value: "{{ .Values.postgresql.postgresqlDatabase }}"
+              value: {{ include "weblate.fullname" . }}
             - name: POSTGRES_HOST
               value: "{{ .Values.postgresql.postgresqlHost | default (include "weblate.postgresql.fullname" .) }}"
             - name: POSTGRES_PORT

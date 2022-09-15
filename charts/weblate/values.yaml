@@ -147,27 +147,30 @@ tolerations: []
 affinity: {}
 
 postgresql:
-  # postgresql.postgresqlUsername -- PostgreSQL user should be a superuser to
+  auth:
+  # PostgreSQL user should be a superuser to
   # be able to install pg_trgm extension. Alternatively you can install it
   # manually prior starting Weblate.
-  postgresqlUsername: postgres
-  postgresqlPassword: weblate
-  postgresqlDatabase: weblate
+    enablePostgresUser: true
+    postgresPassword: weblate
+    database: weblate
   service:
-    port: 5432
+    ports:
+      postgresql: 5432
   enabled: true
   # postgresql.postgresqlHost -- External postgres database endpoint, to be
   # used if `postgresql.enabled == false`
   # @default -- `None`
-  postgresqlHost:
 
 redis:
-  password: weblate
+  architecture: standalone
+  auth:
+    enabled: true
+    password: weblate
   db: 1
   enabled: true
   # redis.redisHost -- External redis database endpoint, to be
   # used if `redis.enabled == false`
   # @default -- `None`
   redisHost:
-  cluster:
-    enabled: false
+
