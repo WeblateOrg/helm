@@ -106,8 +106,8 @@ ingress:
   hosts:
   - host: chart-example.local
     paths:
-      - path: /
-        pathType: Prefix
+    - path: /
+      pathType: Prefix
 
   # TLS configuration
   tls: []
