@@ -22,20 +22,21 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "weblate.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
-        {{ include "weblate.labels" . | indent 8 }}
     spec:
-    {{- with .Values.imagePullSecrets }}
+      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
+      {{- end }}
       serviceAccountName: {{ template "weblate.serviceAccountName" . }}
       {{- if .Values.podSecurityContext.enabled }}
-      securityContext: {{- omit .Values.podSecurityContext "enabled" | toYaml | nindent 8 }}
+      securityContext:
+        {{- omit .Values.podSecurityContext "enabled" | toYaml | nindent 8 }}
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           {{- if .Values.containerSecurityContext.enabled }}
-          securityContext: {{- omit .Values.containerSecurityContext "enabled" | toYaml | nindent 12 }}
+          securityContext:
+            {{- omit .Values.containerSecurityContext "enabled" | toYaml | nindent 12 }}
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
