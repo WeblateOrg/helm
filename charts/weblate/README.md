@@ -25,7 +25,7 @@ $ helm install my-release weblate/weblate
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 11.9.1 |
-| https://charts.bitnami.com/bitnami | redis | 17.1.5 |
+| https://charts.bitnami.com/bitnami | redis | 17.2.0 |
 
 ## Values
 
