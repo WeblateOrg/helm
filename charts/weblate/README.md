@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.4.15](https://img.shields.io/badge/Version-0.4.15-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.14.1](https://img.shields.io/badge/AppVersion-4.14.1-informational?style=flat-square)
+![Version: 0.4.16](https://img.shields.io/badge/Version-0.4.16-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.14.1](https://img.shields.io/badge/AppVersion-4.14.1-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -24,8 +24,8 @@ $ helm install my-release weblate/weblate
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://raw.githubusercontent.com/bitnami/charts/defb094c658024e4aa8245622dab202874880cbc/bitnami/ | postgresql | 10.3.14 |
-| https://raw.githubusercontent.com/bitnami/charts/defb094c658024e4aa8245622dab202874880cbc/bitnami/ | redis | 12.10.1 |
+| https://charts.bitnami.com/bitnami | postgresql | 11.9.1 |
+| https://charts.bitnami.com/bitnami | redis | 17.1.5 |
 
 ## Values
 
@@ -73,16 +73,17 @@ $ helm install my-release weblate/weblate
 | persistence.size | string | `"10Gi"` |  |
 | podSecurityContext.enabled | bool | `true` |  |
 | podSecurityContext.fsGroup | int | `1000` |  |
+| postgresql.auth.database | string | `"weblate"` |  |
+| postgresql.auth.enablePostgresUser | bool | `true` |  |
+| postgresql.auth.postgresPassword | string | `"weblate"` |  |
 | postgresql.enabled | bool | `true` |  |
-| postgresql.postgresqlDatabase | string | `"weblate"` |  |
 | postgresql.postgresqlHost | string | `None` | External postgres database endpoint, to be used if `postgresql.enabled == false` |
-| postgresql.postgresqlPassword | string | `"weblate"` |  |
-| postgresql.postgresqlUsername | string | `"postgres"` | PostgreSQL user should be a superuser to be able to install pg_trgm extension. Alternatively you can install it manually prior starting Weblate. |
-| postgresql.service.port | int | `5432` |  |
-| redis.cluster.enabled | bool | `false` |  |
+| postgresql.service.ports.postgresql | int | `5432` |  |
+| redis.architecture | string | `"standalone"` |  |
+| redis.auth.enabled | bool | `true` |  |
+| redis.auth.password | string | `"weblate"` |  |
 | redis.db | int | `1` |  |
 | redis.enabled | bool | `true` |  |
-| redis.password | string | `"weblate"` |  |
 | redis.redisHost | string | `None` | External redis database endpoint, to be used if `redis.enabled == false` |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
