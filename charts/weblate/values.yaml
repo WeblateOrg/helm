@@ -161,6 +161,7 @@ postgresql:
   # postgresql.postgresqlHost -- External postgres database endpoint, to be
   # used if `postgresql.enabled == false`
   # @default -- `None`
+  postgresqlHost:
 
 redis:
   architecture: standalone
