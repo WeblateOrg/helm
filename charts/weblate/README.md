@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.4.15](https://img.shields.io/badge/Version-0.4.15-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.14.1](https://img.shields.io/badge/AppVersion-4.14.1-informational?style=flat-square)
+![Version: 0.4.16](https://img.shields.io/badge/Version-0.4.16-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.14.1](https://img.shields.io/badge/AppVersion-4.14.1-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -77,6 +77,7 @@ $ helm install my-release weblate/weblate
 | postgresql.auth.enablePostgresUser | bool | `true` |  |
 | postgresql.auth.postgresPassword | string | `"weblate"` |  |
 | postgresql.enabled | bool | `true` |  |
+| postgresql.postgresqlHost | string | `None` | External postgres database endpoint, to be used if `postgresql.enabled == false` |
 | postgresql.service.ports.postgresql | int | `5432` |  |
 | redis.architecture | string | `"standalone"` |  |
 | redis.auth.enabled | bool | `true` |  |
