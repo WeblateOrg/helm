@@ -33,10 +33,10 @@ siteDomain: chart-example.local
 emailHost: ''
 # emailPort -- Port for sending emails
 emailPort: 587
-# emailTLS -- Use TLS when sending emails
+# emailTLS -- Use TLS when sending emails (if emailSSL is enabled, this value is ignored)
 emailTLS: true
-# emailSSL -- Use SSL when sending emails
-emailSSL: true
+# emailSSL -- Use SSL when sending emails (this value takes precedence over emailTLS)
+emailSSL: false
 # emailUser -- User name for sending emails
 emailUser: ''
 # emailPassword -- Password for sending emails
@@ -99,18 +99,20 @@ ingress:
   enabled: false
   ingressClassName: ''
   # Ingres annotations
-  annotations: {}
+  annotations:
+    {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   # Host names
   hosts:
-  - host: chart-example.local
-    paths:
-    - path: /
-      pathType: Prefix
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: Prefix
 
   # TLS configuration
-  tls: []
+  tls:
+    []
     #  - secretName: chart-example-tls
     #    hosts:
     #      - chart-example.local
@@ -128,7 +130,8 @@ persistence:
 
   filestore_dir: /app/data
 
-resources: {}
+resources:
+  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -148,9 +151,9 @@ affinity: {}
 
 postgresql:
   auth:
-  # PostgreSQL user should be a superuser to
-  # be able to install pg_trgm extension. Alternatively you can install it
-  # manually prior starting Weblate.
+    # PostgreSQL user should be a superuser to
+    # be able to install pg_trgm extension. Alternatively you can install it
+    # manually prior starting Weblate.
     enablePostgresUser: true
     postgresPassword: weblate
     database: weblate

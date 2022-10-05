@@ -45,8 +45,8 @@ $ helm install my-release weblate/weblate
 | emailHost | string | `""` | Host for sending emails |
 | emailPassword | string | `""` | Password for sending emails |
 | emailPort | int | `587` | Port for sending emails |
-| emailSSL | bool | `true` | Use SSL when sending emails |
-| emailTLS | bool | `true` | Use TLS when sending emails |
+| emailSSL | bool | `true` | Use SSL when sending emails (this value takes precedence over emailTLS) |
+| emailTLS | bool | `true` | Use TLS when sending emails (if emailSSL is enabled, this value is ignored) |
 | emailUser | string | `""` | User name for sending emails |
 | externalSecretName | string | `""` | An external secret, in the same namespace, that will be use to set additionnal (environment) configs. |
 | extraConfig | object | `{}` | Additional (environment) configs. Values will be evaluated as templates. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment |
