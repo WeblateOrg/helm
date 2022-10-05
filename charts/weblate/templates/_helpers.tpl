@@ -51,7 +51,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Create the name of the service account to use
 */}}
 {{- define "weblate.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create -}}
+{{- if .Values.serviceAccount.enabled -}}
     {{ default (include "weblate.fullname" .) .Values.serviceAccount.name }}
 {{- else -}}
     {{ default "default" .Values.serviceAccount.name }}

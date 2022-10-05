@@ -45,37 +45,63 @@ spec:
               containerPort: 8080
               protocol: TCP
           env:
+            # TODO: Throw error when psql is disabled and no extenral config is specified, same for redis
             {{- if .Values.postgresql.enabled }}
             - name: POSTGRES_DATABASE
-              value: {{ .Values.postgresql.auth.database | default (include "weblate.fullname" .) }}
+              value: {{ coalesce .Values.postgresql.auth.database "postgres" | quote }}
             - name: POSTGRES_HOST
-              value: "{{ .Values.postgresql.postgresqlHost | default (include "weblate.postgresql.fullname" .) }}"
+              value: {{ include "weblate.postgresql.fullname" . | quote}}
             - name: POSTGRES_PORT
-              value: "{{ .Values.postgresql.service.port }}"
+              value: {{ coalesce .Values.postgresql.primary.service.ports.postgresql "5432" | quote }}
             - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "weblate.fullname" . }}
-                  key: postgresql-user
+              value: {{ coalesce .Values.postgresql.auth.username "postgres" }}
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "weblate.fullname" . }}
-                  key: postgresql-password
+                  name: {{ include "weblate.fullname" . }}-postgresql
+                  key: {{ empty .Values.postgresql.auth.password | ternary "postgres-" "" }}password
+            {{- else }}
+            - name: POSTGRES_DATABASE
+              value: {{ .Values.weblate.externalPostgres.database | quote }}
+            - name: POSTGRES_HOST
+              value: {{ .Values.weblate.externalPostgres.host | quote }}
+            - name: POSTGRES_PORT
+              value: {{ .Values.weblate.externalPostgres.port | quote }}
+            - name: POSTGRES_USER
+              value: {{ .Values.weblate.externalPostgres.username | quote }}
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "weblate.fullname" . }}-postgresql
+                  key: postgres-password
             {{- end }}
+            
             {{- if .Values.redis.enabled }}
             - name: REDIS_HOST
-              value: "{{ .Values.redis.redisHost | default (include "weblate.redis.fullname" .) }}"
-            - name: REDIS_DB
-              value: "{{ .Values.redis.db }}"
+              value: "{{ include "weblate.redis.fullname" . }}"
+            - name: REDIS_PORT
+              value: "6379"
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "weblate.fullname" . }}
+                  name: {{ include "weblate.fullname" . }}-redis
+                  key: redis-password
+            {{- else if not empty .Values.weblate.externalRedis }}
+            - name: REDIS_HOST
+              value: {{ .Values.weblate.externalRedis.host | quote }}
+            - name: REDIS_PORT
+              value: {{ .Values.weblate.externalRedis.port | quote }}
+            - name: REDIS_DB
+              value: {{ .Values.weblate.externalRedis.database | quote }}
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "weblate.fullname" . }}-redis
                   key: redis-password
             {{- end }}
+            
             - name: WEBLATE_ADMIN_EMAIL
-              value: "{{ .Values.adminEmail }}"
+              value: "{{ .Values.weblate.defaultUser.email }}"
             - name: WEBLATE_ADMIN_NAME
               valueFrom:
                 secretKeyRef:
@@ -86,21 +112,23 @@ spec:
                 secretKeyRef:
                   name: {{ include "weblate.fullname" . }}
                   key: admin-password
+
             - name: WEBLATE_SITE_TITLE
-              value: "{{ .Values.siteTitle }}"
+              value: "{{ .Values.weblate.siteTitle }}"
             - name: WEBLATE_SITE_DOMAIN
-              value: "{{ .Values.siteDomain }}"
+              value: "{{ .Values.weblate.siteDomain }}"
+              
             - name: WEBLATE_EMAIL_HOST
-              value: "{{ .Values.emailHost }}"
+              value: "{{ .Values.weblate.email.host }}"
             - name: WEBLATE_EMAIL_PORT
-              value: "{{ .Values.emailPort }}"
-            {{- if .Values.emailTLS }}
-            - name: WEBLATE_EMAIL_USE_TLS
-              value: "{{ .Values.emailTLS }}"
-            {{- else }}
-            - name: WEBLATE_EMAIL_USE_SSL
-              value: "{{ .Values.emailSSL }}"
+              value: "{{ .Values.weblate.email.port }}"
+            {{- if and .Values.weblate.email.tls .Values.weblate.email.ssl }}
+            {{ fail "You cannot enable weblate.email.tls and weblate.email.ssl at the same time! See: https://github.com/WeblateOrg/helm/issues/143" }}
             {{- end }}
+            - name: WEBLATE_EMAIL_USE_TLS
+              value: "{{ .Values.weblate.email.tls }}"
+            - name: WEBLATE_EMAIL_USE_SSL
+              value: "{{ .Values.weblate.email.ssl }}"
             - name: WEBLATE_EMAIL_USER
               valueFrom:
                 secretKeyRef:
@@ -115,10 +143,11 @@ spec:
               value: "{{ .Values.serverEmail }}"
             - name: WEBLATE_DEFAULT_FROM_EMAIL
               value: "{{ .Values.defaultFromEmail }}"
+
             - name: WEBLATE_ALLOWED_HOSTS
-              value: "{{ .Values.allowedHosts }}"
+              value: "{{ .Values.weblate.allowedHosts }}"
             - name: WEBLATE_DEBUG
-              value: "{{ .Values.debug }}"
+              value: "{{ .Values.weblate.debug }}"
             {{- if (and .Values.caCertSecretName .Values.caCertSubPath )}}
             - name: REQUESTS_CA_BUNDLE
               value: /{{ .Values.caCertSubPath }}

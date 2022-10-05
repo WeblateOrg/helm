@@ -27,6 +27,10 @@ $ helm install my-release weblate/weblate
 | https://charts.bitnami.com/bitnami | postgresql | 11.9.1  |
 | https://charts.bitnami.com/bitnami | redis      | 17.3.1  |
 
+## Migrations
+
+See [migration.md](migration.md)
+
 ## Values
 
 | Key                                 | Type   | Default                 | Description                                                                                                                                                                  |

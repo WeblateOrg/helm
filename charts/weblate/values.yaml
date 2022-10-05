@@ -17,40 +17,56 @@ updateStrategy: Recreate
 # labels -- custom labels
 labels: {}
 
-# adminEmail -- Email of Admin Account
-adminEmail: ''
-# adminUser -- Name of Admin Account
-adminUser: ''
-# adminPassword -- Password of Admin Account
-adminPassword: ''
+weblate:
+  # site title
+  siteTitle: Weblate
+  # Site domain
+  siteDomain: chart-example.local
 
-# siteTile -- Site title
-siteTitle: Weblate
-# siteDomain -- Site domain
-siteDomain: chart-example.local
+  # default admin user settings
+  defaultUser:
+    username: 'admin'
+    password: '' # leave empty to generate a random password
+    email: ''
 
-# emailHost -- Host for sending emails
-emailHost: ''
-# emailPort -- Port for sending emails
-emailPort: 587
-# emailTLS -- Use TLS when sending emails (if emailSSL is enabled, this value is ignored)
-emailTLS: true
-# emailSSL -- Use SSL when sending emails (this value takes precedence over emailTLS)
-emailSSL: false
-# emailUser -- User name for sending emails
-emailUser: ''
-# emailPassword -- Password for sending emails
-emailPassword: ''
+  # email settings
+  email:
+    host: ''
+    port: 587
+    # enabling TLS and SSL at the same time is not allowed
+    tls: true
+    ssl: false
 
-# serverEmail -- Sender for outgoing emails
-serverEmail: ''
-# defaultFromEmail -- From email for outgoing emails
-defaultFromEmail: ''
-# allowedHosts -- Hosts that are allowed to connect
-allowedHosts: '*'
+    # WEBLATE_SERVER_EMAIL (sender for outgoing error emails)
+    serverEmail: ''
+    # WEBLATE_DEFAULT_FROM_EMAIL (sender for outgoing emails)
+    defaultFromEmail: ''
 
-# debug -- Enable debugging
-debug: '0'
+    # email authentication
+    auth:
+      user: ''
+      password: '' # leave empty to generate random password
+
+  # allowedHosts -- Hosts that are allowed to connect
+  allowedHosts: '*'
+
+  # enable debugging
+  debug: '0'
+
+  # configure external postgres server (applied only if postgresql.enabled is false)
+  externalPostgres: {}
+  #  host: ''
+  #  port: 5432
+  #  username: postgres
+  #  password: ''
+  #  database: postgres
+
+  # configure external redis server (applied only if redis.enabled is false)
+  externalRedis: {}
+  #  host: ''
+  #  port: 6379
+  #  database: '1'
+  #  password: ''
 
 # caCertSecretName -- Secret containing a custom CA cert bundle to be mounted. See https://docs.weblate.org/en/latest/admin/install.html?highlight=certificates#using-custom-certificate-authority
 caCertSecretName: ''
@@ -72,7 +88,7 @@ configOverride: ''
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: true
+  enabled: true
   # The name of the service account to use. If not set and create is true, a name is generated using the fullname template
   name:
 
@@ -149,31 +165,17 @@ tolerations: []
 
 affinity: {}
 
+# bitnami/postgresql chart
 postgresql:
-  auth:
-    # PostgreSQL user should be a superuser to
-    # be able to install pg_trgm extension. Alternatively you can install it
-    # manually prior starting Weblate.
-    enablePostgresUser: true
-    postgresPassword: weblate
-    database: weblate
-  service:
-    ports:
-      postgresql: 5432
+  # disable this to configure an existing postgres server using the weblate.externalPostgres.* values
   enabled: true
-  # postgresql.postgresqlHost -- External postgres database endpoint, to be
-  # used if `postgresql.enabled == false`
-  # @default -- `None`
-  postgresqlHost:
 
+# bitnami/redis chart
 redis:
+  # disable this to configure an existing redis server using the weblate.externalRedis.* values
+  enabled: true
   architecture: standalone
   auth:
     enabled: true
     password: weblate
   db: 1
-  enabled: true
-  # redis.redisHost -- External redis database endpoint, to be
-  # used if `redis.enabled == false`
-  # @default -- `None`
-  redisHost:
