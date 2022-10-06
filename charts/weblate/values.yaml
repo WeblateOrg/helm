@@ -281,6 +281,8 @@ persistence:
 postgresql:
   # disable this to configure an existing postgres server using the weblate.externalPostgres.* values
   enabled: true
+  auth:
+    database: weblate
 
 ## @param redis [object] bitnami/redis chart values (only deployed when redis.enabled is true)
 ##
