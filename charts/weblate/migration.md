@@ -7,7 +7,7 @@ V1 introduces breaking changes to the`values.yaml`
 ### Remapped values
 
 | v0.4.16                      | v1.0.0                               |
-| ---------------------------- | ------------------------------------ | ------ |
+| \---------------------------- | ------------------------------------ | ------ |
 | `replicaCount`               | `weblate.replicaCount`               |
 | `imagePullSecrets`           | `image.pullSecrets`                  |
 | `serviceAccount.create`      | `serviceAccount.enabled`             |
