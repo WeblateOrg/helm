@@ -54,14 +54,24 @@ weblate:
   ##
   updateStrategy: Recreate
 
-  ## @param weblate.defaultUser.username Default admin username
-  ## @param weblate.defaultUser.password Default admin password (leave empty to generate a random password)
+  ## @param weblate.defaultUser.username Default admin username (ignored if weblate.defaultUser.existingSecret is set)
+  ## @param weblate.defaultUser.password Default admin password (ignored if weblate.defaultUser.existingSecret is set, leave empty to generate a random password)
+  ## @param weblate.defaultUser.existingSecret [object] Existing secret containing default admin credentials
+  ## @param weblate.defaultUser.existingSecret.name [nullable] Name of existing secret containing default admin password
+  ## @param weblate.defaultUser.existingSecret.keyUsername [nullable] Key of existing secret containing default admin username
+  ## @param weblate.defaultUser.existingSecret.keyPassword [nullable] Key of existing secret containing default admin password
+  ## @param weblate.defaultUser.existingSecret.keyEmail [nullable] Key of existing secret containing default admin email
   ## @param weblate.defaultUser.email Default admin email
   ##
   defaultUser:
     username: 'admin'
     password: '' # leave empty to generate a random password
     email: ''
+    existingSecret: {}
+    #  name: ''
+    #  keyUsername: ''
+    #  keyPassword: ''
+    #  keyEmail: ''
 
   ## @param weblate.email.host SMTP server host
   ## @param weblate.email.port SMTP server port

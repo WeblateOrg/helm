@@ -97,8 +97,12 @@ spec:
                   key: redis-password
             {{- end }}
             
+            {{- if empty weblate.defaultUser.existingSecret }}
             - name: WEBLATE_ADMIN_EMAIL
-              value: "{{ .Values.weblate.defaultUser.email }}"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "weblate.fullname" . }}
+                  key: admin-email
             - name: WEBLATE_ADMIN_NAME
               valueFrom:
                 secretKeyRef:
@@ -109,6 +113,24 @@ spec:
                 secretKeyRef:
                   name: {{ include "weblate.fullname" . }}
                   key: admin-password
+            {{- else }}
+            - name: WEBLATE_ADMIN_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ weblate.defaultUser.existingSecret.name }}
+                  key: {{ weblate.defaultUser.existingSecret.keyEmail }}
+            - name: WEBLATE_ADMIN_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ weblate.defaultUser.existingSecret.name }}
+                  key: {{ weblate.defaultUser.existingSecret.keyUsername }}
+            - name: WEBLATE_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ weblate.defaultUser.existingSecret.name }}
+                  key: {{ weblate.defaultUser.existingSecret.keyPassword }}
+
+            {{- end}}
 
             - name: WEBLATE_SITE_TITLE
               value: "{{ .Values.weblate.siteTitle }}"
