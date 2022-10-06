@@ -31,73 +31,113 @@ $ helm install my-release weblate/weblate
 
 See [migration.md](migration.md)
 
-## Values
+<!--
+Parameters generated using bitnami-labs/readme-generator-for-helm
+https://github.com/bitnami-labs/readme-generator-for-helm
+-->
 
-| Key                                 | Type   | Default                 | Description                                                                                                                                                                  |
-| ----------------------------------- | ------ | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| adminEmail                          | string | `""`                    | Email of Admin Account                                                                                                                                                       |
-| adminPassword                       | string | `""`                    | Password of Admin Account                                                                                                                                                    |
-| adminUser                           | string | `""`                    | Name of Admin Account                                                                                                                                                        |
-| affinity                            | object | `{}`                    |                                                                                                                                                                              |
-| allowedHosts                        | string | `"*"`                   | Hosts that are allowed to connect                                                                                                                                            |
-| caCertSecretName                    | string | `""`                    | Secret containing a custom CA cert bundle to be mounted. See https://docs.weblate.org/en/latest/admin/install.html?highlight=certificates#using-custom-certificate-authority |
-| caCertSubPath                       | string | `""`                    | Name of the CA cert bundle in the secret, e.g. ca-certificates.crt or ca-bundle.crt                                                                                          |
-| configOverride                      | string | `""`                    | Config override. See https://docs.weblate.org/en/latest/admin/install/docker.html#custom-configuration-files                                                                 |
-| containerSecurityContext.enabled    | bool   | `false`                 |                                                                                                                                                                              |
-| debug                               | string | `"0"`                   | Enable debugging                                                                                                                                                             |
-| defaultFromEmail                    | string | `""`                    | From email for outgoing emails                                                                                                                                               |
-| emailHost                           | string | `""`                    | Host for sending emails                                                                                                                                                      |
-| emailPassword                       | string | `""`                    | Password for sending emails                                                                                                                                                  |
-| emailPort                           | int    | `587`                   | Port for sending emails                                                                                                                                                      |
-| emailSSL                            | bool   | `true`                  | Use SSL when sending emails (this value takes precedence over emailTLS)                                                                                                      |
-| emailTLS                            | bool   | `true`                  | Use TLS when sending emails (if emailSSL is enabled, this value is ignored)                                                                                                  |
-| emailUser                           | string | `""`                    | User name for sending emails                                                                                                                                                 |
-| externalSecretName                  | string | `""`                    | An external secret, in the same namespace, that will be use to set additionnal (environment) configs.                                                                        |
-| extraConfig                         | object | `{}`                    | Additional (environment) configs. Values will be evaluated as templates. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment                 |
-| extraSecretConfig                   | object | `{}`                    | Same as `extraConfig`, but created as secrets. Values will be evaluated as Helm templates                                                                                    |
-| fullnameOverride                    | string | `""`                    |                                                                                                                                                                              |
-| image.pullPolicy                    | string | `"IfNotPresent"`        |                                                                                                                                                                              |
-| image.repository                    | string | `"weblate/weblate"`     |                                                                                                                                                                              |
-| image.tag                           | string | `"4.14.1-1"`            |                                                                                                                                                                              |
-| imagePullSecrets                    | list   | `[]`                    |                                                                                                                                                                              |
-| ingress.annotations                 | object | `{}`                    |                                                                                                                                                                              |
-| ingress.enabled                     | bool   | `false`                 |                                                                                                                                                                              |
-| ingress.hosts[0].host               | string | `"chart-example.local"` |                                                                                                                                                                              |
-| ingress.hosts[0].paths[0].path      | string | `"/"`                   |                                                                                                                                                                              |
-| ingress.hosts[0].paths[0].pathType  | string | `"Prefix"`              |                                                                                                                                                                              |
-| ingress.ingressClassName            | string | `""`                    |                                                                                                                                                                              |
-| ingress.tls                         | list   | `[]`                    |                                                                                                                                                                              |
-| labels                              | object | `{}`                    | custom labels                                                                                                                                                                |
-| nameOverride                        | string | `""`                    |                                                                                                                                                                              |
-| nodeSelector                        | object | `{}`                    |                                                                                                                                                                              |
-| persistence.accessMode              | string | `"ReadWriteOnce"`       |                                                                                                                                                                              |
-| persistence.enabled                 | bool   | `true`                  |                                                                                                                                                                              |
-| persistence.existingClaim           | string | `""`                    | Use an existing volume claim                                                                                                                                                 |
-| persistence.filestore_dir           | string | `"/app/data"`           |                                                                                                                                                                              |
-| persistence.size                    | string | `"10Gi"`                |                                                                                                                                                                              |
-| podSecurityContext.enabled          | bool   | `true`                  |                                                                                                                                                                              |
-| podSecurityContext.fsGroup          | int    | `1000`                  |                                                                                                                                                                              |
-| postgresql.auth.database            | string | `"weblate"`             |                                                                                                                                                                              |
-| postgresql.auth.enablePostgresUser  | bool   | `true`                  |                                                                                                                                                                              |
-| postgresql.auth.postgresPassword    | string | `"weblate"`             |                                                                                                                                                                              |
-| postgresql.enabled                  | bool   | `true`                  |                                                                                                                                                                              |
-| postgresql.postgresqlHost           | string | `None`                  | External postgres database endpoint, to be used if `postgresql.enabled == false`                                                                                             |
-| postgresql.service.ports.postgresql | int    | `5432`                  |                                                                                                                                                                              |
-| redis.architecture                  | string | `"standalone"`          |                                                                                                                                                                              |
-| redis.auth.enabled                  | bool   | `true`                  |                                                                                                                                                                              |
-| redis.auth.password                 | string | `"weblate"`             |                                                                                                                                                                              |
-| redis.db                            | int    | `1`                     |                                                                                                                                                                              |
-| redis.enabled                       | bool   | `true`                  |                                                                                                                                                                              |
-| redis.redisHost                     | string | `None`                  | External redis database endpoint, to be used if `redis.enabled == false`                                                                                                     |
-| replicaCount                        | int    | `1`                     |                                                                                                                                                                              |
-| resources                           | object | `{}`                    |                                                                                                                                                                              |
-| serverEmail                         | string | `""`                    | Sender for outgoing emails                                                                                                                                                   |
-| service.annotations                 | string | `nil`                   |                                                                                                                                                                              |
-| service.port                        | int    | `80`                    |                                                                                                                                                                              |
-| service.type                        | string | `"ClusterIP"`           |                                                                                                                                                                              |
-| serviceAccount.create               | bool   | `true`                  |                                                                                                                                                                              |
-| serviceAccount.name                 | string | `nil`                   |                                                                                                                                                                              |
-| siteDomain                          | string | `"chart-example.local"` | Site domain                                                                                                                                                                  |
-| siteTitle                           | string | `"Weblate"`             |                                                                                                                                                                              |
-| tolerations                         | list   | `[]`                    |                                                                                                                                                                              |
-| updateStrategy                      | string | `"Recreate"`            |                                                                                                                                                                              |
+## Parameters
+
+### Global Settings
+
+| Name                     | Description                                                                    | Value             |
+| ------------------------ | ------------------------------------------------------------------------------ | ----------------- |
+| `image.repository`       | Weblate image                                                                  | `weblate/weblate` |
+| `image.tag`              | Weblate image tag                                                              | `4.14.1-1`        |
+| `image.pullPolicy`       | Container image pull policy                                                    | `IfNotPresent`    |
+| `image.pullSecrets`      | Container image pull secrets                                                   | `[]`              |
+| `nameOverride`           |                                                                                | `""`              |
+| `fullnameOverride`       |                                                                                | `""`              |
+| `labels`                 | Common labels                                                                  | `{}`              |
+| `serviceAccount.enabled` | Enable creating a service account                                              | `true`            |
+| `serviceAccount.name`    | Service account name (if not set, it is generated using the fullname template) | `nil`             |
+
+
+### Weblate
+
+| Name                                                      | Description                                                                                                                                                                  | Value                 |
+| --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| `weblate.siteTitle`                                       | Weblate site title                                                                                                                                                           | `Weblate`             |
+| `weblate.siteDomain`                                      | Weblate site domain                                                                                                                                                          | `chart-example.local` |
+| `weblate.replicaCount`                                    | Deployment replica count                                                                                                                                                     | `1`                   |
+| `weblate.updateStrategy`                                  | Deployment update strategy                                                                                                                                                   | `Recreate`            |
+| `weblate.defaultUser.username`                            | Default admin username                                                                                                                                                       | `admin`               |
+| `weblate.defaultUser.password`                            | Default admin password (leave empty to generate a random password)                                                                                                           | `""`                  |
+| `weblate.defaultUser.email`                               | Default admin email                                                                                                                                                          | `""`                  |
+| `weblate.email.host`                                      | SMTP server host                                                                                                                                                             | `""`                  |
+| `weblate.email.port`                                      | SMTP server port                                                                                                                                                             | `587`                 |
+| `weblate.email.tls`                                       | SMTP enable TLS (do not turn on when weblate.email.ssl is on)                                                                                                                | `true`                |
+| `weblate.email.ssl`                                       | SMTP enable SSL (do not turn on when weblate.email.tls is on)                                                                                                                | `false`               |
+| `weblate.email.auth.user`                                 | SMTP username                                                                                                                                                                | `""`                  |
+| `weblate.email.auth.password`                             | SMTP password                                                                                                                                                                | `""`                  |
+| `weblate.email.serverEmail`                               | Sender email for outgoing error emails                                                                                                                                       | `""`                  |
+| `weblate.email.defaultFromEmail`                          | Sender email for outgoing emails                                                                                                                                             | `""`                  |
+| `weblate.allowedHosts`                                    | Hosts that are allowed to connect                                                                                                                                            | `*`                   |
+| `weblate.debug`                                           | enable debugging                                                                                                                                                             | `0`                   |
+| `weblate.nodeSelector`                                    | Node Selector                                                                                                                                                                | `{}`                  |
+| `weblate.tolerations`                                     | Tolerations                                                                                                                                                                  | `[]`                  |
+| `weblate.affinity`                                        | Affinity                                                                                                                                                                     | `{}`                  |
+| `weblate.resources`                                       | Container resource settings                                                                                                                                                  | `{}`                  |
+| `weblate.resources.requests.memory`                       | Container resource requests                                                                                                                                                  | `undefined`           |
+| `weblate.resources.requests.memory`                       | Container resource requests                                                                                                                                                  | `undefined`           |
+| `weblate.resources.limits.cpu`                            | Container resource limits                                                                                                                                                    | `undefined`           |
+| `weblate.resources.limits.memory`                         | Container resource limits                                                                                                                                                    | `undefined`           |
+| `weblate.caCertSecretName`                                | Secret containing a custom CA cert bundle to be mounted. See https://docs.weblate.org/en/latest/admin/install.html?highlight=certificates#using-custom-certificate-authority | `""`                  |
+| `weblate.caCertSubPath`                                   | Name of the CA cert bundle in the secret, e.g. ca-certificates.crt or ca-bundle.crt                                                                                          | `""`                  |
+| `weblate.extraConfig`                                     | Additional (environment) configs. Values will be evaluated as templates. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment                 | `{}`                  |
+| `weblate.extraSecretConfig`                               | Same as `extraConfig`, but created as secrets. Values will be evaluated as Helm templates                                                                                    | `{}`                  |
+| `weblate.externalSecretName`                              | An external secret, in the same namespace, that will be use to set additional (environment) configs.                                                                         | `""`                  |
+| `weblate.configOverride`                                  | Config override. See https://docs.weblate.org/en/latest/admin/install/docker.html#custom-configuration-files                                                                 | `""`                  |
+| `weblate.podSecurityContext.enabled`                      | Enable Pod Security Context                                                                                                                                                  | `true`                |
+| `weblate.podSecurityContext.fsGroup`                      | Set the Pod Security Context fsGroup                                                                                                                                         | `1000`                |
+| `weblate.containerSecurityContext.enabled`                | Whether to enable the Container Security Context                                                                                                                             | `false`               |
+| `weblate.containerSecurityContext.capabilities`           | Container Security Context capabilities                                                                                                                                      | `{}`                  |
+| `weblate.containerSecurityContext.readOnlyRootFilesystem` | Container Security Context enable read only filesystem                                                                                                                       | `undefined`           |
+| `weblate.containerSecurityContext.runAsRoot`              | Container Security Context allow running as root                                                                                                                             | `undefined`           |
+| `weblate.containerSecurityContext.runAsUser`              | Container Security Context set run as user                                                                                                                                   | `undefined`           |
+| `weblate.externalPostgres`                                | External Postgres settings                                                                                                                                                   | `{}`                  |
+| `weblate.externalPostgres.host`                           | External Postgres host (only applied if postgresql.enabled is false)                                                                                                         | `undefined`           |
+| `weblate.externalPostgres.port`                           | External Postgres port (only applied if postgresql.enabled is false)                                                                                                         | `undefined`           |
+| `weblate.externalPostgres.username`                       | External Postgres username (only applied if postgresql.enabled is false)                                                                                                     | `undefined`           |
+| `weblate.externalPostgres.password`                       | External Postgres password (only applied if postgresql.enabled is false)                                                                                                     | `undefined`           |
+| `weblate.externalPostgres.database`                       | External Postgres database (only applied if postgresql.enabled is false)                                                                                                     | `undefined`           |
+| `weblate.externalRedis`                                   | External Redis settings(only applied if redis.enabled is false)                                                                                                              | `{}`                  |
+| `weblate.externalRedis.host`                              | External Redis host                                                                                                                                                          | `undefined`           |
+| `weblate.externalRedis.port`                              | External Redis port                                                                                                                                                          | `undefined`           |
+| `weblate.externalRedis.database`                          | External Redis database                                                                                                                                                      | `undefined`           |
+| `weblate.externalRedis.password`                          | External Redis password                                                                                                                                                      | `undefined`           |
+
+
+### Networking
+
+| Name                       | Description                | Value       |
+| -------------------------- | -------------------------- | ----------- |
+| `service.type`             | Service type               | `ClusterIP` |
+| `service.port`             | Service port               | `80`        |
+| `service.annotations`      | Service annotations        | `{}`        |
+| `ingress.enabled`          | Enable creating an Ingress | `false`     |
+| `ingress.ingressClassName` | Set ingress class name     | `""`        |
+| `ingress.annotations`      | Ingress annotations        | `{}`        |
+| `ingress.hosts`            | Ingress hosts              | `[]`        |
+| `ingress.tls`              | Ingress TLS settings       | `[]`        |
+
+
+### Persistence
+
+| Name                        | Description                          | Value           |
+| --------------------------- | ------------------------------------ | --------------- |
+| `persistence.enabled`       | Enable persistent storage            | `true`          |
+| `persistence.existingClaim` | Use an existing volume claim         | `""`            |
+| `persistence.storageClass`  | Storage class to use for persistency | `undefined`     |
+| `persistence.accessMode`    | Volume Claim access mode             | `ReadWriteOnce` |
+| `persistence.size`          | Volume Claim size                    | `10Gi`          |
+| `persistence.filestore_dir` | Mounting path                        | `/app/data`     |
+
+
+### Dependencies
+
+| Name         | Description                                                                     | Value |
+| ------------ | ------------------------------------------------------------------------------- | ----- |
+| `postgresql` | bitnami/postgresql chart values (only deployed when postgresql.enabled is true) | `{}`  |
+| `redis`      | bitnami/redis chart values (only deployed when redis.enabled is true)           | `{}`  |
+

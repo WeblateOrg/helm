@@ -6,4 +6,4 @@ metadata:
   labels:
 {{ include "weblate.labels" . | indent 4 }}
 data:
-  settings-override.py: {{ toYaml .Values.configOverride | indent 2 }}
+  settings-override.py: {{ toYaml .Values.weblate.configOverride | indent 2 }}

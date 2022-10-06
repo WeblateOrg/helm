@@ -6,9 +6,9 @@ metadata:
   labels:
 {{ include "weblate.labels" . | indent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.weblate.replicaCount }}
   strategy:
-    type: {{ .Values.updateStrategy }}
+    type: {{ .Values.weblate.updateStrategy }}
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "weblate.name" . }}
@@ -18,25 +18,25 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
         checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
-        checksum/secret-env: {{ .Values.extraSecretConfig | toYaml | sha256sum }}
+        checksum/secret-env: {{ .Values.weblate.extraSecretConfig | toYaml | sha256sum }}
       labels:
         app.kubernetes.io/name: {{ include "weblate.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
-      {{- with .Values.imagePullSecrets }}
+      {{- with .Values.image.pullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ template "weblate.serviceAccountName" . }}
-      {{- if .Values.podSecurityContext.enabled }}
+      {{- if .Values.weblate.podSecurityContext.enabled }}
       securityContext:
-        {{- omit .Values.podSecurityContext "enabled" | toYaml | nindent 8 }}
+        {{- omit .Values.weblate.podSecurityContext "enabled" | toYaml | nindent 8 }}
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
-          {{- if .Values.containerSecurityContext.enabled }}
+          {{- if .Values.weblate.containerSecurityContext.enabled }}
           securityContext:
-            {{- omit .Values.containerSecurityContext "enabled" | toYaml | nindent 12 }}
+            {{- omit .Values.weblate.containerSecurityContext "enabled" | toYaml | nindent 12 }}
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -45,7 +45,6 @@ spec:
               containerPort: 8080
               protocol: TCP
           env:
-            # TODO: Throw error when psql is disabled and no extenral config is specified, same for redis
             {{- if .Values.postgresql.enabled }}
             - name: POSTGRES_DATABASE
               value: {{ coalesce .Values.postgresql.auth.database "postgres" | quote }}
@@ -79,8 +78,6 @@ spec:
             {{- if .Values.redis.enabled }}
             - name: REDIS_HOST
               value: "{{ include "weblate.redis.fullname" . }}"
-            - name: REDIS_PORT
-              value: "6379"
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -148,24 +145,24 @@ spec:
               value: "{{ .Values.weblate.allowedHosts }}"
             - name: WEBLATE_DEBUG
               value: "{{ .Values.weblate.debug }}"
-            {{- if (and .Values.caCertSecretName .Values.caCertSubPath )}}
+            {{- if (and .Values.weblate.caCertSecretName .Values.weblate.caCertSubPath )}}
             - name: REQUESTS_CA_BUNDLE
-              value: /{{ .Values.caCertSubPath }}
+              value: /{{ .Values.weblate.caCertSubPath }}
             {{- end }}
-            {{- range $key, $value := .Values.extraConfig }}
+            {{- range $key, $value := .Values.weblate.extraConfig }}
             - name: {{ $key | quote }}
               value: |-
                 {{- tpl $value $ | nindent 16 }}
             {{- end }}
-          {{- if (or .Values.extraSecretConfig .Values.externalSecretName) }}
+          {{- if (or .Values.weblate.extraSecretConfig .Values.weblate.externalSecretName) }}
           envFrom:
-            {{- if .Values.extraSecretConfig }}
+            {{- if .Values.weblate.extraSecretConfig }}
             - secretRef:
                 name: {{ include "weblate.fullname" . }}-env
             {{- end }}
-            {{- if .Values.externalSecretName }}
+            {{- if .Values.weblate.externalSecretName }}
             - secretRef:
-                name: {{ .Values.externalSecretName }}
+                name: {{ .Values.weblate.externalSecretName }}
             {{- end }}
           {{- end }}
           livenessProbe:
@@ -188,13 +185,13 @@ spec:
             - mountPath: "{{ .Values.persistence.filestore_dir }}/settings-override.py"
               name: weblate-config
               subPath: "settings-override.py"
-            {{- if (and .Values.caCertSecretName .Values.caCertSubPath )}}
-            - mountPath: /{{ .Values.caCertSubPath }}
+            {{- if (and .Values.weblate.caCertSecretName .weblate.Values.caCertSubPath )}}
+            - mountPath: /{{ .Values.weblate.caCertSubPath }}
               name: ca-bundle
-              subPath: {{ .Values.caCertSubPath}}
+              subPath: {{ .Values.weblate.caCertSubPath}}
             {{- end }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.weblate.resources | nindent 12 }}
       volumes:
         - name: weblate-config
           configMap:
@@ -209,20 +206,20 @@ spec:
         {{- else }}
           emptyDir: {}
         {{- end -}}
-      {{- if (and .Values.caCertSecretName .Values.caCertSubPath )}}
+      {{- if (and .Values.weblate.caCertSecretName .Values.weblate.caCertSubPath )}}
         - name: ca-bundle
           secret:
-            secretName: {{ .Values.caCertSecretName }}
+            secretName: {{ .Values.weblate.caCertSecretName }}
       {{- end }}
-      {{- with .Values.nodeSelector }}
+      {{- with .Values.weblate.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-    {{- with .Values.affinity }}
+    {{- with .Values.weblate.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-    {{- with .Values.tolerations }}
+    {{- with .Values.weblate.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}

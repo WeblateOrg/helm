@@ -2,58 +2,183 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 1
+## @section Global Settings
+##
 
+## @param image.repository Weblate image
+## @param image.tag Weblate image tag
+## @param image.pullPolicy Container image pull policy
+## @param image.pullSecrets Container image pull secrets
+##
 image:
   repository: weblate/weblate
   tag: 4.14.1-1
   pullPolicy: IfNotPresent
+  pullSecrets: []
 
-imagePullSecrets: []
+## @param nameOverride
+##
 nameOverride: ''
+## @param fullnameOverride
+##
 fullnameOverride: ''
-updateStrategy: Recreate
 
-# labels -- custom labels
+## @param labels Common labels
 labels: {}
 
+## @param serviceAccount.enabled Enable creating a service account
+## @param serviceAccount.name Service account name (if not set, it is generated using the fullname template)
+##
+serviceAccount:
+  # Specifies whether a service account should be created
+  enabled: true
+  # The name of the service account to use. If not set and create is true, a name is generated using the fullname template
+  name:
+
+## @section Weblate
+##
+
 weblate:
-  # site title
+  ## @param weblate.siteTitle Weblate site title
+  ##
   siteTitle: Weblate
-  # Site domain
+  ## @param weblate.siteDomain Weblate site domain
+  ##
   siteDomain: chart-example.local
 
-  # default admin user settings
+  ## @param weblate.replicaCount Deployment replica count
+  ##
+  replicaCount: 1
+
+  ## @param weblate.updateStrategy Deployment update strategy
+  ##
+  updateStrategy: Recreate
+
+  ## @param weblate.defaultUser.username Default admin username
+  ## @param weblate.defaultUser.password Default admin password (leave empty to generate a random password)
+  ## @param weblate.defaultUser.email Default admin email
+  ##
   defaultUser:
     username: 'admin'
     password: '' # leave empty to generate a random password
     email: ''
 
-  # email settings
+  ## @param weblate.email.host SMTP server host
+  ## @param weblate.email.port SMTP server port
+  ## @param weblate.email.tls SMTP enable TLS (do not turn on when weblate.email.ssl is on)
+  ## @param weblate.email.ssl SMTP enable SSL (do not turn on when weblate.email.tls is on)
+  ## @param weblate.email.auth.user SMTP username
+  ## @param weblate.email.auth.password SMTP password
+  ## @param weblate.email.serverEmail Sender email for outgoing error emails
+  ## @param weblate.email.defaultFromEmail Sender email for outgoing emails
+  ##
   email:
     host: ''
     port: 587
+
     # enabling TLS and SSL at the same time is not allowed
     tls: true
     ssl: false
 
-    # WEBLATE_SERVER_EMAIL (sender for outgoing error emails)
-    serverEmail: ''
-    # WEBLATE_DEFAULT_FROM_EMAIL (sender for outgoing emails)
-    defaultFromEmail: ''
-
     # email authentication
     auth:
       user: ''
-      password: '' # leave empty to generate random password
+      password: ''
 
-  # allowedHosts -- Hosts that are allowed to connect
+    serverEmail: ''
+    defaultFromEmail: ''
+
+  ## @param weblate.allowedHosts Hosts that are allowed to connect
+  ##
   allowedHosts: '*'
 
-  # enable debugging
+  ## @param weblate.debug enable debugging
+  ##
   debug: '0'
 
-  # configure external postgres server (applied only if postgresql.enabled is false)
+  ## @param weblate.nodeSelector Node Selector
+  ##
+  nodeSelector: {}
+
+  ## @param weblate.tolerations Tolerations
+  ##
+  tolerations: []
+
+  ## @param weblate.affinity Affinity
+  ##
+  affinity: {}
+
+  ## @param weblate.resources [object] Container resource settings
+  ## @param weblate.resources.requests.memory [nullable] Container resource requests
+  ## @param weblate.resources.requests.memory [nullable] Container resource requests
+  ## @param weblate.resources.limits.cpu [nullable] Container resource limits
+  ## @param weblate.resources.limits.memory [nullable] Container resource limits
+  ##
+  resources:
+    {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  ## @param weblate.caCertSecretName Secret containing a custom CA cert bundle to be mounted. See https://docs.weblate.org/en/latest/admin/install.html?highlight=certificates#using-custom-certificate-authority
+  ##
+  caCertSecretName: ''
+  ## @param weblate.caCertSubPath Name of the CA cert bundle in the secret, e.g. ca-certificates.crt or ca-bundle.crt
+  ##
+  caCertSubPath: ''
+
+  ## @param weblate.extraConfig Additional (environment) configs. Values will be evaluated as templates. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment
+  ##
+  extraConfig: {}
+
+  ## @param weblate.extraSecretConfig Same as `extraConfig`, but created as secrets. Values will be evaluated as Helm templates
+  ##
+  extraSecretConfig: {}
+
+  ## @param weblate.externalSecretName An external secret, in the same namespace, that will be use to set additional (environment) configs.
+  ##
+  externalSecretName: ''
+
+  ## @param weblate.configOverride Config override. See https://docs.weblate.org/en/latest/admin/install/docker.html#custom-configuration-files
+  ##
+  configOverride: ''
+
+  ## @param weblate.podSecurityContext.enabled Enable Pod Security Context
+  ## @param weblate.podSecurityContext.fsGroup Set the Pod Security Context fsGroup
+  ##
+  podSecurityContext:
+    enabled: true
+    fsGroup: 1000
+
+  ## @param weblate.containerSecurityContext.enabled Whether to enable the Container Security Context
+  ## @param weblate.containerSecurityContext.capabilities [object] Container Security Context capabilities
+  ## @param weblate.containerSecurityContext.readOnlyRootFilesystem [nullable] Container Security Context enable read only filesystem
+  ## @param weblate.containerSecurityContext.runAsRoot [nullable] Container Security Context allow running as root
+  ## @param weblate.containerSecurityContext.runAsUser [nullable] Container Security Context set run as user
+  ##
+  containerSecurityContext:
+    enabled: false
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+
+  ## @param weblate.externalPostgres [object] External Postgres settings
+  ## @param weblate.externalPostgres.host [nullable] External Postgres host (only applied if postgresql.enabled is false)
+  ## @param weblate.externalPostgres.port [nullable] External Postgres port (only applied if postgresql.enabled is false)
+  ## @param weblate.externalPostgres.username [nullable] External Postgres username (only applied if postgresql.enabled is false)
+  ## @param weblate.externalPostgres.password [nullable] External Postgres password (only applied if postgresql.enabled is false)
+  ## @param weblate.externalPostgres.database [nullable] External Postgres database (only applied if postgresql.enabled is false)
+  ##
   externalPostgres: {}
   #  host: ''
   #  port: 5432
@@ -61,56 +186,37 @@ weblate:
   #  password: ''
   #  database: postgres
 
-  # configure external redis server (applied only if redis.enabled is false)
+  ## @param weblate.externalRedis [object] External Redis settings(only applied if redis.enabled is false)
+  ## @param weblate.externalRedis.host [nullable] External Redis host
+  ## @param weblate.externalRedis.port [nullable] External Redis port
+  ## @param weblate.externalRedis.database [nullable] External Redis database
+  ## @param weblate.externalRedis.password [nullable] External Redis password
+  ##
   externalRedis: {}
   #  host: ''
   #  port: 6379
   #  database: '1'
   #  password: ''
 
-# caCertSecretName -- Secret containing a custom CA cert bundle to be mounted. See https://docs.weblate.org/en/latest/admin/install.html?highlight=certificates#using-custom-certificate-authority
-caCertSecretName: ''
-# caCertSubPath -- Name of the CA cert bundle in the secret, e.g. ca-certificates.crt or ca-bundle.crt
-caCertSubPath: ''
+## @section Networking
+##
 
-# extraConfig -- Additional (environment) configs. Values will be evaluated as templates. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment
-extraConfig: {}
-
-# extraSecretConfig -- Same as `extraConfig`, but created as secrets. Values will be evaluated as Helm templates
-extraSecretConfig: {}
-
-# externalSecretName -- An external secret, in the same namespace, that will be use to set additionnal
-# (environment) configs.
-externalSecretName: ''
-
-# configOverride -- Config override. See https://docs.weblate.org/en/latest/admin/install/docker.html#custom-configuration-files
-configOverride: ''
-
-serviceAccount:
-  # Specifies whether a service account should be created
-  enabled: true
-  # The name of the service account to use. If not set and create is true, a name is generated using the fullname template
-  name:
-
-podSecurityContext:
-  enabled: true
-  fsGroup: 1000
-
-containerSecurityContext:
-  enabled: false
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
-
+## @param service.type Service type
+## @param service.port Service port
+## @param service.annotations [object] Service annotations
+##
 service:
   type: ClusterIP
   port: 80
   # Service annotations, use key:value pairs
   annotations:
 
+## @param ingress.enabled Enable creating an Ingress
+## @param ingress.ingressClassName Set ingress class name
+## @param ingress.annotations [object] Ingress annotations
+## @param ingress.hosts [array] Ingress hosts
+## @param ingress.tls [array] Ingress TLS settings
+##
 ingress:
   enabled: false
   ingressClassName: ''
@@ -133,6 +239,16 @@ ingress:
     #    hosts:
     #      - chart-example.local
 
+## @section Persistence
+##
+
+## @param persistence.enabled Enable persistent storage
+## @param persistence.existingClaim Use an existing volume claim
+## @param persistence.storageClass [nullable] Storage class to use for persistency
+## @param persistence.accessMode Volume Claim access mode
+## @param persistence.size Volume Claim size
+## @param persistence.filestore_dir Mounting path
+##
 persistence:
   enabled: true
 
@@ -146,31 +262,16 @@ persistence:
 
   filestore_dir: /app/data
 
-resources:
-  {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+## @section Dependencies
 
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
-
-# bitnami/postgresql chart
+## @param postgresql [object] bitnami/postgresql chart values (only deployed when postgresql.enabled is true)
+##
 postgresql:
   # disable this to configure an existing postgres server using the weblate.externalPostgres.* values
   enabled: true
 
-# bitnami/redis chart
+## @param redis [object] bitnami/redis chart values (only deployed when redis.enabled is true)
+##
 redis:
   # disable this to configure an existing redis server using the weblate.externalRedis.* values
   enabled: true
