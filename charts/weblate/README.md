@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.4.17](https://img.shields.io/badge/Version-0.4.17-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.14.1](https://img.shields.io/badge/AppVersion-4.14.1-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.14.1](https://img.shields.io/badge/AppVersion-4.14.1-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -51,7 +51,6 @@ https://github.com/bitnami-labs/readme-generator-for-helm
 | `labels`                 | Common labels                                                                  | `{}`              |
 | `serviceAccount.enabled` | Enable creating a service account                                              | `true`            |
 | `serviceAccount.name`    | Service account name (if not set, it is generated using the fullname template) | `nil`             |
-
 
 ### Weblate
 
@@ -107,7 +106,6 @@ https://github.com/bitnami-labs/readme-generator-for-helm
 | `weblate.externalRedis.database`                          | External Redis database                                                                                                                                                      | `undefined`           |
 | `weblate.externalRedis.password`                          | External Redis password                                                                                                                                                      | `undefined`           |
 
-
 ### Networking
 
 | Name                       | Description                | Value       |
@@ -121,7 +119,6 @@ https://github.com/bitnami-labs/readme-generator-for-helm
 | `ingress.hosts`            | Ingress hosts              | `[]`        |
 | `ingress.tls`              | Ingress TLS settings       | `[]`        |
 
-
 ### Persistence
 
 | Name                        | Description                          | Value           |
@@ -133,11 +130,9 @@ https://github.com/bitnami-labs/readme-generator-for-helm
 | `persistence.size`          | Volume Claim size                    | `10Gi`          |
 | `persistence.filestore_dir` | Mounting path                        | `/app/data`     |
 
-
 ### Dependencies
 
 | Name         | Description                                                                     | Value |
 | ------------ | ------------------------------------------------------------------------------- | ----- |
 | `postgresql` | bitnami/postgresql chart values (only deployed when postgresql.enabled is true) | `{}`  |
 | `redis`      | bitnami/redis chart values (only deployed when redis.enabled is true)           | `{}`  |
-
