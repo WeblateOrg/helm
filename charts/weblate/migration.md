@@ -6,33 +6,35 @@ V1 introduces breaking changes to the`values.yaml`
 
 ### Remapped values
 
-| v0.4.16                      | v1.0.0                               |
-| ---------------------------- | ------------------------------------ | ------ |
-| `replicaCount`               | `weblate.replicaCount`               |
-| `imagePullSecrets`           | `image.pullSecrets`                  |
-| `serviceAccount.create`      | `serviceAccount.enabled`             |
-| `updateStrategy`             | `weblate.updateStrategy`             |
-| `podSecurityContext.*`       | `weblate.podSecurityContext.*`       |
-| `containerSecurityContext.*` | `weblate.containerSecurityContext.*` |
-| `adminEmail`                 | `weblate.`                           | # TODO |
-| `siteTitle`                  | `weblate.siteTitle`                  |
-| `siteDomain`                 | `weblate.siteDomain`                 |
-| `emailHost`                  | `weblate.email.host`                 |
-| `emailPort`                  | `weblate.email.port`                 |
-| `emailTLS`                   | `weblate.email.tls`                  |
-| `emailSSL`                   | `weblate.email.ssl`                  |
-| `allowedHosts`               | `weblate.allowedHosts`               |
-| `debug`                      | `weblate.debug`                      |
-| `caCertSecretName`           | `weblate.caCertSecretName`           |
-| `caCertSubPath`              | `weblate.caCertSubPath`              |
-| `extraConfig`                | `weblate.extraConfig`                |
-| `extraSecretConfig`          | `weblate.extraSecretConfig`          |
-| `externalSecretName`         | `weblate.externalSecretName`         |
-| `configOverride`             | `weblate.configOverride`             |
-| `resources`                  | `weblate.resources`                  |
-| `nodeSelector`               | `weblate.nodeSelector`               |
-| `affinity`                   | `weblate.affinity`                   |
-| `tolerations`                | `weblate.tolerations`                |
+| v0.4.16                      | v1.0.0                                 |
+| ---------------------------- | -------------------------------------- |
+| `replicaCount`               | `weblate.replicaCount`                 |
+| `imagePullSecrets`           | `image.pullSecrets`                    |
+| `serviceAccount.create`      | `serviceAccount.enabled`               |
+| `updateStrategy`             | `weblate.updateStrategy`               |
+| `podSecurityContext.*`       | `weblate.podSecurityContext.*`         |
+| `containerSecurityContext.*` | `weblate.containerSecurityContext.*`   |
+| `adminUser`                  | `weblate.weblate.defaultUser.username` |
+| `adminEmail`                 | `weblate.weblate.defaultUser.email`    |
+| `adminPassword`              | `weblate.weblate.defaultUser.password` |
+| `siteTitle`                  | `weblate.siteTitle`                    |
+| `siteDomain`                 | `weblate.siteDomain`                   |
+| `emailHost`                  | `weblate.email.host`                   |
+| `emailPort`                  | `weblate.email.port`                   |
+| `emailTLS`                   | `weblate.email.tls`                    |
+| `emailSSL`                   | `weblate.email.ssl`                    |
+| `allowedHosts`               | `weblate.allowedHosts`                 |
+| `debug`                      | `weblate.debug`                        |
+| `caCertSecretName`           | `weblate.caCertSecretName`             |
+| `caCertSubPath`              | `weblate.caCertSubPath`                |
+| `extraConfig`                | `weblate.extraConfig`                  |
+| `extraSecretConfig`          | `weblate.extraSecretConfig`            |
+| `externalSecretName`         | `weblate.externalSecretName`           |
+| `configOverride`             | `weblate.configOverride`               |
+| `resources`                  | `weblate.resources`                    |
+| `nodeSelector`               | `weblate.nodeSelector`                 |
+| `affinity`                   | `weblate.affinity`                     |
+| `tolerations`                | `weblate.tolerations`                  |
 
 ### Additional notes
 
