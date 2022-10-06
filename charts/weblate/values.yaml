@@ -64,7 +64,7 @@ weblate:
   ## @param weblate.defaultUser.email Default admin email
   ##
   defaultUser:
-    username: 'admin'
+    username: admin
     password: '' # leave empty to generate a random password
     email: ''
     existingSecret: {}
@@ -124,8 +124,7 @@ weblate:
   ## @param weblate.resources.limits.cpu [nullable] Container resource limits
   ## @param weblate.resources.limits.memory [nullable] Container resource limits
   ##
-  resources:
-    {}
+  resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -233,20 +232,18 @@ ingress:
   enabled: false
   ingressClassName: ''
   # Ingres annotations
-  annotations:
-    {}
+  annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   # Host names
   hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: Prefix
+  - host: chart-example.local
+    paths:
+    - path: /
+      pathType: Prefix
 
   # TLS configuration
-  tls:
-    []
+  tls: []
     #  - secretName: chart-example-tls
     #    hosts:
     #      - chart-example.local
