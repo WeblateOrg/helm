@@ -83,13 +83,17 @@ spec:
                 secretKeyRef:
                   name: {{ include "weblate.fullname" . }}-redis
                   key: redis-password
-            {{- else if not empty .Values.weblate.externalRedis }}
+            {{- else if not (empty .Values.weblate.externalRedis) }}
             - name: REDIS_HOST
               value: {{ .Values.weblate.externalRedis.host | quote }}
             - name: REDIS_PORT
-              value: {{ .Values.weblate.externalRedis.port | quote }}
+              value: {{ default "6379" .Values.weblate.externalRedis.port | quote }}
+            {{- if .Values.weblate.externalRedis.tls }}
+            - name: REDIS_TLS
+              value: "true"
+            {{- end }}
             - name: REDIS_DB
-              value: {{ .Values.weblate.externalRedis.database | quote }}
+              value: {{ default "1" .Values.weblate.externalRedis.database | quote }}
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -97,7 +101,7 @@ spec:
                   key: redis-password
             {{- end }}
             
-            {{- if empty weblate.defaultUser.existingSecret }}
+            {{- if empty .Values.weblate.defaultUser.existingSecret }}
             - name: WEBLATE_ADMIN_EMAIL
               valueFrom:
                 secretKeyRef:
@@ -117,18 +121,18 @@ spec:
             - name: WEBLATE_ADMIN_EMAIL
               valueFrom:
                 secretKeyRef:
-                  name: {{ weblate.defaultUser.existingSecret.name }}
-                  key: {{ weblate.defaultUser.existingSecret.keyEmail }}
+                  name: {{ .Values.weblate.defaultUser.existingSecret.name }}
+                  key: {{ .Values.weblate.defaultUser.existingSecret.keyEmail }}
             - name: WEBLATE_ADMIN_NAME
               valueFrom:
                 secretKeyRef:
-                  name: {{ weblate.defaultUser.existingSecret.name }}
-                  key: {{ weblate.defaultUser.existingSecret.keyUsername }}
+                  name: {{ .Values.weblate.defaultUser.existingSecret.name }}
+                  key: {{ .Values.weblate.defaultUser.existingSecret.keyUsername }}
             - name: WEBLATE_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ weblate.defaultUser.existingSecret.name }}
-                  key: {{ weblate.defaultUser.existingSecret.keyPassword }}
+                  name: {{ .Values.weblate.defaultUser.existingSecret.name }}
+                  key: {{ .Values.weblate.defaultUser.existingSecret.keyPassword }}
 
             {{- end}}
 
@@ -207,7 +211,7 @@ spec:
             - mountPath: "{{ .Values.persistence.filestore_dir }}/settings-override.py"
               name: weblate-config
               subPath: "settings-override.py"
-            {{- if (and .Values.weblate.caCertSecretName .weblate.Values.caCertSubPath )}}
+            {{- if (and .Values.weblate.caCertSecretName .Values.weblate.caCertSubPath )}}
             - mountPath: /{{ .Values.weblate.caCertSubPath }}
               name: ca-bundle
               subPath: {{ .Values.weblate.caCertSubPath}}

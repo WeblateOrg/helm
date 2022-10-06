@@ -199,12 +199,14 @@ weblate:
   ## @param weblate.externalRedis [object] External Redis settings(only applied if redis.enabled is false)
   ## @param weblate.externalRedis.host [nullable] External Redis host
   ## @param weblate.externalRedis.port [nullable] External Redis port
+  ## @param weblate.externalRedis.tls [nullable] External Redis require TLS
   ## @param weblate.externalRedis.database [nullable] External Redis database
   ## @param weblate.externalRedis.password [nullable] External Redis password
   ##
   externalRedis: {}
   #  host: ''
   #  port: 6379
+  #  tls: true
   #  database: '1'
   #  password: ''
 

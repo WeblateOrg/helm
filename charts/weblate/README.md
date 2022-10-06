@@ -52,6 +52,7 @@ https://github.com/bitnami-labs/readme-generator-for-helm
 | `serviceAccount.enabled` | Enable creating a service account                                              | `true`            |
 | `serviceAccount.name`    | Service account name (if not set, it is generated using the fullname template) | `nil`             |
 
+
 ### Weblate
 
 | Name                                                      | Description                                                                                                                                                                  | Value                 |
@@ -60,8 +61,13 @@ https://github.com/bitnami-labs/readme-generator-for-helm
 | `weblate.siteDomain`                                      | Weblate site domain                                                                                                                                                          | `chart-example.local` |
 | `weblate.replicaCount`                                    | Deployment replica count                                                                                                                                                     | `1`                   |
 | `weblate.updateStrategy`                                  | Deployment update strategy                                                                                                                                                   | `Recreate`            |
-| `weblate.defaultUser.username`                            | Default admin username                                                                                                                                                       | `admin`               |
-| `weblate.defaultUser.password`                            | Default admin password (leave empty to generate a random password)                                                                                                           | `""`                  |
+| `weblate.defaultUser.username`                            | Default admin username (ignored if weblate.defaultUser.existingSecret is set)                                                                                                | `admin`               |
+| `weblate.defaultUser.password`                            | Default admin password (ignored if weblate.defaultUser.existingSecret is set, leave empty to generate a random password)                                                     | `""`                  |
+| `weblate.defaultUser.existingSecret`                      | Existing secret containing default admin credentials                                                                                                                         | `{}`                  |
+| `weblate.defaultUser.existingSecret.name`                 | Name of existing secret containing default admin password                                                                                                                    | `undefined`           |
+| `weblate.defaultUser.existingSecret.keyUsername`          | Key of existing secret containing default admin username                                                                                                                     | `undefined`           |
+| `weblate.defaultUser.existingSecret.keyPassword`          | Key of existing secret containing default admin password                                                                                                                     | `undefined`           |
+| `weblate.defaultUser.existingSecret.keyEmail`             | Key of existing secret containing default admin email                                                                                                                        | `undefined`           |
 | `weblate.defaultUser.email`                               | Default admin email                                                                                                                                                          | `""`                  |
 | `weblate.email.host`                                      | SMTP server host                                                                                                                                                             | `""`                  |
 | `weblate.email.port`                                      | SMTP server port                                                                                                                                                             | `587`                 |
@@ -103,8 +109,10 @@ https://github.com/bitnami-labs/readme-generator-for-helm
 | `weblate.externalRedis`                                   | External Redis settings(only applied if redis.enabled is false)                                                                                                              | `{}`                  |
 | `weblate.externalRedis.host`                              | External Redis host                                                                                                                                                          | `undefined`           |
 | `weblate.externalRedis.port`                              | External Redis port                                                                                                                                                          | `undefined`           |
+| `weblate.externalRedis.tls`                               | External Redis require TLS                                                                                                                                                   | `undefined`           |
 | `weblate.externalRedis.database`                          | External Redis database                                                                                                                                                      | `undefined`           |
 | `weblate.externalRedis.password`                          | External Redis password                                                                                                                                                      | `undefined`           |
+
 
 ### Networking
 
@@ -119,6 +127,7 @@ https://github.com/bitnami-labs/readme-generator-for-helm
 | `ingress.hosts`            | Ingress hosts              | `[]`        |
 | `ingress.tls`              | Ingress TLS settings       | `[]`        |
 
+
 ### Persistence
 
 | Name                        | Description                          | Value           |
@@ -130,9 +139,11 @@ https://github.com/bitnami-labs/readme-generator-for-helm
 | `persistence.size`          | Volume Claim size                    | `10Gi`          |
 | `persistence.filestore_dir` | Mounting path                        | `/app/data`     |
 
+
 ### Dependencies
 
 | Name         | Description                                                                     | Value |
 | ------------ | ------------------------------------------------------------------------------- | ----- |
 | `postgresql` | bitnami/postgresql chart values (only deployed when postgresql.enabled is true) | `{}`  |
 | `redis`      | bitnami/redis chart values (only deployed when redis.enabled is true)           | `{}`  |
+
