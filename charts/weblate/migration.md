@@ -42,5 +42,3 @@ V1 introduces breaking changes to the`values.yaml`
 - Configuration for using an external Redis or Postgres has changed
   - Set `[redis|postgres].enabled=false` to disable deploying the Bitnami dependencies
   - Set `weblate.external[Redis|Postgres].*` values
-- The `postgresql` configuration has removed some defaults including the default postgres user password to use a randomly generated password. This needs to be manually updated again
-  - Set: `postgresql.auth.postgresPassword=weblate`

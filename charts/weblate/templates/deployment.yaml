@@ -78,11 +78,12 @@ spec:
             {{- if .Values.redis.enabled }}
             - name: REDIS_HOST
               value: "{{ include "weblate.redis.fullname" . }}"
-            - name: REDIS_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "weblate.fullname" . }}-redis
-                  key: redis-password
+            - name: REDIS_PORT
+              value: {{ default "6379" .Values.redis.master.service.ports.redis | quote }}
+            {{- if .Values.redis.tls.enabled }}
+            - name: REDIS_TLS
+              value: "true"
+            {{- end }}
             {{- else if not (empty .Values.weblate.externalRedis) }}
             - name: REDIS_HOST
               value: {{ .Values.weblate.externalRedis.host | quote }}
@@ -94,12 +95,12 @@ spec:
             {{- end }}
             - name: REDIS_DB
               value: {{ default "1" .Values.weblate.externalRedis.database | quote }}
+            {{- end }}
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ include "weblate.fullname" . }}-redis
                   key: redis-password
-            {{- end }}
             
             {{- if empty .Values.weblate.defaultUser.existingSecret }}
             - name: WEBLATE_ADMIN_EMAIL

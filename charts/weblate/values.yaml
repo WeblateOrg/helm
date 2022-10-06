@@ -292,5 +292,4 @@ redis:
   architecture: standalone
   auth:
     enabled: true
-    password: weblate
   db: 1
