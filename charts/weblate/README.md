@@ -48,6 +48,7 @@ $ helm install my-release weblate/weblate
 | emailSSL | bool | `true` | Use SSL when sending emails |
 | emailTLS | bool | `true` | Use TLS when sending emails |
 | emailUser | string | `""` | User name for sending emails |
+| existingSecret | string | `""` | Name of existing secret, Make sure it contains the keys postgresql-user, postgresql-password, redis-password, email-user, email-password, admin-user, admin-password Also note to set the existingSecret values for the Redis and Postgresql subcharts |
 | externalSecretName | string | `""` | An external secret, in the same namespace, that will be use to set additionnal (environment) configs. |
 | extraConfig | object | `{}` | Additional (environment) configs. Values will be evaluated as templates. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment |
 | extraSecretConfig | object | `{}` | Same as `extraConfig`, but created as secrets. Values will be evaluated as Helm templates |
@@ -75,12 +76,16 @@ $ helm install my-release weblate/weblate
 | podSecurityContext.fsGroup | int | `1000` |  |
 | postgresql.auth.database | string | `"weblate"` |  |
 | postgresql.auth.enablePostgresUser | bool | `true` |  |
+| postgresql.auth.existingSecret | string | `""` |  |
 | postgresql.auth.postgresPassword | string | `"weblate"` |  |
+| postgresql.auth.secretKeys.userPasswordKey | string | `"postgresql-password"` |  |
 | postgresql.enabled | bool | `true` |  |
 | postgresql.postgresqlHost | string | `None` | External postgres database endpoint, to be used if `postgresql.enabled == false` |
 | postgresql.service.ports.postgresql | int | `5432` |  |
 | redis.architecture | string | `"standalone"` |  |
 | redis.auth.enabled | bool | `true` |  |
+| redis.auth.existingSecret | string | `""` |  |
+| redis.auth.existingSecretPasswordKey | string | `"redis-password"` |  |
 | redis.auth.password | string | `"weblate"` |  |
 | redis.db | int | `1` |  |
 | redis.enabled | bool | `true` |  |

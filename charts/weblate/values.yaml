@@ -24,6 +24,11 @@ adminUser: ''
 # adminPassword -- Password of Admin Account
 adminPassword: ''
 
+# existingSecret -- Name of existing secret,
+# Make sure it contains the keys postgresql-user, postgresql-password, redis-password, email-user, email-password, admin-user, admin-password
+# Also note to set the existingSecret values for the Redis and Postgresql subcharts
+existingSecret: ''
+
 # siteTile -- Site title
 siteTitle: Weblate
 # siteDomain -- Site domain
@@ -154,6 +159,9 @@ postgresql:
     enablePostgresUser: true
     postgresPassword: weblate
     database: weblate
+    existingSecret: ''
+    secretKeys:
+      userPasswordKey: postgresql-password
   service:
     ports:
       postgresql: 5432
@@ -168,6 +176,8 @@ redis:
   auth:
     enabled: true
     password: weblate
+    existingSecret: ''
+    existingSecretPasswordKey: redis-password
   db: 1
   enabled: true
   # redis.redisHost -- External redis database endpoint, to be

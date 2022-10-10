@@ -55,12 +55,20 @@ spec:
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
+                  {{ if not .Values.existingSecret -}}
                   name: {{ include "weblate.fullname" . }}
+                  {{- else }}
+                  name: {{ .Values.existingSecret }}
+                  {{- end }}
                   key: postgresql-user
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
+                  {{ if not .Values.existingSecret -}}
                   name: {{ include "weblate.fullname" . }}
+                  {{- else }}
+                  name: {{ .Values.existingSecret }}
+                  {{- end }}
                   key: postgresql-password
             {{- end }}
             {{- if .Values.redis.enabled }}
@@ -71,7 +79,11 @@ spec:
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
+                  {{ if not .Values.existingSecret -}}
                   name: {{ include "weblate.fullname" . }}
+                  {{ else }}
+                  name: {{ .Values.existingSecret }}
+                  {{- end }}
                   key: redis-password
             {{- end }}
             - name: WEBLATE_ADMIN_EMAIL
@@ -79,12 +91,20 @@ spec:
             - name: WEBLATE_ADMIN_NAME
               valueFrom:
                 secretKeyRef:
+                  {{ if not .Values.existingSecret -}}
                   name: {{ include "weblate.fullname" . }}
+                  {{- else }}
+                  name: {{ .Values.existingSecret }}
+                  {{- end }}
                   key: admin-user
             - name: WEBLATE_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
+                  {{ if not .Values.existingSecret -}}
                   name: {{ include "weblate.fullname" . }}
+                  {{- else }}
+                  name: {{ .Values.existingSecret }}
+                  {{- end }}
                   key: admin-password
             - name: WEBLATE_SITE_TITLE
               value: "{{ .Values.siteTitle }}"
@@ -101,12 +121,20 @@ spec:
             - name: WEBLATE_EMAIL_USER
               valueFrom:
                 secretKeyRef:
+                  {{ if not .Values.existingSecret -}}
                   name: {{ include "weblate.fullname" . }}
+                  {{- else }}
+                  name: {{ .Values.existingSecret }}
+                  {{- end }}
                   key: email-user
             - name: WEBLATE_EMAIL_PASSWORD
               valueFrom:
                 secretKeyRef:
+                  {{ if not .Values.existingSecret -}}
                   name: {{ include "weblate.fullname" . }}
+                  {{- else }}
+                  name: {{ .Values.existingSecret }}
+                  {{- end }}
                   key: email-password
             - name: WEBLATE_SERVER_EMAIL
               value: "{{ .Values.serverEmail }}"
