@@ -54,14 +54,14 @@ weblate:
   ##
   updateStrategy: Recreate
 
-  ## @param weblate.defaultUser.username Default admin username (ignored if weblate.defaultUser.existingSecret is set)
-  ## @param weblate.defaultUser.password Default admin password (ignored if weblate.defaultUser.existingSecret is set, leave empty to generate a random password)
-  ## @param weblate.defaultUser.existingSecret [object] Existing secret containing default admin credentials
-  ## @param weblate.defaultUser.existingSecret.name [nullable] Name of existing secret containing default admin password
-  ## @param weblate.defaultUser.existingSecret.keyUsername [nullable] Key of existing secret containing default admin username
-  ## @param weblate.defaultUser.existingSecret.keyPassword [nullable] Key of existing secret containing default admin password
-  ## @param weblate.defaultUser.existingSecret.keyEmail [nullable] Key of existing secret containing default admin email
-  ## @param weblate.defaultUser.email Default admin email
+  ## @param weblate.email.auth.username Default admin username (ignored if weblate.email.auth.existingSecret is set)
+  ## @param weblate.email.auth.password Default admin password (ignored if weblate.email.auth.existingSecret is set, leave empty to generate a random password)
+  ## @param weblate.email.auth.existingSecret [object] Existing secret containing default admin credentials
+  ## @param weblate.email.auth.existingSecret.name [nullable] Name of existing secret containing default admin password
+  ## @param weblate.email.auth.existingSecret.keyUsername [nullable] Key of existing secret containing default admin username
+  ## @param weblate.email.auth.existingSecret.keyPassword [nullable] Key of existing secret containing default admin password
+  ## @param weblate.email.auth.existingSecret.keyEmail [nullable] Key of existing secret containing default admin email
+  ## @param weblate.email.auth.email Default admin email
   ##
   defaultUser:
     username: admin
@@ -77,6 +77,10 @@ weblate:
   ## @param weblate.email.port SMTP server port
   ## @param weblate.email.tls SMTP enable TLS (do not turn on when weblate.email.ssl is on)
   ## @param weblate.email.ssl SMTP enable SSL (do not turn on when weblate.email.tls is on)
+  ## @param weblate.email.auth.existingSecret [object] Existing secret containing default SMTP credentials
+  ## @param weblate.email.auth.existingSecret.name [nullable] Name of existing secret containing SMTP credenntials
+  ## @param weblate.email.auth.existingSecret.keyUsername [nullable] Key of existing secret containing SMTP credenntials
+  ## @param weblate.email.auth.existingSecret.keyPassword [nullable] Key of existing secret containing SMTP credenntials
   ## @param weblate.email.auth.user SMTP username
   ## @param weblate.email.auth.password SMTP password
   ## @param weblate.email.serverEmail Sender email for outgoing error emails
@@ -92,6 +96,10 @@ weblate:
 
     # email authentication
     auth:
+      existingSecret: {}
+      #  name: ''
+      #  keyUsername: 'email-user'
+      #  keyPassword: 'email-password'
       user: ''
       password: ''
 
@@ -124,7 +132,8 @@ weblate:
   ## @param weblate.resources.limits.cpu [nullable] Container resource limits
   ## @param weblate.resources.limits.memory [nullable] Container resource limits
   ##
-  resources: {}
+  resources:
+    {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -157,7 +166,6 @@ weblate:
   ## @deprecated @param weblate.externalSecretName An external secret, in the same namespace, that will be use to set additional (environment) configs. (deprecated as it can be done with extraConfigSecrets)
   ##
   externalSecretName: ''
-
 
   ## @param weblate.configOverride Config override. See https://docs.weblate.org/en/latest/admin/install/docker.html#custom-configuration-files
   ##
@@ -236,18 +244,20 @@ ingress:
   enabled: false
   ingressClassName: ''
   # Ingres annotations
-  annotations: {}
+  annotations:
+    {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   # Host names
   hosts:
-  - host: chart-example.local
-    paths:
-    - path: /
-      pathType: Prefix
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: Prefix
 
   # TLS configuration
-  tls: []
+  tls:
+    []
     #  - secretName: chart-example-tls
     #    hosts:
     #      - chart-example.local
