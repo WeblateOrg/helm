@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.14.2](https://img.shields.io/badge/AppVersion-4.14.2-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.14.2](https://img.shields.io/badge/AppVersion-4.14.2-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -72,6 +72,7 @@ $ helm install my-release weblate/weblate
 | weblate.defaultUser.existingSecret | object | `{}` |  |
 | weblate.defaultUser.password | string | `""` |  |
 | weblate.defaultUser.username | string | `"admin"` |  |
+| weblate.email.auth.existingSecret | object | `{}` |  |
 | weblate.email.auth.password | string | `""` |  |
 | weblate.email.auth.user | string | `""` |  |
 | weblate.email.defaultFromEmail | string | `""` |  |
