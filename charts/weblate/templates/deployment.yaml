@@ -152,7 +152,7 @@ spec:
             - name: WEBLATE_EMAIL_HOST
               value: "{{ .Values.weblate.email.host }}"
             - name: WEBLATE_EMAIL_PORT
-              value: "{{ .Values.weblate.email.port }}"
+              value: "{{ .Values.weblate.email.port | quote }}"
             {{- if and .Values.weblate.email.tls .Values.weblate.email.ssl }}
             {{ fail "You cannot enable weblate.email.tls and weblate.email.ssl at the same time! See: https://github.com/WeblateOrg/helm/issues/143" }}
             {{- end }}
