@@ -74,7 +74,6 @@ spec:
                   name: {{ include "weblate.fullname" . }}-postgresql
                   key: postgres-password
             {{- end }}
-            
             {{- if .Values.redis.enabled }}
             - name: REDIS_HOST
               value: "{{ include "weblate.redis.fullname" . }}"
@@ -197,7 +196,7 @@ spec:
               value: |-
                 {{- tpl $value $ | nindent 16 }}
             {{- end }}
-          {{- if (or .Values.weblate.extraSecretConfig .Values.weblate.externalSecretName) }}
+          {{- if (or .Values.weblate.extraSecretConfig .Values.weblate.externalSecretName .Values.weblate.extraConfigSecrets) }}
           envFrom:
             {{- if .Values.weblate.extraSecretConfig }}
             - secretRef:
@@ -206,6 +205,12 @@ spec:
             {{- if .Values.weblate.externalSecretName }}
             - secretRef:
                 name: {{ .Values.weblate.externalSecretName }}
+            {{- end }}
+            {{- if not empty .Values.weblate.extraConfigSecrets }}
+            {{ range .Values.weblate.extraConfigSecrets }}
+            - secretRef:
+                name: {{ . }}
+            {{- end }}
             {{- end }}
           {{- end }}
           livenessProbe:

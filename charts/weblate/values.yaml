@@ -148,13 +148,17 @@ weblate:
   ##
   extraConfig: {}
 
-  ## @param weblate.extraSecretConfig Same as `extraConfig`, but created as secrets. Values will be evaluated as Helm templates
+  ## @param weblate.extraConfigSecrets An array of secret names, in the same namespace, that will be used to set additional environment variables
+  extraConfigSecrets: []
+
+  ## @deprecated @param weblate.extraSecretConfig Same as `extraConfig`, but created as secrets. Values will be evaluated as Helm templates (deprecated as it can be done with extraConfigSecrets)
   ##
   extraSecretConfig: {}
 
-  ## @param weblate.externalSecretName An external secret, in the same namespace, that will be use to set additional (environment) configs.
+  ## @deprecated @param weblate.externalSecretName An external secret, in the same namespace, that will be use to set additional (environment) configs. (deprecated as it can be done with extraConfigSecrets)
   ##
   externalSecretName: ''
+
 
   ## @param weblate.configOverride Config override. See https://docs.weblate.org/en/latest/admin/install/docker.html#custom-configuration-files
   ##
