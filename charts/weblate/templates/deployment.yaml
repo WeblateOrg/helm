@@ -83,7 +83,7 @@ spec:
             - name: REDIS_TLS
               value: "true"
             {{- end }}
-            {{- else if not (empty .Values.weblate.externalRedis) }}
+            {{- else if not .Values.weblate.externalRedis }}
             - name: REDIS_HOST
               value: {{ .Values.weblate.externalRedis.host | quote }}
             - name: REDIS_PORT
