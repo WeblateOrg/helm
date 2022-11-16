@@ -206,7 +206,7 @@ spec:
             - secretRef:
                 name: {{ .Values.weblate.externalSecretName }}
             {{- end }}
-            {{- if not empty .Values.weblate.extraConfigSecrets }}
+            {{- if not (empty .Values.weblate.extraConfigSecrets) }}
             {{ range .Values.weblate.extraConfigSecrets }}
             - secretRef:
                 name: {{ . }}
