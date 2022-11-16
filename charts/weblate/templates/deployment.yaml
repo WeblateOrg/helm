@@ -74,6 +74,7 @@ spec:
                   name: {{ include "weblate.fullname" . }}-postgresql
                   key: postgres-password
             {{- end }}
+            
             {{- if .Values.redis.enabled }}
             - name: REDIS_HOST
               value: "{{ include "weblate.redis.fullname" . }}"
@@ -83,7 +84,7 @@ spec:
             - name: REDIS_TLS
               value: "true"
             {{- end }}
-            {{- else if not .Values.weblate.externalRedis }}
+            {{- else if .Values.weblate.externalRedis }}
             - name: REDIS_HOST
               value: {{ .Values.weblate.externalRedis.host | quote }}
             - name: REDIS_PORT
@@ -110,7 +111,7 @@ spec:
             - name: WEBLATE_ADMIN_NAME
               valueFrom:
                 secretKeyRef:
-                  {{ if not .Values.existingSecret -}}
+                  {{- if not .Values.existingSecret }}
                   name: {{ include "weblate.fullname" . }}
                   {{- else }}
                   name: {{ .Values.existingSecret }}
@@ -119,7 +120,7 @@ spec:
             - name: WEBLATE_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  {{ if not .Values.existingSecret -}}
+                  {{- if not .Values.existingSecret }}
                   name: {{ include "weblate.fullname" . }}
                   {{- else }}
                   name: {{ .Values.existingSecret }}
@@ -163,16 +164,16 @@ spec:
             - name: WEBLATE_EMAIL_USER
               valueFrom:
                 secretKeyRef:
-                  {{ if not .Values.weblate.email.auth.existingSecret -}}
+                  {{- if not .Values.weblate.email.auth.existingSecret }}
                   name: {{ include "weblate.fullname" . }}
                   {{- else }}
-                  name: {{ .Values.weblate.email.auth.existingSecret }}
+                  name: {{- .Values.weblate.email.auth.existingSecret }}
                   {{- end }}
                   key: {{ default "email-user" .Values.weblate.email.auth.existingSecret.keyUser }}
             - name: WEBLATE_EMAIL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  {{ if not .Values.weblate.email.auth.existingSecret -}}
+                  {{- if not .Values.weblate.email.auth.existingSecret }}
                   name: {{ include "weblate.fullname" . }}
                   {{- else }}
                   name: {{ .Values.weblate.email.auth.existingSecret.name }}
@@ -253,7 +254,7 @@ spec:
             claimName: {{ .Values.persistence.existingClaim | default ( include "weblate.fullname" . ) }}
         {{- else }}
           emptyDir: {}
-        {{- end -}}
+        {{- end }}
       {{- if (and .Values.weblate.caCertSecretName .Values.weblate.caCertSubPath )}}
         - name: ca-bundle
           secret:
