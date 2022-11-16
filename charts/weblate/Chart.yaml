@@ -7,16 +7,16 @@ version: 1.0.2
 home: https://weblate.org/
 icon: https://s.weblate.org/cdn/weblate.svg
 maintainers:
-  - name: tarioch
-    email: patrick@ch.tario.org
-  - name: nijel
-    email: michal@weblate.org
+- name: tarioch
+  email: patrick@ch.tario.org
+- name: nijel
+  email: michal@weblate.org
 dependencies:
-  - name: postgresql
-    version: 12.1.2
-    repository: https://charts.bitnami.com/bitnami
-    condition: postgresql.enabled
-  - name: redis
-    version: 17.3.11
-    repository: https://charts.bitnami.com/bitnami
-    condition: redis.enabled
+- name: postgresql
+  version: 12.1.2
+  repository: https://charts.bitnami.com/bitnami
+  condition: postgresql.enabled
+- name: redis
+  version: 17.3.11
+  repository: https://charts.bitnami.com/bitnami
+  condition: redis.enabled
