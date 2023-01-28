@@ -55,7 +55,7 @@ $ helm install my-release weblate/weblate
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"weblate/weblate"` |  |
-| image.tag | string | `"4.15.1-1"` |  |
+| image.tag | string | `"4.15.2-1"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |
