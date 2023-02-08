@@ -156,10 +156,10 @@ postgresql:
   # PostgreSQL user should be a superuser to
   # be able to install pg_trgm extension. Alternatively you can install it
   # manually prior starting Weblate.
-  # To user your own PostgresUsername set enablePostgresUser: false and 
+  # To user your own PostgresUsername set enablePostgresUser: false and
   # fill in postgresqlUsername
     enablePostgresUser: true
-    postgresqlUsername: 
+    postgresqlUsername:
     postgresPassword: weblate
     database: weblate
     existingSecret: ''

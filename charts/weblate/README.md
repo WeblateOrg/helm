@@ -78,10 +78,11 @@ $ helm install my-release weblate/weblate
 | postgresql.auth.enablePostgresUser | bool | `true` |  |
 | postgresql.auth.existingSecret | string | `""` |  |
 | postgresql.auth.postgresPassword | string | `"weblate"` |  |
+| postgresql.auth.postgresqlUsername | string | `nil` |  |
 | postgresql.auth.secretKeys.userPasswordKey | string | `"postgresql-password"` |  |
 | postgresql.enabled | bool | `true` |  |
 | postgresql.postgresqlHost | string | `None` | External postgres database endpoint, to be used if `postgresql.enabled == false` |
-| postgresql.service.ports.postgresql | int | `5432` |  |
+| postgresql.service.ports | int | `5432` |  |
 | redis.architecture | string | `"standalone"` |  |
 | redis.auth.enabled | bool | `true` |  |
 | redis.auth.existingSecret | string | `""` |  |
