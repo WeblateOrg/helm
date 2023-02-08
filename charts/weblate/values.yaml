@@ -159,7 +159,7 @@ postgresql:
   # To user your own PostgresUsername set enablePostgresUser: false and
   # fill in postgresqlUsername
     enablePostgresUser: true
-    postgresqlUsername:
+    postgresqlUsername: ''
     postgresPassword: weblate
     database: weblate
     existingSecret: ''
