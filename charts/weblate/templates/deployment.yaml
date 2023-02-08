@@ -45,7 +45,7 @@ spec:
               containerPort: 8080
               protocol: TCP
           env:
-            {{- if .Values.postgresql.enabled }}
+            {{- if or (eq .Values.postgresql.enabled true) (ne .Values.postgresql.postgresqlHost nil) }}
             - name: POSTGRES_DATABASE
               value: {{ .Values.postgresql.auth.database | default (include "weblate.fullname" .) }}
             - name: POSTGRES_HOST
