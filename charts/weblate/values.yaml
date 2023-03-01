@@ -68,6 +68,11 @@ extraConfig: {}
 # extraSecretConfig -- Same as `extraConfig`, but created as secrets. Values will be evaluated as Helm templates
 extraSecretConfig: {}
 
+# initContainers -- List of init containers to add to the pod. Values will be evaluated as Helm templates
+initContainers: []
+# sidecars -- List of additional containers to add to the pod. Values will be evaluated as Helm templates
+sidecars: []
+
 # externalSecretName -- An external secret, in the same namespace, that will be use to set additionnal
 # (environment) configs.
 externalSecretName: ''

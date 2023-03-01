@@ -52,6 +52,8 @@ $ helm install my-release weblate/weblate
 | externalSecretName | string | `""` | An external secret, in the same namespace, that will be use to set additionnal (environment) configs. |
 | extraConfig | object | `{}` | Additional (environment) configs. Values will be evaluated as templates. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment |
 | extraSecretConfig | object | `{}` | Same as `extraConfig`, but created as secrets. Values will be evaluated as Helm templates |
+| initContainers | list | `[]` | List of init containers to add to the pod. Values will be evaluated as Helm templates |
+| sidecars | list | `[]` | List of additional containers to add to the pod. Values will be evaluated as Helm templates |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"weblate/weblate"` |  |
