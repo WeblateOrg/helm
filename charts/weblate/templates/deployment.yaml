@@ -189,6 +189,9 @@ spec:
               name: ca-bundle
               subPath: {{ .Values.caCertSubPath}}
             {{- end }}
+            {{- if .Values.extraVolumeMounts }}
+            {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
@@ -209,6 +212,9 @@ spec:
         - name: ca-bundle
           secret:
             secretName: {{ .Values.caCertSecretName }}
+      {{- end }}
+      {{- if .Values.extraVolumes }}
+        {{- toYaml .Values.extraVolumes | nindent 8 }}
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
