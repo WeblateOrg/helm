@@ -62,6 +62,11 @@ caCertSecretName: ''
 # caCertSubPath -- Name of the CA cert bundle in the secret, e.g. ca-certificates.crt or ca-bundle.crt
 caCertSubPath: ''
 
+# extraVolumes -- Additional volumes to be added to the deployment. Values will be evaluated as templates. Requires setting `extraVolumeMounts`
+extraVolumes: []
+# extraVolumeMounts -- Additional volume mounts to be added to the container. Values will be evaluated as templates. Normally used with `extraVolumes`
+extraVolumeMounts: []
+
 # extraConfig -- Additional (environment) configs. Values will be evaluated as templates. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment
 extraConfig: {}
 
