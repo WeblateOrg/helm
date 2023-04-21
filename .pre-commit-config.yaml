@@ -32,7 +32,7 @@ repos:
     - mdformat-black==0.1.1
     - mdformat-shfmt==0.1.0
 - repo: https://github.com/adrienverge/yamllint
-  rev: v1.30.0
+  rev: v1.31.0
   hooks:
   - id: yamllint
 - repo: https://github.com/norwoodj/helm-docs
