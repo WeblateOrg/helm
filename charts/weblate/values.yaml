@@ -33,6 +33,8 @@ existingSecret: ''
 siteTitle: Weblate
 # siteDomain -- Site domain
 siteDomain: chart-example.local
+# sitePrefix -- Site Prefix (ex: /weblate)
+sitePrefix: ''
 
 # emailHost -- Host for sending emails
 emailHost: ''

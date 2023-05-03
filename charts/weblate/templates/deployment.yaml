@@ -152,6 +152,10 @@ spec:
             - name: REQUESTS_CA_BUNDLE
               value: /{{ .Values.caCertSubPath }}
             {{- end }}
+            {{- if .Values.sitePrefix }}
+            - name: WEBLATE_URL_PREFIX
+              value: {{ .Values.sitePrefix }}
+            {{- end }}
             {{- range $key, $value := .Values.extraConfig }}
             - name: {{ $key | quote }}
               value: |-
@@ -170,14 +174,14 @@ spec:
           {{- end }}
           livenessProbe:
             httpGet:
-              path: /healthz/
+              path: {{ .Values.sitePrefix }}/healthz/
               port: http
             failureThreshold: 10
             initialDelaySeconds: 90
             periodSeconds: 30
           readinessProbe:
             httpGet:
-              path: /healthz/
+              path: {{ .Values.sitePrefix }}/healthz/
               port: http
             failureThreshold: 5
             initialDelaySeconds: 90
