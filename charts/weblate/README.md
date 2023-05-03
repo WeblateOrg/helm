@@ -104,5 +104,6 @@ $ helm install my-release weblate/weblate
 | sidecars | list | `[]` | List of additional containers to add to the pod. Values will be evaluated as Helm templates |
 | siteDomain | string | `"chart-example.local"` | Site domain |
 | siteTitle | string | `"Weblate"` |  |
+| sitePrefix | string | `""` | Web context (ex: /weblate /translation) when running behind a reverse proxy |
 | tolerations | list | `[]` |  |
 | updateStrategy | string | `"Recreate"` |  |
