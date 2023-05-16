@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.4.24](https://img.shields.io/badge/Version-0.4.24-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.16.4-1](https://img.shields.io/badge/AppVersion-4.16.4--1-informational?style=flat-square)
+![Version: 0.4.25](https://img.shields.io/badge/Version-0.4.25-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.16.4-1](https://img.shields.io/badge/AppVersion-4.16.4--1-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -103,6 +103,7 @@ $ helm install my-release weblate/weblate
 | serviceAccount.name | string | `nil` |  |
 | sidecars | list | `[]` | List of additional containers to add to the pod. Values will be evaluated as Helm templates |
 | siteDomain | string | `"chart-example.local"` | Site domain |
+| sitePrefix | string | `""` | Site Prefix (ex: /weblate) |
 | siteTitle | string | `"Weblate"` |  |
 | tolerations | list | `[]` |  |
 | updateStrategy | string | `"Recreate"` |  |
