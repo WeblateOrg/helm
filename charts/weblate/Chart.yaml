@@ -14,7 +14,7 @@ maintainers:
   email: michal@weblate.org
 dependencies:
 - name: postgresql
-  version: 12.4.2
+  version: 12.5.6
   repository: https://charts.bitnami.com/bitnami
   condition: postgresql.enabled
 - name: redis
