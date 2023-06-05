@@ -49,13 +49,12 @@ spec:
               containerPort: 8080
               protocol: TCP
           env:
-            {{- if .Values.postgresql.enabled }}
             - name: POSTGRES_DATABASE
               value: {{ .Values.postgresql.auth.database | default (include "weblate.fullname" .) }}
             - name: POSTGRES_HOST
               value: "{{ .Values.postgresql.postgresqlHost | default (include "weblate.postgresql.fullname" .) }}"
             - name: POSTGRES_PORT
-              value: "{{ .Values.postgresql.service.port }}"
+              value: "{{ .Values.postgresql.service.port | default 5432}}"
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
@@ -68,14 +67,16 @@ spec:
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  {{ if not .Values.existingSecret -}}
+                  {{ if and (not .Values.existingSecret) (not .Values.postgresql.auth.existingSecret) -}}
                   name: {{ include "weblate.fullname" . }}
+                  key: postgresql-password
+                  {{ else if and (not .Values.existingSecret) (.Values.postgresql.auth.existingSecret) -}}
+                  name: {{ .Values.postgresql.auth.existingSecret }}
+                  key: {{ .Values.postgresql.auth.secretKeys.userPasswordKey }}
                   {{- else }}
                   name: {{ .Values.existingSecret }}
-                  {{- end }}
                   key: postgresql-password
-            {{- end }}
-            {{- if .Values.redis.enabled }}
+                  {{- end }}
             - name: REDIS_HOST
               value: "{{ .Values.redis.redisHost | default (include "weblate.redis.fullname" .) }}"
             - name: REDIS_DB
@@ -83,13 +84,16 @@ spec:
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  {{ if not .Values.existingSecret -}}
+                  {{ if and (not .Values.existingSecret) (not .Values.redis.auth.existingSecret) -}}
                   name: {{ include "weblate.fullname" . }}
+                  key: redis-password
+                  {{ else if and (not .Values.existingSecret) (.Values.redis.auth.existingSecret) -}}
+                  name: {{ .Values.redis.auth.existingSecret }}
+                  key: {{ .Values.redis.auth.existingSecretPasswordKey }}
                   {{ else }}
                   name: {{ .Values.existingSecret }}
-                  {{- end }}
                   key: redis-password
-            {{- end }}
+                  {{- end }}
             - name: WEBLATE_ADMIN_EMAIL
               value: "{{ .Values.adminEmail }}"
             - name: WEBLATE_ADMIN_NAME
