@@ -181,14 +181,14 @@ spec:
               path: {{ .Values.sitePrefix }}/healthz/
               port: http
             failureThreshold: 10
-            initialDelaySeconds: 90
+            initialDelaySeconds: 300
             periodSeconds: 30
           readinessProbe:
             httpGet:
               path: {{ .Values.sitePrefix }}/healthz/
               port: http
             failureThreshold: 5
-            initialDelaySeconds: 90
+            initialDelaySeconds: 300
             periodSeconds: 30
           volumeMounts:
             - mountPath: {{ .Values.persistence.filestore_dir }}
