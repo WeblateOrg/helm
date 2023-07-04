@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.4.29](https://img.shields.io/badge/Version-0.4.29-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.18.2.1](https://img.shields.io/badge/AppVersion-4.18.2.1-informational?style=flat-square)
+![Version: 0.4.30](https://img.shields.io/badge/Version-0.4.30-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.18.2.1](https://img.shields.io/badge/AppVersion-4.18.2.1-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -68,6 +68,9 @@ $ helm install my-release weblate/weblate
 | ingress.tls | list | `[]` |  |
 | initContainers | list | `[]` | List of init containers to add to the pod. Values will be evaluated as Helm templates |
 | labels | object | `{}` | custom labels |
+| livenessProbe.failureThreshold | int | `10` |  |
+| livenessProbe.initialDelaySeconds | int | `300` |  |
+| livenessProbe.periodSeconds | int | `30` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | persistence.accessMode | string | `"ReadWriteOnce"` |  |
@@ -86,6 +89,9 @@ $ helm install my-release weblate/weblate
 | postgresql.enabled | bool | `true` |  |
 | postgresql.postgresqlHost | string | `None` | External postgres database endpoint, to be used if `postgresql.enabled == false` |
 | postgresql.service.ports.postgresql | int | `5432` |  |
+| readinessProbe.failureThreshold | int | `2` |  |
+| readinessProbe.initialDelaySeconds | int | `60` |  |
+| readinessProbe.periodSeconds | int | `30` |  |
 | redis.architecture | string | `"standalone"` |  |
 | redis.auth.enabled | bool | `true` |  |
 | redis.auth.existingSecret | string | `""` |  |
