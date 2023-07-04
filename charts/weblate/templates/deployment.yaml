@@ -176,20 +176,24 @@ spec:
                 name: {{ .Values.externalSecretName }}
             {{- end }}
           {{- end }}
+          {{- with .Values.livenessProbe }}
           livenessProbe:
             httpGet:
-              path: {{ .Values.sitePrefix }}/healthz/
+              path: {{ $.Values.sitePrefix }}/healthz/
               port: http
-            failureThreshold: 10
-            initialDelaySeconds: 300
-            periodSeconds: 30
+            failureThreshold: {{ .failureThreshold }}
+            initialDelaySeconds: {{ .initialDelaySeconds }}
+            periodSeconds: {{ .periodSeconds }}
+          {{- end }}
+          {{- with .Values.readinessProbe }}
           readinessProbe:
             httpGet:
-              path: {{ .Values.sitePrefix }}/healthz/
+              path: {{ $.Values.sitePrefix }}/healthz/
               port: http
-            failureThreshold: 5
-            initialDelaySeconds: 300
-            periodSeconds: 30
+            failureThreshold: {{ .failureThreshold }}
+            initialDelaySeconds: {{ .initialDelaySeconds }}
+            periodSeconds: {{ .periodSeconds }}
+          {{- end }}
           volumeMounts:
             - mountPath: {{ .Values.persistence.filestore_dir }}
               name: weblate-data
