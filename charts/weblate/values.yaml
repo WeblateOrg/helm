@@ -97,6 +97,12 @@ podSecurityContext:
   enabled: true
   fsGroup: 1000
 
+podAnnotations: {}
+  # vault.security.banzaicloud.io/vault-role: "vault"
+  # vault.security.banzaicloud.io/vault-addr: "https://vault.vault.svc.cluster.local:8200"
+  # vault.security.banzaicloud.io/vault-skip-verify: "true"
+  # vault.security.banzaicloud.io/vault-path: "kubernetes"
+
 containerSecurityContext:
   enabled: false
   # capabilities:
@@ -105,6 +111,12 @@ containerSecurityContext:
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
+
+secretAnnotations: {}
+  # vault.security.banzaicloud.io/vault-role: "vault"
+  # vault.security.banzaicloud.io/vault-addr: "https://vault.vault.svc.cluster.local:8200"
+  # vault.security.banzaicloud.io/vault-skip-verify: "true"
+  # vault.security.banzaicloud.io/vault-path: "kubernetes"
 
 service:
   type: ClusterIP

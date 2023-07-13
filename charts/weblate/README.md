@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.4.30](https://img.shields.io/badge/Version-0.4.30-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.18.2.1](https://img.shields.io/badge/AppVersion-4.18.2.1-informational?style=flat-square)
+![Version: 0.4.31](https://img.shields.io/badge/Version-0.4.31-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.18.2.1](https://img.shields.io/badge/AppVersion-4.18.2.1-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -78,6 +78,7 @@ $ helm install my-release weblate/weblate
 | persistence.existingClaim | string | `""` | Use an existing volume claim |
 | persistence.filestore_dir | string | `"/app/data"` |  |
 | persistence.size | string | `"10Gi"` |  |
+| podAnnotations | object | `{}` |  |
 | podSecurityContext.enabled | bool | `true` |  |
 | podSecurityContext.fsGroup | int | `1000` |  |
 | postgresql.auth.database | string | `"weblate"` |  |
@@ -102,6 +103,7 @@ $ helm install my-release weblate/weblate
 | redis.redisHost | string | `None` | External redis database endpoint, to be used if `redis.enabled == false` |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
+| secretAnnotations | object | `{}` |  |
 | serverEmail | string | `""` | Sender for outgoing emails |
 | service.annotations | string | `nil` |  |
 | service.port | int | `80` |  |
