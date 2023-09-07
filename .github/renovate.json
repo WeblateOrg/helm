@@ -93,7 +93,7 @@
         "^\\.github/workflows)/[^/]+\\.ya?ml"
       ],
       "matchStrings": [
-        "renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\sversion: (?<currentValue>.*)\\s"
+        "renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s+version: (?<currentValue>.*)\\s"
       ],
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
       "extractVersionTemplate": "^v?(?<version>\\d+\\.\\d+\\.\\d+)"
