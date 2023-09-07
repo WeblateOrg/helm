@@ -90,6 +90,16 @@
     },
     {
       "fileMatch": [
+        "\\.github/workflows/[^/]*\\.yaml$"
+      ],
+      "matchStrings": [
+        "renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\sversion: (?<currentValue>.*)\\s"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+      "extractVersionTemplate": "^v(?<version>\\d+\\.\\d+\\.\\d+)"
+    },
+    {
+      "fileMatch": [
         "weblate_web/data.py"
       ],
       "matchStrings": [
