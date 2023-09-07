@@ -85,8 +85,7 @@
       ],
       "matchStrings": [
         "renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s+appVersion: (?<currentValue>.*)\\s"
-      ],
-      "datasourceTemplate": "docker"
+      ]
     },
     {
       "fileMatch": [
