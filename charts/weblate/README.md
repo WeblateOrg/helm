@@ -42,7 +42,7 @@ $ helm install my-release weblate/weblate
 | containerSecurityContext.enabled | bool | `false` |  |
 | debug | string | `"0"` | Enable debugging |
 | defaultFromEmail | string | `""` | From email for outgoing emails |
-| emailHost | string | `""` | Host for sending emails |
+| emailHost | string | `"chart-example.local"` | Host for sending emails |
 | emailPassword | string | `""` | Password for sending emails |
 | emailPort | int | `587` | Port for sending emails |
 | emailSSL | bool | `true` | Use SSL when sending emails |

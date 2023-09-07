@@ -37,7 +37,7 @@ siteDomain: chart-example.local
 sitePrefix: ''
 
 # emailHost -- Host for sending emails
-emailHost: ''
+emailHost: chart-example.local
 # emailPort -- Port for sending emails
 emailPort: 587
 # emailTLS -- Use TLS when sending emails
