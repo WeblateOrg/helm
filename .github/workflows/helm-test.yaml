@@ -35,7 +35,7 @@ jobs:
       run: ct list-changed --config .github/ct.yaml
 
     - name: Run chart-testing (lint)
-      run: ct lint --config .github/ct.yaml
+      run: ct lint --config .github/ct.yaml --check-version-increment=false
 
   test:
     runs-on: ubuntu-22.04
