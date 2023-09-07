@@ -90,7 +90,7 @@
     },
     {
       "fileMatch": [
-        "^\\.github/workflows)/[^/]+\\.ya?ml$"
+        "^\\.github/workflows/[^/]+\\.ya?ml$"
       ],
       "matchStrings": [
         "renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s+version: (?<currentValue>.*)\\s"
