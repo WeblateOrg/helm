@@ -89,7 +89,7 @@ $ helm install my-release weblate/weblate
 | postgresql.auth.userName | string | `""` |  |
 | postgresql.enabled | bool | `true` |  |
 | postgresql.postgresqlHost | string | `None` | External postgres database endpoint, to be used if `postgresql.enabled == false` |
-| postgresql.service.ports.postgresql | int | `5432` |  |
+| postgresql.service.port | int | `5432` |  |
 | readinessProbe.failureThreshold | int | `2` |  |
 | readinessProbe.initialDelaySeconds | int | `60` |  |
 | readinessProbe.periodSeconds | int | `30` |  |
