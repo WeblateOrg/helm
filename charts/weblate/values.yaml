@@ -198,8 +198,7 @@ postgresql:
     secretKeys:
       userPasswordKey: postgresql-password
   service:
-    ports:
-      postgresql: 5432
+    port: 5432
   enabled: true
   # postgresql.postgresqlHost -- External postgres database endpoint, to be
   # used if `postgresql.enabled == false`
