@@ -1,6 +1,6 @@
 apiVersion: v2
 # renovate: datasource=docker depName=weblate/weblate
-appVersion: 5.1.1.3
+appVersion: 5.2.0.1
 description: Weblate is a free web-based translation management system.
 name: weblate
 type: application
