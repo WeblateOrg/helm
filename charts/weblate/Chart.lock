@@ -4,6 +4,6 @@ dependencies:
   version: 13.4.3
 - name: redis
   repository: https://charts.bitnami.com/bitnami
-  version: 18.6.1
-digest: sha256:e85bb27aa1861840dca5f701e404d321802201095828020eb9dbbe80381a4c83
-generated: "2024-02-01T00:59:45.362529585Z"
+  version: 18.11.0
+digest: sha256:75a1ef5a7953e82e2cc277a349d4cb6ea0d7777a02cd7a61a9e027522a54df90
+generated: "2024-02-01T04:40:33.615889549Z"
