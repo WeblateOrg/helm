@@ -39,6 +39,7 @@ repos:
   rev: v1.13.1
   hooks:
   - id: helm-docs-built
+    language_version: 1.22.1
 exclude: charts/weblate/README.md|charts/weblate/templates/.*\.yaml
 ci:
   autoupdate_schedule: quarterly
