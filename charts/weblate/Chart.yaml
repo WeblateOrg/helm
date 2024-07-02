@@ -4,7 +4,7 @@ appVersion: 5.6.2.0
 description: Weblate is a free web-based translation management system.
 name: weblate
 type: application
-version: 0.5.9
+version: 0.5.10
 home: https://weblate.org/
 icon: https://s.weblate.org/cdn/weblate.svg
 maintainers:
