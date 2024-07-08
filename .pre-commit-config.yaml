@@ -36,7 +36,7 @@ repos:
   hooks:
   - id: yamllint
 - repo: https://github.com/norwoodj/helm-docs
-  rev: v1.13.1
+  rev: v1.14.2
   hooks:
   - id: helm-docs-built
     language_version: 1.22.1
