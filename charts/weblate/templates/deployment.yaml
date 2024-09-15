@@ -179,7 +179,7 @@ spec:
                 name: {{ .Values.externalSecretName }}
             {{- end }}
           {{- end }}
-          {{- with .Values.livenessProbe }}
+          {{- if .Values.livenessProbe }}
           livenessProbe:
             httpGet:
               path: {{ $.Values.sitePrefix }}/healthz/
@@ -188,7 +188,7 @@ spec:
             initialDelaySeconds: {{ .initialDelaySeconds }}
             periodSeconds: {{ .periodSeconds }}
           {{- end }}
-          {{- with .Values.readinessProbe }}
+          {{- if .Values.readinessProbe }}
           readinessProbe:
             httpGet:
               path: {{ $.Values.sitePrefix }}/healthz/
