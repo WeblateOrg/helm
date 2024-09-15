@@ -175,13 +175,13 @@ tolerations: []
 
 affinity: {}
 
-# Can be removed when running Weblate serivice without probes configured
+# Can be removed when running Weblate service without probes configured
 livenessProbe:
   initialDelaySeconds: 300
   periodSeconds: 30
   failureThreshold: 10
 
-# Can be removed when running Weblate serivice without probes configured
+# Can be removed when running Weblate service without probes configured
 readinessProbe:
   initialDelaySeconds: 60
   periodSeconds: 30
