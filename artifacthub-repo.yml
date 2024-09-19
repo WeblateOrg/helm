@@ -9,7 +9,7 @@
 # when the hash of the last commit in the branch you set up changes. This does
 # NOT apply to ownership claim operations, which are processed immediately.
 #
-repositoryID: 
+repositoryID: 3d29fed2-4769-472e-bbb6-400280657b20
 owners:
   - name: nijel
     email: michal@cihar.com
