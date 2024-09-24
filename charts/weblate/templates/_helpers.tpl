@@ -59,11 +59,17 @@ Create the name of the service account to use
 {{- end -}}
 
 {{- define "weblate.postgresql.fullname" -}}
-{{- $fullName := include "weblate.fullname" . -}}
-{{- printf "%s-%s" $fullName "postgresql" | trunc 63 | trimSuffix "-" -}}
+{{- if .Values.postgresql.fullnameOverride }}
+{{- printf "%s" .Values.postgresql.fullnameOverride | trunc 63 | trimSuffix "-" -}}
+{{- else -}}
+{{- printf "%s-%s" (.Release.Name | trimSuffix "-" | trunc 63 | trimSuffix "-") "postgresql" -}}
+{{- end -}}
 {{- end -}}
 
 {{- define "weblate.redis.fullname" -}}
-{{- $fullName := include "weblate.fullname" . -}}
-{{- printf "%s-%s-%s" $fullName "redis" "master" | trunc 63 | trimSuffix "-" -}}
+{{- if .Values.redis.fullnameOverride }}
+{{- printf "%s-%s" (.Values.redis.fullnameOverride | trunc 63 | trimSuffix "-") "master" -}}
+{{- else -}}
+{{- printf "%s-%s-%s" (.Release.Name | trimSuffix "-" | trunc 63 | trimSuffix "-") "redis" "master" -}}
+{{- end -}}
 {{- end -}}
