@@ -45,7 +45,7 @@ $ helm install my-release weblate/weblate
 | emailHost | string | `"chart-example.local"` | Host for sending emails |
 | emailPassword | string | `""` | Password for sending emails |
 | emailPort | int | `587` | Port for sending emails |
-| emailSSL | bool | `true` | Use SSL when sending emails |
+| emailSSL | bool | `false` | Use SSL when sending emails |
 | emailTLS | bool | `true` | Use TLS when sending emails |
 | emailUser | string | `""` | User name for sending emails |
 | existingSecret | string | `""` | Name of existing secret, Make sure it contains the keys postgresql-user, postgresql-password, redis-password, email-user, email-password, admin-user, admin-password Also note to set the existingSecret values for the Redis and Postgresql subcharts |
