@@ -43,7 +43,7 @@ emailPort: 587
 # emailTLS -- Use TLS when sending emails
 emailTLS: true
 # emailSSL -- Use SSL when sending emails
-emailSSL: true
+emailSSL: false
 # emailUser -- User name for sending emails
 emailUser: ''
 # emailPassword -- Password for sending emails
