@@ -129,7 +129,7 @@ spec:
               value: "{{ .Values.emailTLS }}"
             - name: WEBLATE_EMAIL_USE_SSL
               value: "{{ .Values.emailSSL }}"
-            - name: WEBLATE_EMAIL_USER
+            - name: WEBLATE_EMAIL_HOST_USER
               valueFrom:
                 secretKeyRef:
                   {{ if not .Values.existingSecret -}}
@@ -138,7 +138,7 @@ spec:
                   name: {{ .Values.existingSecret }}
                   {{- end }}
                   key: email-user
-            - name: WEBLATE_EMAIL_PASSWORD
+            - name: WEBLATE_EMAIL_HOST_PASSWORD
               valueFrom:
                 secretKeyRef:
                   {{ if not .Values.existingSecret -}}
