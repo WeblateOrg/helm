@@ -105,7 +105,7 @@ $ helm install my-release weblate/weblate
 | resources | object | `{}` |  |
 | secretAnnotations | object | `{}` |  |
 | serverEmail | string | `""` | Sender for outgoing emails |
-| service.annotations | string | `nil` |  |
+| service.annotations | object | `{}` |  |
 | service.port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.create | bool | `true` |  |
