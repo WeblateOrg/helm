@@ -122,7 +122,8 @@ service:
   type: ClusterIP
   port: 80
   # Service annotations, use key:value pairs
-  annotations:
+  annotations: {}
+    # my.annotation: "svc-annotation"
 
 ingress:
   enabled: false
