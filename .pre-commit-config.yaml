@@ -42,7 +42,7 @@ repos:
   - id: helm-docs-built
     language_version: 1.22.1
 - repo: https://github.com/codespell-project/codespell
-  rev: v2.4.0
+  rev: v2.4.1
   hooks:
   - id: codespell
     additional_dependencies:
