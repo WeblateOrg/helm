@@ -33,7 +33,7 @@ jobs:
 
     - name: Add repos
       run: |
-        yq '.chart-repos' .github/ct.yaml | while read line ; do
+        yq '.chart-repos' .github/ct.yaml | while read -r line ; do
           repodef="${line##- }"
           helm repo add "${repodef%%=*}" "${repodef##*=}"
         done
