@@ -96,6 +96,7 @@ serviceAccount:
 podSecurityContext:
   enabled: true
   fsGroup: 1000
+  fsGroupChangePolicy: OnRootMismatch
 
 podAnnotations: {}
   # vault.security.banzaicloud.io/vault-role: "vault"
