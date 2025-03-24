@@ -103,6 +103,8 @@ podAnnotations: {}
   # vault.security.banzaicloud.io/vault-skip-verify: "true"
   # vault.security.banzaicloud.io/vault-path: "kubernetes"
 
+podLabels: {}
+
 containerSecurityContext:
   enabled: false
   # capabilities:

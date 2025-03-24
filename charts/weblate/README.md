@@ -79,6 +79,7 @@ $ helm install my-release weblate/weblate
 | persistence.filestore_dir | string | `"/app/data"` |  |
 | persistence.size | string | `"10Gi"` |  |
 | podAnnotations | object | `{}` |  |
+| podLabels | object | `{}` |  |
 | podSecurityContext.enabled | bool | `true` |  |
 | podSecurityContext.fsGroup | int | `1000` |  |
 | postgresql.auth.database | string | `"weblate"` |  |
