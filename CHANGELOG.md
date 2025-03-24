@@ -1,3 +1,7 @@
+## 0.5.22
+
+[FEATURE] Add podLabels [#554](https://github.com/WeblateOrg/helm/pull/554)
+
 ## 0.5.20
 
 [BUGFIX] Remove `common.tplvalues.render` function [#502](https://github.com/WeblateOrg/helm/issues/502)
