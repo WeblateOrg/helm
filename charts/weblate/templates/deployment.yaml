@@ -61,7 +61,7 @@ spec:
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  {{ if not .Values.existingSecret -}}
+                  {{- if not .Values.existingSecret }}
                   name: {{ include "weblate.fullname" . }}
                   {{- else }}
                   name: {{ .Values.existingSecret }}
@@ -70,10 +70,10 @@ spec:
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  {{ if and (not .Values.existingSecret) (not .Values.postgresql.auth.existingSecret) -}}
+                  {{- if and (not .Values.existingSecret) (not .Values.postgresql.auth.existingSecret) }}
                   name: {{ include "weblate.fullname" . }}
                   key: postgresql-password
-                  {{ else if and (not .Values.existingSecret) (.Values.postgresql.auth.existingSecret) -}}
+                  {{- else if and (not .Values.existingSecret) (.Values.postgresql.auth.existingSecret) }}
                   name: {{ .Values.postgresql.auth.existingSecret }}
                   key: {{ .Values.postgresql.auth.secretKeys.userPasswordKey }}
                   {{- else }}
@@ -87,13 +87,13 @@ spec:
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  {{ if and (not .Values.existingSecret) (not .Values.redis.auth.existingSecret) -}}
+                  {{- if and (not .Values.existingSecret) (not .Values.redis.auth.existingSecret) }}
                   name: {{ include "weblate.fullname" . }}
                   key: redis-password
-                  {{ else if and (not .Values.existingSecret) (.Values.redis.auth.existingSecret) -}}
+                  {{- else if and (not .Values.existingSecret) (.Values.redis.auth.existingSecret) }}
                   name: {{ .Values.redis.auth.existingSecret }}
                   key: {{ .Values.redis.auth.existingSecretPasswordKey }}
-                  {{ else }}
+                  {{- else }}
                   name: {{ .Values.existingSecret }}
                   key: redis-password
                   {{- end }}
@@ -102,7 +102,7 @@ spec:
             - name: WEBLATE_ADMIN_NAME
               valueFrom:
                 secretKeyRef:
-                  {{ if not .Values.existingSecret -}}
+                  {{- if not .Values.existingSecret }}
                   name: {{ include "weblate.fullname" . }}
                   {{- else }}
                   name: {{ .Values.existingSecret }}
@@ -111,7 +111,7 @@ spec:
             - name: WEBLATE_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  {{ if not .Values.existingSecret -}}
+                  {{- if not .Values.existingSecret }}
                   name: {{ include "weblate.fullname" . }}
                   {{- else }}
                   name: {{ .Values.existingSecret }}
@@ -132,7 +132,7 @@ spec:
             - name: WEBLATE_EMAIL_HOST_USER
               valueFrom:
                 secretKeyRef:
-                  {{ if not .Values.existingSecret -}}
+                  {{- if not .Values.existingSecret }}
                   name: {{ include "weblate.fullname" . }}
                   {{- else }}
                   name: {{ .Values.existingSecret }}
@@ -141,7 +141,7 @@ spec:
             - name: WEBLATE_EMAIL_HOST_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  {{ if not .Values.existingSecret -}}
+                  {{- if not .Values.existingSecret }}
                   name: {{ include "weblate.fullname" . }}
                   {{- else }}
                   name: {{ .Values.existingSecret }}
