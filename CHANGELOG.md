@@ -1,5 +1,6 @@
 ## 0.5.22
 
+[FEATURE] Add podLabels [#554](https://github.com/WeblateOrg/helm/pull/554)
 [BUGFIX] Remove unnecessary newlines in rendered chart [#556](https://github.com/WeblateOrg/helm/pull/556)
 
 ## 0.5.20
