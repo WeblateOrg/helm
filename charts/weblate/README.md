@@ -82,6 +82,7 @@ $ helm install my-release weblate/weblate
 | podLabels | object | `{}` |  |
 | podSecurityContext.enabled | bool | `true` |  |
 | podSecurityContext.fsGroup | int | `1000` |  |
+| podSecurityContext.fsGroupChangePolicy | string | `"OnRootMismatch"` |  |
 | postgresql.auth.database | string | `"weblate"` |  |
 | postgresql.auth.enablePostgresUser | bool | `true` |  |
 | postgresql.auth.existingSecret | string | `""` |  |
