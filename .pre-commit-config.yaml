@@ -51,6 +51,10 @@ repos:
   rev: v1.7.7
   hooks:
   - id: actionlint
+- repo: https://github.com/adamchainz/blacken-docs
+  rev: 1.19.1
+  hooks:
+  - id: blacken-docs
 exclude: charts/weblate/README.md|charts/weblate/templates/.*\.yaml
 ci:
   autoupdate_schedule: quarterly
