@@ -55,6 +55,10 @@ repos:
   rev: 1.19.1
   hooks:
   - id: blacken-docs
+- repo: https://github.com/woodruffw/zizmor-pre-commit
+  rev: v1.6.0
+  hooks:
+  - id: zizmor
 exclude: charts/weblate/README.md|charts/weblate/templates/.*\.yaml
 ci:
   autoupdate_schedule: quarterly
