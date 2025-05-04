@@ -33,7 +33,7 @@ repos:
     - mdformat-shfmt==0.2.0
     - mdformat_tables==1.0.0
 - repo: https://github.com/adrienverge/yamllint
-  rev: v1.37.0
+  rev: v1.37.1
   hooks:
   - id: yamllint
 - repo: https://github.com/norwoodj/helm-docs
