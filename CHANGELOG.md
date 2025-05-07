@@ -1,3 +1,7 @@
+## 0.5.23
+
+[BUGFIX] Only trigger a reload of the pod, if the pod template change or the configuration changes [#557](https://github.com/WeblateOrg/helm/pull/557)
+
 ## 0.5.22
 
 [FEATURE] Add podLabels [#554](https://github.com/WeblateOrg/helm/pull/554)
