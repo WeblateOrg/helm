@@ -17,13 +17,14 @@ jobs:
       with:
         fetch-depth: 0
 
+        persist-credentials: false
     - name: Set up Helm
       uses: azure/setup-helm@b9e51907a09c216f16ebe8536097933489208112 # v4.3.0
       with:
         # renovate: datasource=github-releases depName=helm/helm
-        version: v3.17.2
+        version: v3.17.3
 
-    - uses: actions/setup-python@8d9ed9ac5c53483de85588cdf95a591a75ab9f55 # v5.5.0
+    - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
       with:
         python-version: 3.11 || 3.13
 
@@ -45,13 +46,14 @@ jobs:
       with:
         fetch-depth: 0
 
+        persist-credentials: false
     - name: Set up Helm
       uses: azure/setup-helm@b9e51907a09c216f16ebe8536097933489208112 # v4.3.0
       with:
         # renovate: datasource=github-releases depName=helm/helm
-        version: v3.17.2
+        version: v3.17.3
 
-    - uses: actions/setup-python@8d9ed9ac5c53483de85588cdf95a591a75ab9f55 # v5.5.0
+    - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
       with:
         python-version: 3.11 || 3.13
 

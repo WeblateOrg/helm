@@ -33,7 +33,7 @@ repos:
     - mdformat-shfmt==0.2.0
     - mdformat_tables==1.0.0
 - repo: https://github.com/adrienverge/yamllint
-  rev: v1.37.0
+  rev: v1.37.1
   hooks:
   - id: yamllint
 - repo: https://github.com/norwoodj/helm-docs
@@ -51,6 +51,14 @@ repos:
   rev: v1.7.7
   hooks:
   - id: actionlint
+- repo: https://github.com/adamchainz/blacken-docs
+  rev: 1.19.1
+  hooks:
+  - id: blacken-docs
+- repo: https://github.com/woodruffw/zizmor-pre-commit
+  rev: v1.6.0
+  hooks:
+  - id: zizmor
 exclude: charts/weblate/README.md|charts/weblate/templates/.*\.yaml
 ci:
   autoupdate_schedule: quarterly
