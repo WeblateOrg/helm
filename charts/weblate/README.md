@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.5.23](https://img.shields.io/badge/Version-0.5.23-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 5.11.4.3](https://img.shields.io/badge/AppVersion-5.11.4.3-informational?style=flat-square)
+![Version: 0.5.23](https://img.shields.io/badge/Version-0.5.23-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 5.11.4.4](https://img.shields.io/badge/AppVersion-5.11.4.4-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -57,7 +57,7 @@ $ helm install my-release weblate/weblate
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"weblate/weblate"` |  |
-| image.tag | string | `"5.11.4.3@sha256:66b3c87fc58a355148af1da64aa2a85bea8204e19bfa6609887b9cc2870b8db6"` |  |
+| image.tag | string | `"5.11.4.4@sha256:a80ad7ee571b5648ddbb86bfe8af50d1676b797da1601a5b02cc8752198d9491"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |
