@@ -182,13 +182,17 @@ affinity: {}
 livenessProbe:
   initialDelaySeconds: 300
   periodSeconds: 30
+  timeoutSeconds: 5
   failureThreshold: 10
+  successThreshold: 1
 
 # Can be removed when running Weblate service without probes configured
 readinessProbe:
   initialDelaySeconds: 60
   periodSeconds: 30
+  timeoutSeconds: 5
   failureThreshold: 2
+  successThreshold: 1
 
 postgresql:
   auth:

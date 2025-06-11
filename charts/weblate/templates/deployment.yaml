@@ -185,19 +185,23 @@ spec:
           {{- if .Values.livenessProbe }}
           livenessProbe:
             httpGet:
-              path: {{ $.Values.sitePrefix }}/healthz/
+              path: {{ .Values.sitePrefix }}/healthz/
               port: http
             failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
             initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            successThreshold: {{ .Values.livenessProbe.successThreshold }}
+            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
             periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
           {{- end }}
           {{- if .Values.readinessProbe }}
           readinessProbe:
             httpGet:
-              path: {{ $.Values.sitePrefix }}/healthz/
+              path: {{ .Values.sitePrefix }}/healthz/
               port: http
             failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
             initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            successThreshold: {{ .Values.readinessProbe.successThreshold }}
+            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
           {{- end }}
           volumeMounts:

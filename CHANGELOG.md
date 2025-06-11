@@ -1,3 +1,7 @@
+## 0.5.24
+
+[FEATURE] Add `timeoutSeconds` and `successThreshold` for **livenessProbe** and **readinessProbe** [#583](https://github.com/WeblateOrg/helm/issues/583)
+
 ## 0.5.23
 
 [BUGFIX] Only trigger a reload of the pod, if the pod template change or the configuration changes [#557](https://github.com/WeblateOrg/helm/pull/557)

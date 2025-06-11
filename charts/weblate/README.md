@@ -71,6 +71,8 @@ $ helm install my-release weblate/weblate
 | livenessProbe.failureThreshold | int | `10` |  |
 | livenessProbe.initialDelaySeconds | int | `300` |  |
 | livenessProbe.periodSeconds | int | `30` |  |
+| livenessProbe.successThreshold | int | `1` |  |
+| livenessProbe.timeoutSeconds | int | `5` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | persistence.accessMode | string | `"ReadWriteOnce"` |  |
@@ -94,6 +96,8 @@ $ helm install my-release weblate/weblate
 | readinessProbe.failureThreshold | int | `2` |  |
 | readinessProbe.initialDelaySeconds | int | `60` |  |
 | readinessProbe.periodSeconds | int | `30` |  |
+| readinessProbe.successThreshold | int | `1` |  |
+| readinessProbe.timeoutSeconds | int | `5` |  |
 | redis.architecture | string | `"standalone"` |  |
 | redis.auth.enabled | bool | `true` |  |
 | redis.auth.existingSecret | string | `""` |  |
