@@ -18,6 +18,6 @@ dependencies:
   repository: https://charts.bitnami.com/bitnami
   condition: postgresql.enabled
 - name: redis
-  version: 20.11.4
+  version: 21.1.11
   repository: https://charts.bitnami.com/bitnami
   condition: redis.enabled
