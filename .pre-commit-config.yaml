@@ -61,3 +61,5 @@ repos:
 exclude: charts/weblate/README.md|charts/weblate/templates/.*\.yaml
 ci:
   autoupdate_schedule: quarterly
+  skip:
+  - gitleaks-docker
