@@ -13,6 +13,7 @@ imagePullSecrets: []
 nameOverride: ''
 fullnameOverride: ''
 updateStrategy: Recreate
+revisionHistoryLimit: 10
 
 # labels -- custom labels
 labels: {}
