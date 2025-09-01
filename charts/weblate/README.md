@@ -107,6 +107,7 @@ $ helm install my-release weblate/weblate
 | redis.enabled | bool | `true` |  |
 | redis.redisHost | string | `None` | External redis database endpoint, to be used if `redis.enabled == false` |
 | replicaCount | int | `1` |  |
+| revisionHistoryLimit | int | `10` | The number of old ReplicaSets to retain |
 | resources | object | `{}` |  |
 | secretAnnotations | object | `{}` |  |
 | serverEmail | string | `""` | Sender for outgoing emails |

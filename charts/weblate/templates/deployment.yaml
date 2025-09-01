@@ -7,6 +7,7 @@ metadata:
 {{ include "weblate.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
   strategy:
     type: {{ .Values.updateStrategy }}
   selector:
