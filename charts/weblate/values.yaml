@@ -196,6 +196,12 @@ readinessProbe:
   successThreshold: 1
 
 postgresql:
+  global:
+    security:
+      # required to allow bitnamilegacy repository
+      allowInsecureImages: true
+  image:
+    repository: bitnamilegacy/postgresql
   auth:
   # PostgreSQL user should be a superuser to
   # be able to install pg_trgm extension. Alternatively you can install it
@@ -217,6 +223,12 @@ postgresql:
   postgresqlHost:
 
 redis:
+  global:
+    security:
+      # required to allow bitnamilegacy repository
+      allowInsecureImages: true
+  image:
+    repository: bitnamilegacy/redis
   architecture: standalone
   auth:
     enabled: true
