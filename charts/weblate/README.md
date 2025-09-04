@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.5.24](https://img.shields.io/badge/Version-0.5.24-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 5.13.0.1](https://img.shields.io/badge/AppVersion-5.13.0.1-informational?style=flat-square)
+![Version: 0.5.25](https://img.shields.io/badge/Version-0.5.25-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 5.13.0.1](https://img.shields.io/badge/AppVersion-5.13.0.1-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -91,6 +91,8 @@ $ helm install my-release weblate/weblate
 | postgresql.auth.secretKeys.userPasswordKey | string | `"postgresql-password"` |  |
 | postgresql.auth.userName | string | `""` |  |
 | postgresql.enabled | bool | `true` |  |
+| postgresql.global.security.allowInsecureImages | bool | `true` |  |
+| postgresql.image.repository | string | `"bitnamilegacy/postgresql"` |  |
 | postgresql.postgresqlHost | string | `None` | External postgres database endpoint, to be used if `postgresql.enabled == false` |
 | postgresql.service.ports.postgresql | int | `5432` |  |
 | readinessProbe.failureThreshold | int | `2` |  |
@@ -105,6 +107,8 @@ $ helm install my-release weblate/weblate
 | redis.auth.password | string | `"weblate"` |  |
 | redis.db | int | `1` |  |
 | redis.enabled | bool | `true` |  |
+| redis.global.security.allowInsecureImages | bool | `true` |  |
+| redis.image.repository | string | `"bitnamilegacy/redis"` |  |
 | redis.redisHost | string | `None` | External redis database endpoint, to be used if `redis.enabled == false` |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
