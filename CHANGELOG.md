@@ -1,3 +1,8 @@
+## 0.5.25
+
+[FEATURE] Add revisionHistoryLimit [#619](https://github.com/WeblateOrg/helm/pull/619)
+[BUGFIX] Use bitnami images from docker.io/bitnamilegacy for dependencies due to bitnami deprecating their public catalog. See bitnami/charts#35164
+
 ## 0.5.24
 
 [FEATURE] Add `timeoutSeconds` and `successThreshold` for **livenessProbe** and **readinessProbe** [#583](https://github.com/WeblateOrg/helm/issues/583)
