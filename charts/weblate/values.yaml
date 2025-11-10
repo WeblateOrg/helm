@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: weblate/weblate
-  tag: 5.13.3.4@sha256:12c8d8817110be364e7c608d5b77489af38d2842e36c8bd61f95f9808eb953bc
+  tag: 5.14.3.0@sha256:1fce3ec38d9534dae72284abb5b9a1da5d093ebe5984f81b120306600735eaea
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
