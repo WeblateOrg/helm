@@ -127,6 +127,7 @@ service:
   # Service annotations, use key:value pairs
   annotations: {}
     # my.annotation: "svc-annotation"
+  publishNotReadyAddresses: false
 
 ingress:
   enabled: false

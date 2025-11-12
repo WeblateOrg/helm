@@ -11,6 +11,7 @@ metadata:
 {{ include "weblate.labels" . | indent 4 }}
 spec:
   type: {{ .Values.service.type }}
+  publishNotReadyAddresses: {{ .Values.service.publishNotReadyAddresses }}
   ports:
     - port: {{ .Values.service.port }}
       targetPort: http
