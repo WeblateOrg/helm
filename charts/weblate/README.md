@@ -117,6 +117,7 @@ $ helm install my-release weblate/weblate
 | serverEmail | string | `""` | Sender for outgoing emails |
 | service.annotations | object | `{}` |  |
 | service.port | int | `80` |  |
+| service.publishNotReadyAddresses | bool | `false` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `nil` |  |
