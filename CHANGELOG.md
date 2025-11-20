@@ -1,3 +1,7 @@
+## 0.5.26
+
+[FEATURE] Configurable service.publishNotReadyAddresses [#674](https://github.com/WeblateOrg/helm/pull/674)
+
 ## 0.5.25
 
 [FEATURE] Add revisionHistoryLimit [#619](https://github.com/WeblateOrg/helm/pull/619)
