@@ -75,6 +75,7 @@ $ helm install my-release weblate/weblate
 | livenessProbe.timeoutSeconds | int | `5` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
+| pdb.create | bool | `false` |  |
 | persistence.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.enabled | bool | `true` |  |
 | persistence.existingClaim | string | `""` | Use an existing volume claim |

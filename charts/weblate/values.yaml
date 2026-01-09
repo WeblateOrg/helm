@@ -196,6 +196,14 @@ readinessProbe:
   failureThreshold: 2
   successThreshold: 1
 
+## Create Pod disruption budget
+pdb:
+  create: false
+## Minimum available instances
+#  minAvailable: ""
+## Maximum unavailable instances
+#  maxUnavailable: ""
+
 postgresql:
   global:
     security:

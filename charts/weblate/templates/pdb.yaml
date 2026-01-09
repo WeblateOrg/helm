@@ -1,0 +1,23 @@
+{{- if .Values.pdb.create }}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "weblate.fullname" . }}-pdb
+  namespace: {{ .Release.Namespace }}
+  labels:
+{{ include "weblate.labels" . | indent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "weblate.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- with .Values.podLabels }}
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+  {{- if .Values.pdb.minAvailable }}
+  minAvailable: {{ .Values.pdb.minAvailable }}
+  {{- end }}
+  {{- if or .Values.pdb.maxUnavailable ( not .Values.pdb.minAvailable ) }}
+  maxUnavailable: {{ .Values.pdb.maxUnavailable | default 1 }}
+  {{- end }}
+{{- end }}
