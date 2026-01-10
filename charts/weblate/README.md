@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.5.26](https://img.shields.io/badge/Version-0.5.26-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 5.15.1.3](https://img.shields.io/badge/AppVersion-5.15.1.3-informational?style=flat-square)
+![Version: 0.5.27](https://img.shields.io/badge/Version-0.5.27-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 5.15.1.3](https://img.shields.io/badge/AppVersion-5.15.1.3-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -75,6 +75,7 @@ $ helm install my-release weblate/weblate
 | livenessProbe.timeoutSeconds | int | `5` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
+| pdb.create | bool | `false` |  |
 | persistence.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.enabled | bool | `true` |  |
 | persistence.existingClaim | string | `""` | Use an existing volume claim |
