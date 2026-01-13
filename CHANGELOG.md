@@ -1,3 +1,7 @@
+## 0.5.27
+
+[FEATURE] Add support for `PodDisruptionBudget` [#727](https://github.com/WeblateOrg/helm/pull/727)
+
 ## 0.5.26
 
 [FEATURE] Configurable service.publishNotReadyAddresses [#674](https://github.com/WeblateOrg/helm/pull/674)
