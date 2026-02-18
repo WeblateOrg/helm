@@ -196,6 +196,18 @@ readinessProbe:
   failureThreshold: 2
   successThreshold: 1
 
+## If you need to specify additional Kubernetes resources
+extraObjects: []
+  # - apiVersion: velero.io/v1
+  #   kind: Schedule
+  #   metadata:
+  #     name: weblate-backup
+  #   spec:
+  #     schedule: "0 2 * * *"
+  #     template:
+  #       includedNamespaces:
+  #         - weblate
+
 postgresql:
   global:
     security:

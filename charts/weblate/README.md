@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.5.26](https://img.shields.io/badge/Version-0.5.26-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 5.16.0.0](https://img.shields.io/badge/AppVersion-5.16.0.0-informational?style=flat-square)
+![Version: 0.5.27](https://img.shields.io/badge/Version-0.5.27-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 5.16.0.0](https://img.shields.io/badge/AppVersion-5.16.0.0-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -51,6 +51,7 @@ $ helm install my-release weblate/weblate
 | existingSecret | string | `""` | Name of existing secret, Make sure it contains the keys postgresql-user, postgresql-password, redis-password, email-user, email-password, admin-user, admin-password Also note to set the existingSecret values for the Redis and Postgresql subcharts |
 | externalSecretName | string | `""` | An external secret, in the same namespace, that will be use to set additional (environment) configs. |
 | extraConfig | object | `{}` | Additional (environment) configs. Values will be evaluated as templates. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment |
+| extraObjects | list | `[]` |  |
 | extraSecretConfig | object | `{}` | Same as `extraConfig`, but created as secrets. Values will be evaluated as Helm templates |
 | extraVolumeMounts | list | `[]` | Additional volume mounts to be added to the container. Values will be evaluated as templates. Normally used with `extraVolumes` |
 | extraVolumes | list | `[]` | Additional volumes to be added to the deployment. Values will be evaluated as templates. Requires setting `extraVolumeMounts` |
