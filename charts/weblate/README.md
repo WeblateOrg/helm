@@ -128,4 +128,5 @@ $ helm install my-release weblate/weblate
 | sitePrefix | string | `""` | Site Prefix (ex: /weblate) |
 | siteTitle | string | `"Weblate"` |  |
 | tolerations | list | `[]` |  |
+| topologySpreadConstraints | list | `[]` | |
 | updateStrategy | string | `"Recreate"` |  |
