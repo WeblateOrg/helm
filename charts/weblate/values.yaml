@@ -216,6 +216,15 @@ pdb:
 ## Maximum unavailable instances
 #  maxUnavailable: ""
 
+## Topology spread constraints rely on node labels to identify the topology domain(s) that each Node is in
+topologySpreadConstraints: []
+  # - maxSkew: 1
+  #   topologyKey: failure-domain.beta.kubernetes.io/zone
+  #   whenUnsatisfiable: DoNotSchedule
+  #   labelSelector:
+  #     matchLabels:
+  #       app.kubernetes.io/instance: weblate
+
 postgresql:
   global:
     security:
