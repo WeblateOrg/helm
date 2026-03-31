@@ -56,14 +56,14 @@ $ helm install my-release weblate/weblate
 | extraVolumeMounts | list | `[]` | Additional volume mounts to be added to the container. Values will be evaluated as templates. Normally used with `extraVolumes` |
 | extraVolumes | list | `[]` | Additional volumes to be added to the deployment. Values will be evaluated as templates. Requires setting `extraVolumeMounts` |
 | fullnameOverride | string | `""` |  |
-| gatewayApi.enabled | bool | `false` | Enable Gateway API resources (Gateway, HTTPRoute and/or TLSRoute) |
+| gatewayApi.enabled | bool | `false` | Enable Gateway API resources (Gateway and HTTPRoute) |
 | gatewayApi.gateway.addresses | list | `[]` | Gateway addresses for requesting specific IPs or hostnames |
 | gatewayApi.gateway.annotations | object | `{}` | Gateway annotations |
 | gatewayApi.gateway.create | bool | `false` | Create a Gateway resource |
 | gatewayApi.gateway.gatewayClassName | string | `""` | Name of the GatewayClass to use |
 | gatewayApi.gateway.infrastructure | object | `{}` | Provider-specific infrastructure configuration |
 | gatewayApi.gateway.labels | object | `{}` | Additional Gateway labels |
-| gatewayApi.gateway.listeners | list | See `{}` | Gateway listeners configuration |
+| gatewayApi.gateway.listeners | object | `{}` | Gateway listeners configuration |
 | gatewayApi.httpRoute.annotations | object | `{}` | HTTPRoute annotations |
 | gatewayApi.httpRoute.create | bool | `false` | Create an HTTPRoute resource |
 | gatewayApi.httpRoute.hostnames | list | `[]` | Hostnames the HTTPRoute should match |
