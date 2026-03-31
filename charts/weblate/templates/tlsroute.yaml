@@ -1,0 +1,40 @@
+{{- if and .Values.gatewayApi.enabled .Values.gatewayApi.tlsRoute.create -}}
+{{- $fullName := include "weblate.fullname" . -}}
+{{- $svcPort := .Values.service.port -}}
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TLSRoute
+metadata:
+  name: {{ $fullName }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "weblate.labels" . | nindent 4 }}
+    {{- with .Values.gatewayApi.tlsRoute.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with .Values.gatewayApi.tlsRoute.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.gatewayApi.tlsRoute.parentRefs }}
+  parentRefs:
+    {{- toYaml .Values.gatewayApi.tlsRoute.parentRefs | nindent 4 }}
+  {{- else if .Values.gatewayApi.gateway.create }}
+  parentRefs:
+    - name: {{ $fullName }}
+      namespace: {{ .Release.Namespace }}
+  {{- end }}
+  {{- with .Values.gatewayApi.tlsRoute.hostnames }}
+  hostnames:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- if .Values.gatewayApi.tlsRoute.rules }}
+  rules:
+    {{- toYaml .Values.gatewayApi.tlsRoute.rules | nindent 4 }}
+  {{- else }}
+  rules:
+    - backendRefs:
+        - name: {{ $fullName }}
+          port: {{ $svcPort }}
+  {{- end }}
+{{- end }}

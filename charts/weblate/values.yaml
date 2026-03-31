@@ -149,6 +149,58 @@ ingress:
     #    hosts:
     #      - chart-example.local
 
+## Gateway API configuration
+## Requires the Gateway API CRDs to be installed in the cluster
+gatewayApi:
+  # gatewayApi.enabled -- Enable Gateway API resources (Gateway and HTTPRoute)
+  enabled: false
+
+  gateway:
+    # gatewayApi.gateway.create -- Create a Gateway resource
+    create: false
+    # gatewayApi.gateway.gatewayClassName -- Name of the GatewayClass to use
+    gatewayClassName: ''
+    # gatewayApi.gateway.annotations -- Gateway annotations
+    annotations: {}
+    # gatewayApi.gateway.labels -- Additional Gateway labels
+    labels: {}
+    # gatewayApi.gateway.listeners -- Gateway listeners configuration
+    listeners: {}
+    # gatewayApi.gateway.addresses -- Gateway addresses for requesting specific IPs or hostnames
+    addresses: []
+    # gatewayApi.gateway.infrastructure -- Provider-specific infrastructure configuration
+    infrastructure: {}
+
+  httpRoute:
+    # gatewayApi.httpRoute.create -- Create an HTTPRoute resource
+    create: false
+    # gatewayApi.httpRoute.annotations -- HTTPRoute annotations
+    annotations: {}
+    # gatewayApi.httpRoute.labels -- Additional HTTPRoute labels
+    labels: {}
+    # gatewayApi.httpRoute.hostnames -- Hostnames the HTTPRoute should match
+    hostnames: []
+    # gatewayApi.httpRoute.parentRefs -- Parent references for the HTTPRoute. If empty and gateway.create is true, defaults to the created Gateway
+    parentRefs: []
+    # gatewayApi.httpRoute.rules -- HTTPRoute rules. If empty, a default rule routing all traffic to the Weblate service is created
+    rules: []
+    # gatewayApi.httpRoute.timeouts -- Timeouts applied to the default generated rule. Ignored when custom rules are specified
+    timeouts: {}
+
+  tlsRoute:
+    # gatewayApi.tlsRoute.create -- Create a TLSRoute resource
+    create: false
+    # gatewayApi.tlsRoute.annotations -- TLSRoute annotations
+    annotations: {}
+    # gatewayApi.tlsRoute.labels -- Additional TLSRoute labels
+    labels: {}
+    # gatewayApi.tlsRoute.hostnames -- SNI hostnames the TLSRoute should match
+    hostnames: []
+    # gatewayApi.tlsRoute.parentRefs -- Parent references for the TLSRoute. If empty and gateway.create is true, defaults to the created Gateway
+    parentRefs: []
+    # gatewayApi.tlsRoute.rules -- TLSRoute rules. If empty, a default rule routing all traffic to the Weblate service is created
+    rules: []
+
 persistence:
   enabled: true
 

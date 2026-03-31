@@ -1,3 +1,7 @@
+## 0.5.29
+
+[FEATURE] Add support for `gatewayApi` and `httpRoute`, `tlsRoute` [#804](https://github.com/WeblateOrg/helm/pull/804)
+
 ## 0.5.28
 
 [FEATURE] Add support for `topologySpreadConstraints` [#747](https://github.com/WeblateOrg/helm/pull/771)

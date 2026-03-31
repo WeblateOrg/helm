@@ -56,6 +56,27 @@ $ helm install my-release weblate/weblate
 | extraVolumeMounts | list | `[]` | Additional volume mounts to be added to the container. Values will be evaluated as templates. Normally used with `extraVolumes` |
 | extraVolumes | list | `[]` | Additional volumes to be added to the deployment. Values will be evaluated as templates. Requires setting `extraVolumeMounts` |
 | fullnameOverride | string | `""` |  |
+| gatewayApi.enabled | bool | `false` | Enable Gateway API resources (Gateway and HTTPRoute) |
+| gatewayApi.gateway.addresses | list | `[]` | Gateway addresses for requesting specific IPs or hostnames |
+| gatewayApi.gateway.annotations | object | `{}` | Gateway annotations |
+| gatewayApi.gateway.create | bool | `false` | Create a Gateway resource |
+| gatewayApi.gateway.gatewayClassName | string | `""` | Name of the GatewayClass to use |
+| gatewayApi.gateway.infrastructure | object | `{}` | Provider-specific infrastructure configuration |
+| gatewayApi.gateway.labels | object | `{}` | Additional Gateway labels |
+| gatewayApi.gateway.listeners | object | `{}` | Gateway listeners configuration |
+| gatewayApi.httpRoute.annotations | object | `{}` | HTTPRoute annotations |
+| gatewayApi.httpRoute.create | bool | `false` | Create an HTTPRoute resource |
+| gatewayApi.httpRoute.hostnames | list | `[]` | Hostnames the HTTPRoute should match |
+| gatewayApi.httpRoute.labels | object | `{}` | Additional HTTPRoute labels |
+| gatewayApi.httpRoute.parentRefs | list | `[]` | Parent references for the HTTPRoute. If empty and gateway.create is true, defaults to the created Gateway |
+| gatewayApi.httpRoute.rules | list | `[]` | HTTPRoute rules. If empty, a default rule routing all traffic to the Weblate service is created |
+| gatewayApi.httpRoute.timeouts | object | `{}` | Timeouts applied to the default generated rule. Ignored when custom rules are specified |
+| gatewayApi.tlsRoute.annotations | object | `{}` | TLSRoute annotations |
+| gatewayApi.tlsRoute.create | bool | `false` | Create a TLSRoute resource |
+| gatewayApi.tlsRoute.hostnames | list | `[]` | SNI hostnames the TLSRoute should match |
+| gatewayApi.tlsRoute.labels | object | `{}` | Additional TLSRoute labels |
+| gatewayApi.tlsRoute.parentRefs | list | `[]` | Parent references for the TLSRoute. If empty and gateway.create is true, defaults to the created Gateway |
+| gatewayApi.tlsRoute.rules | list | `[]` | TLSRoute rules. If empty, a default rule routing all traffic to the Weblate service is created |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"weblate/weblate"` |  |
 | image.tag | string | `"5.16.2.1@sha256:b4407ddebd8e32c5f7f13659c10051dfd6a9e97ef093efcc063efa7c59906a40"` |  |

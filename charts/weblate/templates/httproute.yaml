@@ -1,0 +1,48 @@
+{{- if and .Values.gatewayApi.enabled .Values.gatewayApi.httpRoute.create -}}
+{{- $fullName := include "weblate.fullname" . -}}
+{{- $svcPort := .Values.service.port -}}
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ $fullName }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "weblate.labels" . | nindent 4 }}
+    {{- with .Values.gatewayApi.httpRoute.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with .Values.gatewayApi.httpRoute.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.gatewayApi.httpRoute.parentRefs }}
+  parentRefs:
+    {{- toYaml .Values.gatewayApi.httpRoute.parentRefs | nindent 4 }}
+  {{- else if .Values.gatewayApi.gateway.create }}
+  parentRefs:
+    - name: {{ $fullName }}
+      namespace: {{ .Release.Namespace }}
+  {{- end }}
+  {{- with .Values.gatewayApi.httpRoute.hostnames }}
+  hostnames:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- if .Values.gatewayApi.httpRoute.rules }}
+  rules:
+    {{- toYaml .Values.gatewayApi.httpRoute.rules | nindent 4 }}
+  {{- else }}
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: {{ $fullName }}
+          port: {{ $svcPort }}
+      {{- with .Values.gatewayApi.httpRoute.timeouts }}
+      timeouts:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  {{- end }}
+{{- end }}
