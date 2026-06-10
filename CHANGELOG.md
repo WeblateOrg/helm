@@ -1,3 +1,7 @@
+## 0.5.30
+
+Bump a chart version
+
 ## 0.5.29
 
 [FEATURE] Add support for `gatewayApi` and `httpRoute`, `tlsRoute` [#804](https://github.com/WeblateOrg/helm/pull/804)
@@ -5,6 +9,7 @@
 ## 0.5.28
 
 [FEATURE] Add support for `topologySpreadConstraints` [#747](https://github.com/WeblateOrg/helm/pull/771)
+
 [FEATURE] Add support for `PodDisruptionBudget` [#727](https://github.com/WeblateOrg/helm/pull/727)
 
 ## 0.5.27
@@ -18,6 +23,7 @@
 ## 0.5.25
 
 [FEATURE] Add revisionHistoryLimit [#619](https://github.com/WeblateOrg/helm/pull/619)
+
 [BUGFIX] Use bitnami images from docker.io/bitnamilegacy for dependencies due to bitnami deprecating their public catalog. See bitnami/charts#35164
 
 ## 0.5.24
