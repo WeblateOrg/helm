@@ -13,7 +13,9 @@ permissions:
 jobs:
   release:
     permissions:
+      attestations: write
       contents: write
+      id-token: write
     runs-on: ubuntu-24.04
     steps:
     - name: Checkout
@@ -39,8 +41,100 @@ jobs:
           helm repo add "${repodef%%=*}" "${repodef##*=}"
         done
 
-    - name: Run chart-releaser
+    - name: Install chart-releaser
       uses: helm/chart-releaser-action@cae68fefc6b5f367a0275617c9f83181ba54714f # v1.7.0
+      with:
+        install_only: true
+
+    - name: Package changed charts
+      id: package-charts
+      run: |
+        set -euo pipefail
+
+        latest_tag=$(git describe --tags --abbrev=0 HEAD~ 2>/dev/null || git rev-list --max-parents=0 --first-parent HEAD)
+        echo "Discovering changed charts since '${latest_tag}'..."
+
+        mapfile -t changed_charts < <(
+          git diff --find-renames --name-only "${latest_tag}" -- charts |
+            cut -d / -f 1-2 |
+            uniq |
+            while read -r chart ; do
+              if [[ -f "${chart}/Chart.yaml" ]] ; then
+                echo "${chart}"
+              fi
+            done
+        )
+
+        if [[ "${#changed_charts[@]}" -eq 0 ]] ; then
+          echo "Nothing to do. No chart changes detected."
+          echo "has_packages=false" >> "${GITHUB_OUTPUT}"
+          exit 0
+        fi
+
+        rm -rf .cr-release-packages
+        mkdir -p .cr-release-packages
+
+        for chart in "${changed_charts[@]}" ; do
+          cr package "${chart}" --package-path .cr-release-packages
+        done
+
+        shopt -s nullglob
+        packages=(.cr-release-packages/*.tgz)
+        if [[ "${#packages[@]}" -eq 0 ]] ; then
+          echo "::error::No chart packages were created."
+          exit 1
+        fi
+
+        {
+          echo "has_packages=true"
+          printf 'changed_charts=%s\n' "$(IFS=, ; echo "${changed_charts[*]}")"
+        } >> "${GITHUB_OUTPUT}"
+
+    - name: Attest chart packages
+      if: steps.package-charts.outputs.has_packages == 'true'
+      uses: actions/attest@59d89421af93a897026c735860bf21b6eb4f7b26 # v4.1.0
+      with:
+        subject-path: .cr-release-packages/*.tgz
+
+    - name: Install Syft
+      id: syft
+      if: steps.package-charts.outputs.has_packages == 'true'
+      uses: anchore/sbom-action/download-syft@f8bdd1d8ac5e901a77a92f111440fdb1b593736b # v0.20.6
+
+    - name: Generate chart SBOM
+      id: sbom
+      if: steps.package-charts.outputs.has_packages == 'true'
+      env:
+        SYFT_CMD: ${{ steps.syft.outputs.cmd }}
+      run: |
+        set -euo pipefail
+
+        mkdir -p .cr-release-sboms
+        "${SYFT_CMD}" .cr-release-packages \
+          -o spdx-json=.cr-release-sboms/charts.spdx.json
+        test -s .cr-release-sboms/charts.spdx.json
+        echo "path=.cr-release-sboms/charts.spdx.json" >> "${GITHUB_OUTPUT}"
+
+    - name: Attest chart SBOM
+      if: steps.package-charts.outputs.has_packages == 'true'
+      uses: actions/attest@59d89421af93a897026c735860bf21b6eb4f7b26 # v4.1.0
+      with:
+        subject-path: .cr-release-packages/*.tgz
+        sbom-path: ${{ steps.sbom.outputs.path }}
+
+    - name: Run chart-releaser
+      if: steps.package-charts.outputs.has_packages == 'true'
+      run: |
+        set -euo pipefail
+
+        owner="${GITHUB_REPOSITORY%/*}"
+        repo="${GITHUB_REPOSITORY#*/}"
+
+        rm -rf .cr-index
+        mkdir -p .cr-index
+
+        cr upload -o "${owner}" -r "${repo}" -c "$(git rev-parse HEAD)"
+        cr index -o "${owner}" -r "${repo}" --push
       env:
         CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         CR_GENERATE_RELEASE_NOTES: true
