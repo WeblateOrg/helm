@@ -99,7 +99,7 @@ jobs:
     - name: Install Syft
       id: syft
       if: steps.package-charts.outputs.has_packages == 'true'
-      uses: anchore/sbom-action/download-syft@f8bdd1d8ac5e901a77a92f111440fdb1b593736b # v0.20.6
+      uses: anchore/sbom-action/download-syft@e22c389904149dbc22b58101806040fa8d37a610 # v0.24.0
 
     - name: Generate chart SBOM
       id: sbom
