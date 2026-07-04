@@ -1,0 +1,55 @@
+# Copyright © Michal Čihař <michal@weblate.org>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+name: Renovate chart version
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+    - charts/weblate/Chart.yaml
+    - charts/weblate/README.md
+    - charts/weblate/values.yaml
+
+permissions:
+  contents: read
+
+jobs:
+  bump-version:
+    name: Bump chart version
+    runs-on: ubuntu-24.04
+    if: >-
+      github.event.pull_request.user.login == 'renovate[bot]' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      (
+        startsWith(github.event.pull_request.head.ref, 'renovate/weblate-weblate-') ||
+        contains(github.event.pull_request.title, 'weblate/weblate')
+      )
+    steps:
+    - name: Checkout pull request
+      uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      with:
+        fetch-depth: 0
+        persist-credentials: false
+        ref: ${{ github.event.pull_request.head.ref }}
+        repository: ${{ github.event.pull_request.head.repo.full_name }}
+
+    - name: Fetch base branch
+      env:
+        BASE_REF: ${{ github.base_ref }}
+      run: git fetch --no-tags --prune origin "+refs/heads/${BASE_REF}:refs/remotes/origin/${BASE_REF}"
+
+    - name: Bump chart version
+      env:
+        BASE_REF: ${{ github.base_ref }}
+      run: python3 .github/scripts/bump-renovate-chart-version.py
+
+    - name: diff
+      if: always()
+      run: git diff
+
+    - uses: pre-commit-ci/lite-action@5d6cc0eb514c891a40562a58a8e71576c5c7fb43 # v1.1.0
+      if: success()
+      with:
+        msg: 'chore: bump chart version for Weblate update'
