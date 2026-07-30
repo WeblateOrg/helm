@@ -2,5 +2,25 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "github>WeblateOrg/meta:renovate"
+  ],
+  "packageRules": [
+    {
+      "description": "Bump chart version for Weblate updates",
+      "matchPackageNames": [
+        "weblate/weblate"
+      ],
+      "bumpVersions": [
+        {
+          "name": "Bump Weblate chart version",
+          "filePatterns": [
+            "charts/weblate/Chart.yaml"
+          ],
+          "matchStrings": [
+            "version:\\s*(?<version>[^\\s]+)"
+          ],
+          "bumpType": "patch"
+        }
+      ]
+    }
   ]
 }
