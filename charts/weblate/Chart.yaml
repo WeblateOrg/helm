@@ -1,10 +1,10 @@
 apiVersion: v2
 # renovate: image=weblate/weblate
-appVersion: 2026.7.1.1
+appVersion: 2026.8.0.0
 description: Weblate is a free web-based translation management system.
 name: weblate
 type: application
-version: 0.5.31
+version: 0.5.32
 home: https://weblate.org/
 icon: https://s.weblate.org/cdn/weblate.svg
 maintainers:
