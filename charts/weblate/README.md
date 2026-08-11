@@ -71,6 +71,7 @@ $ helm install my-release weblate/weblate
 | gatewayApi.httpRoute.parentRefs | list | `[]` | Parent references for the HTTPRoute. If empty and gateway.create is true, defaults to the created Gateway |
 | gatewayApi.httpRoute.rules | list | `[]` | HTTPRoute rules. If empty, a default rule routing all traffic to the Weblate service is created |
 | gatewayApi.httpRoute.timeouts | object | `{}` | Timeouts applied to the default generated rule. Ignored when custom rules are specified |
+| gatewayApi.httpRoute.filters | list | `[]` | Filters applied to the default generated rule. Ignored when custom rules are specified |
 | gatewayApi.tlsRoute.annotations | object | `{}` | TLSRoute annotations |
 | gatewayApi.tlsRoute.create | bool | `false` | Create a TLSRoute resource |
 | gatewayApi.tlsRoute.hostnames | list | `[]` | SNI hostnames the TLSRoute should match |

@@ -186,6 +186,8 @@ gatewayApi:
     rules: []
     # gatewayApi.httpRoute.timeouts -- Timeouts applied to the default generated rule. Ignored when custom rules are specified
     timeouts: {}
+    # gatewayApi.httpRoute.filters -- Filters applied to the default generated rule. Ignored when custom rules are specified
+    filters: []
 
   tlsRoute:
     # gatewayApi.tlsRoute.create -- Create a TLSRoute resource
