@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.5.33](https://img.shields.io/badge/Version-0.5.33-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2026.8.1.0](https://img.shields.io/badge/AppVersion-2026.8.1.0-informational?style=flat-square)
+![Version: 0.5.34](https://img.shields.io/badge/Version-0.5.34-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2026.8.1.0](https://img.shields.io/badge/AppVersion-2026.8.1.0-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -66,6 +66,7 @@ $ helm install my-release weblate/weblate
 | gatewayApi.gateway.listeners | object | `{}` | Gateway listeners configuration |
 | gatewayApi.httpRoute.annotations | object | `{}` | HTTPRoute annotations |
 | gatewayApi.httpRoute.create | bool | `false` | Create an HTTPRoute resource |
+| gatewayApi.httpRoute.filters | list | `[]` | Filters applied to the default generated rule. Ignored when custom rules are specified |
 | gatewayApi.httpRoute.hostnames | list | `[]` | Hostnames the HTTPRoute should match |
 | gatewayApi.httpRoute.labels | object | `{}` | Additional HTTPRoute labels |
 | gatewayApi.httpRoute.parentRefs | list | `[]` | Parent references for the HTTPRoute. If empty and gateway.create is true, defaults to the created Gateway |
