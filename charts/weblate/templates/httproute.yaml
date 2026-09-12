@@ -44,5 +44,9 @@ spec:
       timeouts:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with .Values.gatewayApi.httpRoute.filters }}
+      filters:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
   {{- end }}
 {{- end }}
