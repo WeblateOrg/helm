@@ -143,6 +143,7 @@ $ helm install my-release weblate/weblate
 | service.port | int | `80` |  |
 | service.publishNotReadyAddresses | bool | `false` |  |
 | service.type | string | `"ClusterIP"` |  |
+| serviceAccount.automountServiceAccountToken | bool | `false` | Automount service account token for kubernetes api access from pod |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `nil` |  |
 | sidecars | list | `[]` | List of additional containers to add to the pod. Values will be evaluated as Helm templates |
