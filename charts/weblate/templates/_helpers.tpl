@@ -66,10 +66,10 @@ Create the name of the service account to use
 {{- end -}}
 {{- end -}}
 
-{{- define "weblate.redis.fullname" -}}
-{{- if .Values.redis.fullnameOverride }}
-{{- printf "%s-%s" (.Values.redis.fullnameOverride | trunc 63 | trimSuffix "-") "master" -}}
+{{- define "weblate.valkey.fullname" -}}
+{{- if .Values.valkey.fullnameOverride }}
+{{- printf "%s" (.Values.valkey.fullnameOverride | trunc 63 | trimSuffix "-") -}}
 {{- else -}}
-{{- printf "%s-%s-%s" (.Release.Name | trimSuffix "-" | trunc 63 | trimSuffix "-") "redis" "master" -}}
+{{- printf "%s-%s" (.Release.Name | trimSuffix "-" | trunc 63 | trimSuffix "-") "valkey" -}}
 {{- end -}}
 {{- end -}}
