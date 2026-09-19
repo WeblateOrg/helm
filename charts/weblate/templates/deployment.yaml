@@ -85,22 +85,26 @@ spec:
                   key: postgresql-password
                   {{- end }}
             - name: REDIS_HOST
-              value: "{{ .Values.redis.redisHost | default (include "weblate.redis.fullname" .) }}"
+              value: {{ .Values.cache.host | default (include "weblate.valkey.fullname" .) | quote }}
+            - name: REDIS_PORT
+              value: {{ .Values.cache.port | quote }}
             - name: REDIS_DB
-              value: "{{ .Values.redis.db }}"
+              value: {{ .Values.cache.db | quote }}
+            {{- if .Values.cache.username }}
+            - name: REDIS_USERNAME
+              value: {{ .Values.cache.username | quote }}
+            {{- end }}
+            {{- if or .Values.cache.password (and .Values.cache.existingSecret.secretName .Values.cache.existingSecret.passwordKey) }}
             - name: REDIS_PASSWORD
+              {{- if .Values.cache.password }}
+              value: {{ .Values.cache.password | quote }}
+              {{- else }}
               valueFrom:
                 secretKeyRef:
-                  {{- if and (not .Values.existingSecret) (not .Values.redis.auth.existingSecret) }}
-                  name: {{ include "weblate.fullname" . }}
-                  key: redis-password
-                  {{- else if and (not .Values.existingSecret) (.Values.redis.auth.existingSecret) }}
-                  name: {{ .Values.redis.auth.existingSecret }}
-                  key: {{ .Values.redis.auth.existingSecretPasswordKey }}
-                  {{- else }}
-                  name: {{ .Values.existingSecret }}
-                  key: redis-password
-                  {{- end }}
+                  name: {{ .Values.cache.existingSecret.secretName }}
+                  key: {{ .Values.cache.existingSecret.passwordKey }}
+              {{- end }}
+            {{- end }}
             - name: WEBLATE_ADMIN_EMAIL
               value: "{{ .Values.adminEmail }}"
             - name: WEBLATE_ADMIN_NAME
