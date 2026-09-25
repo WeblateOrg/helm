@@ -328,14 +328,17 @@ valkey:
     usersExistingSecret: '' # -- Override with secret name of the secret containing passwords for valkey users
     aclUsers:
       default:
-        permissions: ~* &* +@all
-        passwordKey: '' # -- Password key for the "default" valkey user
-        password: '' # -- Less secure inline password if not using secrets
+        permissions: '~* &* +@all'
+        # -- Password key for the "default" valkey user
+        passwordKey: ''
+        # -- Less secure inline password if not using secrets
+        password: ''
   # https://github.com/valkey-io/valkey-helm/tree/valkey-0.12.0/valkey#storage
   dataStorage:
     enabled: true
     requestedSize: 8Gi
-    className: '' # specify storage class name to use non-default storage class
-  # valkeyConfig -- contents of the configuration file for valkey
+    # -- Specify storage class name to use non-default storage class
+    className: ''
+  # valkeyConfig -- Contents of the configuration file for valkey
   valkeyConfig: |
     save 60 1
