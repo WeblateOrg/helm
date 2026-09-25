@@ -328,7 +328,7 @@ valkey:
     usersExistingSecret: '' # -- Override with secret name of the secret containing passwords for valkey users
     aclUsers:
       default:
-        permissions: '~* &* +@all'
+        permissions: ~* &* +@all
         # -- Password key for the "default" valkey user
         passwordKey: ''
         # -- Less secure inline password if not using secrets

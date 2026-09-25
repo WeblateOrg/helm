@@ -149,12 +149,12 @@ $ helm install my-release weblate/weblate
 | tolerations | list | `[]` |  |
 | topologySpreadConstraints | list | `[]` |  |
 | updateStrategy | string | `"Recreate"` |  |
-| valkey.auth.aclUsers.default.password | string | `""` |  |
-| valkey.auth.aclUsers.default.passwordKey | string | `""` |  |
+| valkey.auth.aclUsers.default.password | string | `""` | Less secure inline password if not using secrets |
+| valkey.auth.aclUsers.default.passwordKey | string | `""` | Password key for the "default" valkey user |
 | valkey.auth.aclUsers.default.permissions | string | `"~* &* +@all"` |  |
 | valkey.auth.enabled | bool | `false` |  |
 | valkey.auth.usersExistingSecret | string | `""` |  |
-| valkey.dataStorage.className | string | `""` |  |
+| valkey.dataStorage.className | string | `""` | Specify storage class name to use non-default storage class |
 | valkey.dataStorage.enabled | bool | `true` |  |
 | valkey.dataStorage.requestedSize | string | `"8Gi"` |  |
 | valkey.enabled | bool | `true` | Deploy valkey instance when set to true |
