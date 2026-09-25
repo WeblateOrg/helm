@@ -25,7 +25,7 @@ $ helm install my-release weblate/weblate
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 18.8.13 |
-| https://charts.bitnami.com/bitnami | redis | 28.0.12 |
+| https://valkey.io/valkey-helm/ | valkey | 0.12.0 |
 
 ## Values
 
@@ -38,6 +38,13 @@ $ helm install my-release weblate/weblate
 | allowedHosts | string | `"*"` | Hosts that are allowed to connect |
 | caCertSecretName | string | `""` | Secret containing a custom CA cert bundle to be mounted. See https://docs.weblate.org/en/latest/admin/install.html?highlight=certificates#using-custom-certificate-authority |
 | caCertSubPath | string | `""` | Name of the CA cert bundle in the secret, e.g. ca-certificates.crt or ca-bundle.crt |
+| cache.db | int | `0` | Logical database index |
+| cache.existingSecret.passwordKey | string | `""` |  |
+| cache.existingSecret.secretName | string | `""` |  |
+| cache.host | string | `""` |  |
+| cache.password | string | `""` |  |
+| cache.port | string | `"6379"` |  |
+| cache.username | string | `""` |  |
 | configOverride | string | `""` | Config override. See https://docs.weblate.org/en/latest/admin/install/docker.html#custom-configuration-files |
 | containerSecurityContext.enabled | bool | `false` |  |
 | debug | string | `"0"` | Enable debugging |
@@ -48,7 +55,7 @@ $ helm install my-release weblate/weblate
 | emailSSL | bool | `false` | Use SSL when sending emails |
 | emailTLS | bool | `true` | Use TLS when sending emails |
 | emailUser | string | `""` | User name for sending emails |
-| existingSecret | string | `""` | Name of existing secret, Make sure it contains the keys postgresql-user, postgresql-password, redis-password, email-user, email-password, admin-user, admin-password Also note to set the existingSecret values for the Redis and Postgresql subcharts |
+| existingSecret | string | `""` | Name of existing secret, Make sure it contains the keys postgresql-user, postgresql-password, email-user, email-password, admin-user, admin-password Also note to set the existingSecret values for the Valkey and Postgresql subcharts |
 | externalSecretName | string | `""` | An external secret, in the same namespace, that will be use to set additional (environment) configs. |
 | extraConfig | object | `{}` | Additional (environment) configs. Values will be evaluated as templates. See https://docs.weblate.org/en/latest/admin/install/docker.html#docker-environment |
 | extraObjects | list | `[]` |  |
@@ -124,16 +131,6 @@ $ helm install my-release weblate/weblate
 | readinessProbe.periodSeconds | int | `30` |  |
 | readinessProbe.successThreshold | int | `1` |  |
 | readinessProbe.timeoutSeconds | int | `5` |  |
-| redis.architecture | string | `"standalone"` |  |
-| redis.auth.enabled | bool | `true` |  |
-| redis.auth.existingSecret | string | `""` |  |
-| redis.auth.existingSecretPasswordKey | string | `"redis-password"` |  |
-| redis.auth.password | string | `"weblate"` |  |
-| redis.db | int | `1` |  |
-| redis.enabled | bool | `true` |  |
-| redis.global.security.allowInsecureImages | bool | `true` |  |
-| redis.image.repository | string | `"bitnamilegacy/redis"` |  |
-| redis.redisHost | string | `None` | External redis database endpoint, to be used if `redis.enabled == false` |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 | revisionHistoryLimit | int | `10` |  |
@@ -152,3 +149,13 @@ $ helm install my-release weblate/weblate
 | tolerations | list | `[]` |  |
 | topologySpreadConstraints | list | `[]` |  |
 | updateStrategy | string | `"Recreate"` |  |
+| valkey.auth.aclUsers.default.password | string | `""` | Less secure inline password if not using secrets |
+| valkey.auth.aclUsers.default.passwordKey | string | `""` | Password key for the "default" valkey user |
+| valkey.auth.aclUsers.default.permissions | string | `"~* &* +@all"` |  |
+| valkey.auth.enabled | bool | `false` |  |
+| valkey.auth.usersExistingSecret | string | `""` |  |
+| valkey.dataStorage.className | string | `""` | Specify storage class name to use non-default storage class |
+| valkey.dataStorage.enabled | bool | `true` |  |
+| valkey.dataStorage.requestedSize | string | `"8Gi"` |  |
+| valkey.enabled | bool | `true` | Deploy valkey instance when set to true |
+| valkey.valkeyConfig | string | `"save 60 1\n"` |  |

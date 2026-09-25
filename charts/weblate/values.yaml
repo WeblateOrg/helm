@@ -26,8 +26,8 @@ adminUser: ''
 adminPassword: ''
 
 # existingSecret -- Name of existing secret,
-# Make sure it contains the keys postgresql-user, postgresql-password, redis-password, email-user, email-password, admin-user, admin-password
-# Also note to set the existingSecret values for the Redis and Postgresql subcharts
+# Make sure it contains the keys postgresql-user, postgresql-password, email-user, email-password, admin-user, admin-password
+# Also note to set the existingSecret values for the Valkey and Postgresql subcharts
 existingSecret: ''
 
 # siteTile -- Site title
@@ -87,6 +87,18 @@ externalSecretName: ''
 
 # configOverride -- Config override. See https://docs.weblate.org/en/latest/admin/install/docker.html#custom-configuration-files
 configOverride: ''
+
+# Redis configuration for weblate
+cache:
+  host: ''
+  port: '6379'
+  username: ''
+  password: ''
+  existingSecret:
+    secretName: ''
+    passwordKey: ''
+  # -- Logical database index
+  db: 0
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -306,22 +318,27 @@ postgresql:
   # @default -- `None`
   postgresqlHost:
 
-redis:
-  global:
-    security:
-      # required to allow bitnamilegacy repository
-      allowInsecureImages: true
-  image:
-    repository: bitnamilegacy/redis
-  architecture: standalone
-  auth:
-    enabled: true
-    password: weblate
-    existingSecret: ''
-    existingSecretPasswordKey: redis-password
-  db: 1
+# https://github.com/valkey-io/valkey-helm/blob/valkey-0.12.0/valkey/values.yaml
+valkey:
+  # -- Deploy valkey instance when set to true
   enabled: true
-  # redis.redisHost -- External redis database endpoint, to be
-  # used if `redis.enabled == false`
-  # @default -- `None`
-  redisHost:
+  # https://github.com/valkey-io/valkey-helm/tree/valkey-0.12.0/valkey#authentication
+  auth:
+    enabled: false
+    usersExistingSecret: '' # -- Override with secret name of the secret containing passwords for valkey users
+    aclUsers:
+      default:
+        permissions: ~* &* +@all
+        # -- Password key for the "default" valkey user
+        passwordKey: ''
+        # -- Less secure inline password if not using secrets
+        password: ''
+  # https://github.com/valkey-io/valkey-helm/tree/valkey-0.12.0/valkey#storage
+  dataStorage:
+    enabled: true
+    requestedSize: 8Gi
+    # -- Specify storage class name to use non-default storage class
+    className: ''
+  # valkeyConfig -- Contents of the configuration file for valkey
+  valkeyConfig: |
+    save 60 1
