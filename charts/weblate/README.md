@@ -151,11 +151,11 @@ $ helm install my-release weblate/weblate
 | updateStrategy | string | `"Recreate"` |  |
 | valkey.auth.aclUsers.default.password | string | `""` | Less secure inline password if not using secrets |
 | valkey.auth.aclUsers.default.passwordKey | string | `""` | Password key for the "default" valkey user |
-| valkey.auth.aclUsers.default.permissions | string | `"~* &* +@all"` |  |
-| valkey.auth.enabled | bool | `false` |  |
-| valkey.auth.usersExistingSecret | string | `""` |  |
+| valkey.auth.aclUsers.default.permissions | string | `"~* &* +@all"` | ACL string for the "default" valkey user |
+| valkey.auth.enabled | bool | `false` | Enable auth mechanism when set to true |
+| valkey.auth.usersExistingSecret | string | `""` | Override with secret name of the secret containing passwords for valkey users |
 | valkey.dataStorage.className | string | `""` | Specify storage class name to use non-default storage class |
-| valkey.dataStorage.enabled | bool | `true` |  |
-| valkey.dataStorage.requestedSize | string | `"8Gi"` |  |
+| valkey.dataStorage.enabled | bool | `true` | Enables persistent storage when set to true |
+| valkey.dataStorage.requestedSize | string | `"8Gi"` | Size of the persistent storage |
 | valkey.enabled | bool | `true` | Deploy valkey instance when set to true |
-| valkey.valkeyConfig | string | `"save 60 1\n"` |  |
+| valkey.valkeyConfig | string | `"save 60 1\n"` | Contents of the configuration file for valkey |

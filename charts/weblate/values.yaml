@@ -324,10 +324,13 @@ valkey:
   enabled: true
   # https://github.com/valkey-io/valkey-helm/tree/valkey-0.12.0/valkey#authentication
   auth:
+    # -- Enable auth mechanism when set to true
     enabled: false
-    usersExistingSecret: '' # -- Override with secret name of the secret containing passwords for valkey users
+    # -- Override with secret name of the secret containing passwords for valkey users
+    usersExistingSecret: ''
     aclUsers:
       default:
+        # -- ACL string for the "default" valkey user
         permissions: ~* &* +@all
         # -- Password key for the "default" valkey user
         passwordKey: ''
@@ -335,10 +338,12 @@ valkey:
         password: ''
   # https://github.com/valkey-io/valkey-helm/tree/valkey-0.12.0/valkey#storage
   dataStorage:
+    # -- Enables persistent storage when set to true
     enabled: true
+    # -- Size of the persistent storage
     requestedSize: 8Gi
     # -- Specify storage class name to use non-default storage class
     className: ''
-  # valkeyConfig -- Contents of the configuration file for valkey
+  # -- Contents of the configuration file for valkey
   valkeyConfig: |
     save 60 1
