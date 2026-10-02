@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.5.38](https://img.shields.io/badge/Version-0.5.38-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2026.9.1.2](https://img.shields.io/badge/AppVersion-2026.9.1.2-informational?style=flat-square)
+![Version: 0.5.39](https://img.shields.io/badge/Version-0.5.39-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2026.9.1.2](https://img.shields.io/badge/AppVersion-2026.9.1.2-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
