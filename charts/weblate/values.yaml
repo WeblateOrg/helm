@@ -93,6 +93,9 @@ serviceAccount:
   create: true
   # The name of the service account to use. If not set and create is true, a name is generated using the fullname template
   name:
+  # serviceAccount.automountServiceAccountToken -- Automount service account token for kubernetes api access from pod
+  # @default -- `false`
+  automountServiceAccountToken: false
 
 podSecurityContext:
   enabled: true

@@ -1,3 +1,7 @@
+## 0.5.39
+
+[FEATURE] Disable Service account token auto-mounting
+
 ## 0.5.30
 
 Bump a chart version
