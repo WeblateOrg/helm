@@ -8,4 +8,4 @@ Helm Charts for Weblate, see `charts/weblate <charts/weblate>`_.
    :alt: Weblate
    :height: 55px
 
-Maintained by `Weblate <https://weblate.org/>`_ — a privacy-respecting localization platform built on open-source foundations.
+Part of `Weblate <https://weblate.org/>`_ — a privacy-respecting localization platform built on open-source foundations.
