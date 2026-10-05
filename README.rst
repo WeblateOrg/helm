@@ -1,7 +1,7 @@
 Helm charts for Weblate
 =======================
 
-Helm Charts for Weblate, see `charts/weblate <charts/weblate>`_.
+Helm charts for deploying Weblate on Kubernetes, see `charts/weblate <charts/weblate>`_.
 
 .. image:: https://s.weblate.org/cdn/Logo-Darktext-borders.png
    :target: https://weblate.org/
