@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.5.42](https://img.shields.io/badge/Version-0.5.42-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2026.10.1.0](https://img.shields.io/badge/AppVersion-2026.10.1.0-informational?style=flat-square)
+![Version: 0.5.43](https://img.shields.io/badge/Version-0.5.43-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2026.10.1.1](https://img.shields.io/badge/AppVersion-2026.10.1.1-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -80,7 +80,7 @@ $ helm install my-release weblate/weblate
 | gatewayApi.tlsRoute.rules | list | `[]` | TLSRoute rules. If empty, a default rule routing all traffic to the Weblate service is created |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"weblate/weblate"` |  |
-| image.tag | string | `"2026.10.1.0@sha256:57f8cdc6dcb28079e20241daf3671a73dc30c42408379965cd6582e772001636"` |  |
+| image.tag | string | `"2026.10.1.1@sha256:b0f200f38d70ed0db026ee969898b96dbeee5e9961b8c40ed05433e94354b4a8"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |
