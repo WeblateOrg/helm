@@ -1,3 +1,11 @@
+## 0.5.44
+
+[!WARNING]
+Redis dependency was replaced with Valkey, this breaks existing installations.
+Backup Redis data before upgrading and restore to Valkey after upgrade if required.
+
+[FEATURE] Replace Bitnami Redis dependency with official Valkey chart.
+
 ## 0.5.39
 
 [FEATURE] Disable Service account token auto-mounting
