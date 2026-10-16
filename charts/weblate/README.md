@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.5.38](https://img.shields.io/badge/Version-0.5.38-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2026.9.1.2](https://img.shields.io/badge/AppVersion-2026.9.1.2-informational?style=flat-square)
+![Version: 0.5.43](https://img.shields.io/badge/Version-0.5.43-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2026.10.1.1](https://img.shields.io/badge/AppVersion-2026.10.1.1-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -24,7 +24,7 @@ $ helm install my-release weblate/weblate
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 18.8.13 |
+| https://charts.bitnami.com/bitnami | postgresql | 18.12.4 |
 | https://valkey.io/valkey-helm/ | valkey | 0.12.0 |
 
 ## Values
@@ -87,7 +87,7 @@ $ helm install my-release weblate/weblate
 | gatewayApi.tlsRoute.rules | list | `[]` | TLSRoute rules. If empty, a default rule routing all traffic to the Weblate service is created |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"weblate/weblate"` |  |
-| image.tag | string | `"2026.9.1.2@sha256:f0be5b122b38d336e2b3575af1f5828884d482934a35d9dff83a3ec5efb66ae7"` |  |
+| image.tag | string | `"2026.10.1.1@sha256:b0f200f38d70ed0db026ee969898b96dbeee5e9961b8c40ed05433e94354b4a8"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |
@@ -140,6 +140,7 @@ $ helm install my-release weblate/weblate
 | service.port | int | `80` |  |
 | service.publishNotReadyAddresses | bool | `false` |  |
 | service.type | string | `"ClusterIP"` |  |
+| serviceAccount.automountServiceAccountToken | bool | `false` | Automount service account token for kubernetes api access from pod |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `nil` |  |
 | sidecars | list | `[]` | List of additional containers to add to the pod. Values will be evaluated as Helm templates |
