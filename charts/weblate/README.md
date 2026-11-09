@@ -1,6 +1,6 @@
 # weblate
 
-![Version: 0.5.47](https://img.shields.io/badge/Version-0.5.47-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2026.10.1.4](https://img.shields.io/badge/AppVersion-2026.10.1.4-informational?style=flat-square)
+![Version: 0.5.49](https://img.shields.io/badge/Version-0.5.49-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2026.11.1.0](https://img.shields.io/badge/AppVersion-2026.11.1.0-informational?style=flat-square)
 
 Weblate is a free web-based translation management system.
 
@@ -24,7 +24,7 @@ $ helm install my-release weblate/weblate
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 18.12.4 |
+| https://charts.bitnami.com/bitnami | postgresql | 18.12.16 |
 | https://valkey.io/valkey-helm/ | valkey | 0.12.0 |
 
 ## Values
@@ -87,7 +87,7 @@ $ helm install my-release weblate/weblate
 | gatewayApi.tlsRoute.rules | list | `[]` | TLSRoute rules. If empty, a default rule routing all traffic to the Weblate service is created |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"weblate/weblate"` |  |
-| image.tag | string | `"2026.10.1.4@sha256:c74bf3c6f5cb52e4aa141e6f605c0f4fdefdcf1e89d1a9fbd011a79a4a83807d"` |  |
+| image.tag | string | `"2026.11.1.0@sha256:6e0caa383cdf44e6130d5d3fe858c2addc959a1d091de86d67aefb6bb892a42b"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |
