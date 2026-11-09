@@ -1,4 +1,4 @@
-## 0.5.47
+## 0.5.48
 
 [!WARNING]
 Redis dependency was replaced with Valkey, this breaks existing installations.
