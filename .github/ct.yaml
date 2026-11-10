@@ -1,4 +1,5 @@
 chart-repos:
 - bitnami=https://charts.bitnami.com/bitnami
+- valkey=https://valkey.io/valkey-helm
 debug: true
 target-branch: main
